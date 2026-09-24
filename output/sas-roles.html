@@ -455,11 +455,15 @@
    FLIP CARD
    Both faces sit in the same grid cell, so the card is as
    tall as its longest face (nothing gets cut off).
+
+   Default (phones, tablets, touch screens): the faces
+   CROSS-FADE when "Explore role" is tapped — no 3D, so it
+   works the same in every mobile browser (incl. iPhone Safari).
+   Mouse + wide screen: real 3D flip (see media query below).
 ========================================================= */
 
 #sas-roles .sas-roles-card {
     height: 100%;
-    perspective: 1800px;
 }
 
 #sas-roles .sas-roles-flipper {
@@ -467,25 +471,77 @@
 
     height: 100%;
     min-height: 450px;
-
-    transform-style: preserve-3d;
-    transition: transform 0.75s var(--sas-ease);
 }
 
-/* Flip on: mouse hover, "Explore role" button, or keyboard focus on the back link */
-@media (hover: hover) {
-    #sas-roles .sas-roles-card:hover .sas-roles-flipper {
+/* Cross-fade (default) */
+#sas-roles .sas-roles-face {
+    transition:
+        opacity 0.35s ease,
+        visibility 0s linear 0s,
+        border-color 0.35s ease;
+}
+
+#sas-roles .sas-roles-back,
+#sas-roles .sas-roles-card.is-flipped .sas-roles-front {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.35s ease,
+        visibility 0s linear 0.35s,
+        border-color 0.35s ease;
+}
+
+#sas-roles .sas-roles-card.is-flipped .sas-roles-back {
+    opacity: 1;
+    visibility: visible;
+    transition:
+        opacity 0.35s ease,
+        visibility 0s linear 0s,
+        border-color 0.35s ease;
+}
+
+/* 3D flip — only with a mouse on a wide screen */
+@media (hover: hover) and (min-width: 861px) {
+
+    #sas-roles .sas-roles-card {
+        perspective: 1800px;
+    }
+
+    #sas-roles .sas-roles-flipper {
+        transform-style: preserve-3d;
+        transition: transform 0.75s var(--sas-ease);
+    }
+
+    #sas-roles .sas-roles-face,
+    #sas-roles .sas-roles-back,
+    #sas-roles .sas-roles-card.is-flipped .sas-roles-front,
+    #sas-roles .sas-roles-card.is-flipped .sas-roles-back {
+        opacity: 1;
+        visibility: visible;
+
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+
+        transition: border-color 0.35s ease;
+    }
+
+    #sas-roles .sas-roles-back {
         transform: rotateY(180deg);
     }
+
+    #sas-roles .sas-roles-card:hover .sas-roles-flipper,
+    #sas-roles .sas-roles-card.is-flipped .sas-roles-flipper {
+        transform: rotateY(180deg);
+    }
+
 }
 
-#sas-roles .sas-roles-card.is-flipped .sas-roles-flipper {
-    transform: rotateY(180deg);
-}
-
-/* separate rule: browsers without :has() skip only this one */
-#sas-roles .sas-roles-card:has(.sas-roles-link:focus-visible) .sas-roles-flipper {
-    transform: rotateY(180deg);
+/* Keyboard focus on "View Role Details" flips too
+   (separate rule: browsers without :has() skip only this one) */
+@media (hover: hover) and (min-width: 861px) {
+    #sas-roles .sas-roles-card:has(.sas-roles-link:focus-visible) .sas-roles-flipper {
+        transform: rotateY(180deg);
+    }
 }
 
 
@@ -521,10 +577,9 @@
         inset 0 -1px 0 rgba(255,255,255,0.015),
         0 25px 70px rgba(0,0,0,0.30);
 
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-
-    transition: border-color 0.35s ease;
+    /* keeps the highlight behind the text without giving the text its own layer
+       (separate layers break backface hiding in Safari) */
+    isolation: isolate;
 }
 
 #sas-roles .sas-roles-face::before {
@@ -532,7 +587,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 0;
+    z-index: -1;
 
     width: 100%;
     height: 42%;
@@ -540,11 +595,6 @@
     pointer-events: none;
 
     background: linear-gradient(180deg, rgba(255,255,255,0.035), transparent);
-}
-
-#sas-roles .sas-roles-face > * {
-    position: relative;
-    z-index: 1;
 }
 
 #sas-roles .sas-roles-card:hover .sas-roles-front,
@@ -626,7 +676,6 @@
     position: absolute;
     bottom: 14px;
     left: 50%;
-    z-index: 2;
 
     min-height: 44px;
     padding: 0 16px;
@@ -660,8 +709,6 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 24px;
-
-    transform: rotateY(180deg);
 }
 
 #sas-roles .sas-roles-back-label {
@@ -892,6 +939,11 @@
         --sas-delay: 0s !important;
     }
 
+    /* card is as tall as its content — no big empty gaps */
+    #sas-roles .sas-roles-flipper {
+        min-height: 0;
+    }
+
 }
 
 
@@ -919,10 +971,6 @@
 
     #sas-roles .sas-roles-grid {
         margin-bottom: 42px;
-    }
-
-    #sas-roles .sas-roles-flipper {
-        min-height: 430px;
     }
 
     #sas-roles .sas-roles-face {
@@ -1025,9 +1073,16 @@
       card.classList.toggle('is-flipped', flipped);
       btn.setAttribute('aria-expanded', flipped ? 'true' : 'false');
     }
-    btn.addEventListener('click', function(){ set(!card.classList.contains('is-flipped')); });
-    back.addEventListener('click', function(e){ if (!e.target.closest('a')) set(false); });
-    card.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+    var link = card.querySelector('.sas-roles-link');
+    /* In cross-fade mode (touch / narrow screens) the hidden face can't hold focus,
+       so move focus to the face that's now showing */
+    var flip3d = window.matchMedia('(hover: hover) and (min-width: 861px)');
+    function moveFocus(to){
+      if (!flip3d.matches && card.contains(document.activeElement)) to.focus({ preventScroll: true });
+    }
+    btn.addEventListener('click', function(){ set(!card.classList.contains('is-flipped')); moveFocus(link); });
+    back.addEventListener('click', function(e){ if (!e.target.closest('a')) { set(false); moveFocus(btn); } });
+    card.addEventListener('keydown', function(e){ if (e.key === 'Escape') { set(false); moveFocus(btn); } });
   });
 
   /* Scroll reveal (SAS standard) */
