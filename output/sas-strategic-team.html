@@ -1,0 +1,568 @@
+<!-- =========================================================
+     SAS HOME — THE SAS DIFFERENCE / STRATEGIC TEAM
+     Page: Home | After the hero → section title is H2, cards are H3
+     Scroll-reveal section
+========================================================= -->
+
+<section id="sas-strategic-team" aria-labelledby="sas-strategic-team-title">
+
+    <div class="sas-strategic-team-inner">
+
+        <!-- HEADING -->
+        <div class="sas-strategic-team-heading">
+
+            <p class="sas-strategic-team-eyebrow sas-reveal" style="--sas-delay: 0s;">
+                The SAS Difference
+            </p>
+
+            <h2 id="sas-strategic-team-title" class="sas-reveal" style="--sas-delay: 0.08s;">
+                You Don't Just Get a Virtual Assistant.
+                <span>You Get a Strategic Team.</span>
+            </h2>
+
+        </div>
+
+
+        <!-- TEAM GRID -->
+        <ul class="sas-strategic-team-grid">
+
+            <!-- CARD 1 -->
+            <li class="sas-strategic-team-item sas-reveal" style="--sas-delay: 0.16s;">
+                <article class="sas-strategic-team-card" aria-labelledby="sas-strategic-team-card-1">
+
+                    <div class="sas-strategic-team-card-top" aria-hidden="true">
+                        <span class="sas-strategic-team-number">01</span>
+                        <span class="sas-strategic-team-line"></span>
+                    </div>
+
+                    <h3 id="sas-strategic-team-card-1">Elite Virtual Assistant</h3>
+
+                    <p class="sas-strategic-team-desc">
+                        We don’t hire for availability. We select from the top 1% of talent in each role to ensure you get a highly experienced, professional, and results-driven Virtual Assistant.
+                    </p>
+
+                    <ul class="sas-strategic-team-list">
+                        <li>
+                            <span class="sas-strategic-team-check" aria-hidden="true">✓</span>
+                            <span>Top 1% Pre-Vetted Talent in Each Role</span>
+                        </li>
+                        <li>
+                            <span class="sas-strategic-team-check" aria-hidden="true">✓</span>
+                            <span>Proven Experience in Real Business Environments</span>
+                        </li>
+                        <li>
+                            <span class="sas-strategic-team-check" aria-hidden="true">✓</span>
+                            <span>High-Level Execution with Minimal Supervision</span>
+                        </li>
+                        <li>
+                            <span class="sas-strategic-team-check" aria-hidden="true">✓</span>
+                            <span>Structured, Reliable, and Consistent Output</span>
+                        </li>
+                    </ul>
+
+                </article>
+            </li>
+
+            <!-- CARD 2 -->
+            <li class="sas-strategic-team-item sas-reveal" style="--sas-delay: 0.24s;">
+                <article class="sas-strategic-team-card" aria-labelledby="sas-strategic-team-card-2">
+
+                    <div class="sas-strategic-team-card-top" aria-hidden="true">
+                        <span class="sas-strategic-team-number">02</span>
+                        <span class="sas-strategic-team-line"></span>
+                    </div>
+
+                    <h3 id="sas-strategic-team-card-2">Dedicated Account Manager</h3>
+
+                    <p class="sas-strategic-team-desc">
+                        This is what separates SAS from hiring a freelancer. Your Account Manager acts as the quality layer ensuring alignment, accountability, and consistent performance.
+                    </p>
+
+                    <ul class="sas-strategic-team-list">
+                        <li>
+                            <span class="sas-strategic-team-check" aria-hidden="true">✓</span>
+                            <span>KPI Tracking, Reporting, and Performance Visibility</span>
+                        </li>
+                        <li>
+                            <span class="sas-strategic-team-check" aria-hidden="true">✓</span>
+                            <span>Daily Alignment and End-of-Day Reporting</span>
+                        </li>
+                        <li>
+                            <span class="sas-strategic-team-check" aria-hidden="true">✓</span>
+                            <span>Ongoing Coaching and Virtual Assistant Performance Management</span>
+                        </li>
+                        <li>
+                            <span class="sas-strategic-team-check" aria-hidden="true">✓</span>
+                            <span>Process Optimization Focused on Measurable Results</span>
+                        </li>
+                    </ul>
+
+                </article>
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+<style>
+
+/* =========================================================
+   SAS DESIGN SYSTEM — shared values
+   (Same values are reused in every SAS section)
+========================================================= */
+
+#sas-strategic-team {
+    /* Colours */
+    --sas-bg: #000000;
+    --sas-surface: rgba(15,15,15,0.9);
+    --sas-gold: #D6A743;
+    --sas-gold-hover: #E2B85A;
+    --sas-white: #FFFFFF;
+    --sas-muted: #AAAAAA;
+    --sas-border: rgba(255,255,255,0.08);
+
+    /* Type */
+    --sas-font: "Inter", Arial, Helvetica, sans-serif;
+    --sas-fs-eyebrow: 13px;
+    --sas-fs-h1: clamp(38px, 3.6vw + 14px, 64px);
+    --sas-fs-h2: clamp(30px, 2.4vw + 14px, 48px);
+    --sas-fs-h3: clamp(20px, 0.8vw + 14px, 24px);
+    --sas-fs-body: clamp(16px, 0.25vw + 15px, 18px);
+    --sas-fs-small: 15px;
+    --sas-fs-btn: 15px;
+
+    /* Layout — same side spacing as the header & footer */
+    --sas-gutter: clamp(20px, 4vw, 64px);
+    --sas-max: 1440px;
+    --sas-section-y: 0px;               /* top/bottom spacing is set in GHL */
+
+    /* Motion */
+    --sas-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --sas-dur: 0.8s;
+}
+
+
+/* =========================================================
+   SECTION — full width on every screen
+========================================================= */
+
+#sas-strategic-team {
+    position: relative;
+
+    /* BREAK OUT OF THE GHL ROW / COLUMN */
+    width: 100vw !important;
+    max-width: 100vw !important;
+    left: 50%;
+    right: 50%;
+    margin: 0 -50vw !important;
+
+    padding: var(--sas-section-y) var(--sas-gutter);
+
+    overflow-x: clip;
+
+    background: var(--sas-bg);
+    color: var(--sas-white);
+
+    font-family: var(--sas-font);
+    -webkit-font-smoothing: antialiased;
+
+    box-sizing: border-box;
+}
+
+#sas-strategic-team *,
+#sas-strategic-team *::before,
+#sas-strategic-team *::after {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+#sas-strategic-team .sas-strategic-team-inner {
+    width: 100%;
+    max-width: var(--sas-max);
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+#sas-strategic-team .sas-strategic-team-heading {
+    max-width: 1000px;
+    margin: 0 auto 50px;
+    text-align: center;
+}
+
+#sas-strategic-team .sas-strategic-team-eyebrow {
+    margin: 0 0 18px;
+
+    color: var(--sas-gold);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-eyebrow);
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+#sas-strategic-team .sas-strategic-team-heading h2 {
+    margin: 0;
+
+    color: var(--sas-white);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-h2);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+
+    text-wrap: balance;
+}
+
+#sas-strategic-team .sas-strategic-team-heading h2 span {
+    display: block;
+    color: var(--sas-gold);
+}
+
+
+/* =========================================================
+   CARD GRID
+========================================================= */
+
+#sas-strategic-team .sas-strategic-team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+#sas-strategic-team .sas-strategic-team-item {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   CARD (SAS standard)
+========================================================= */
+
+#sas-strategic-team .sas-strategic-team-card {
+    position: relative;
+
+    height: 100%;
+    min-height: 500px;
+    min-width: 0;
+
+    padding: 42px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.055) 0%,
+            rgba(255,255,255,0.018) 38%,
+            rgba(0,0,0,0.20) 100%
+        ),
+        rgba(10,10,10,0.62);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        inset 0 -1px 0 rgba(255,255,255,0.015),
+        0 25px 70px rgba(0,0,0,0.30);
+
+    transition:
+        transform 0.35s var(--sas-ease),
+        border-color 0.35s ease;
+}
+
+#sas-strategic-team .sas-strategic-team-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    width: 100%;
+    height: 42%;
+
+    pointer-events: none;
+
+    background: linear-gradient(180deg, rgba(255,255,255,0.035), transparent);
+}
+
+#sas-strategic-team .sas-strategic-team-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+#sas-strategic-team .sas-strategic-team-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(214,167,67,0.22);
+}
+
+
+/* =========================================================
+   CARD TOP — number + line
+========================================================= */
+
+#sas-strategic-team .sas-strategic-team-card-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    margin-bottom: 38px;
+}
+
+#sas-strategic-team .sas-strategic-team-number {
+    color: var(--sas-gold);
+
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+#sas-strategic-team .sas-strategic-team-line {
+    flex: 1;
+    height: 1px;
+
+    background: linear-gradient(90deg, rgba(255,255,255,0.15), transparent);
+}
+
+
+/* =========================================================
+   CARD TEXT
+========================================================= */
+
+#sas-strategic-team .sas-strategic-team-card h3 {
+    margin: 0 0 18px;
+
+    color: var(--sas-white);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-h3);
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+#sas-strategic-team .sas-strategic-team-desc {
+    max-width: 65ch;
+    margin: 0 0 34px;
+
+    color: var(--sas-muted);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-body);
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   BULLET LIST
+========================================================= */
+
+#sas-strategic-team .sas-strategic-team-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+#sas-strategic-team .sas-strategic-team-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    min-width: 0;
+    margin: 0;
+
+    color: var(--sas-muted);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-small);
+    font-weight: 500;
+    line-height: 1.55;
+}
+
+#sas-strategic-team .sas-strategic-team-list li > span:last-child {
+    min-width: 0;
+}
+
+#sas-strategic-team .sas-strategic-team-check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 22px;
+
+    width: 22px;
+    height: 22px;
+    margin-top: 1px;
+
+    border: 1px solid rgba(214,167,67,0.20);
+    border-radius: 50%;
+
+    background: rgba(214,167,67,0.10);
+    color: var(--sas-gold);
+
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+
+/* =========================================================
+   SCROLL REVEAL  (SAS standard)
+   Fade up 24px, 0.8s, soft ease, staggered 0.08s.
+   Content stays visible if JavaScript doesn't run.
+========================================================= */
+
+#sas-strategic-team.sas-js-reveal .sas-reveal {
+    opacity: 0;
+    transform: translate3d(0,24px,0);
+    transition: opacity var(--sas-dur) var(--sas-ease), transform var(--sas-dur) var(--sas-ease);
+    transition-delay: var(--sas-delay, 0s);
+}
+
+#sas-strategic-team.sas-js-reveal .sas-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+
+/* =========================================================
+   TABLET — stack cards
+========================================================= */
+
+@media (max-width: 860px) {
+
+    #sas-strategic-team .sas-strategic-team-heading {
+        margin-bottom: 40px;
+    }
+
+    #sas-strategic-team .sas-strategic-team-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    #sas-strategic-team .sas-strategic-team-card {
+        min-height: 0;
+        padding: 38px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    #sas-strategic-team {
+        --sas-fs-eyebrow: 12px;
+    }
+
+    #sas-strategic-team .sas-strategic-team-heading {
+        margin-bottom: 35px;
+    }
+
+    #sas-strategic-team .sas-strategic-team-card {
+        padding: 32px 24px;
+        border-radius: 24px;
+    }
+
+    #sas-strategic-team .sas-strategic-team-card-top {
+        margin-bottom: 30px;
+    }
+
+    #sas-strategic-team .sas-strategic-team-desc {
+        margin-bottom: 28px;
+    }
+
+    #sas-strategic-team .sas-strategic-team-list {
+        gap: 14px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    #sas-strategic-team {
+        --sas-gutter: 16px;
+    }
+
+    #sas-strategic-team .sas-strategic-team-card {
+        padding: 28px 20px;
+        border-radius: 20px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    #sas-strategic-team .sas-reveal,
+    #sas-strategic-team .sas-strategic-team-card {
+        transition: none !important;
+    }
+
+    #sas-strategic-team .sas-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    #sas-strategic-team .sas-strategic-team-card:hover {
+        transform: none;
+    }
+
+}
+
+</style>
+
+
+<script>
+(function(){
+  var root = document.getElementById('sas-strategic-team');
+  if (!root || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  root.classList.add('sas-js-reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+  root.querySelectorAll('.sas-reveal').forEach(function(el){ io.observe(el); });
+})();
+</script>
