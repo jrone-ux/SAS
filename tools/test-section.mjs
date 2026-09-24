@@ -80,6 +80,16 @@ for (const file of files) {
           const ox = getComputedStyle(p).overflowX;
           if (ox === 'auto' || ox === 'scroll') return;
         }
+        // Text cut off at the bottom of a box that hides overflow (e.g. fixed-height cards)
+        for (let p = el.parentElement; p && p !== root.parentElement; p = p.parentElement) {
+          const cs = getComputedStyle(p);
+          if ((cs.overflowY === 'hidden' || cs.overflowY === 'clip') && p.clientHeight > 0) {
+            const pb = p.getBoundingClientRect(), eb = el.getBoundingClientRect();
+            if (eb.bottom > pb.bottom + 1 || eb.top < pb.top - 1)
+              overflow.push(`${el.className || el.tagName}: cut off vertically by ${p.className || p.tagName}`);
+            break;
+          }
+        }
         const b = el.getBoundingClientRect();
         // Block-level text box whose content is wider than the box = words spilling out.
         if (getComputedStyle(el).display !== 'inline' && el.clientWidth > 0 && el.scrollWidth > el.clientWidth + 1)
