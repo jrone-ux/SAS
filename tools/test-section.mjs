@@ -14,7 +14,7 @@ let playwright;
 try { playwright = require('playwright'); }
 catch { playwright = require(resolve(execSync('npm root -g').toString().trim(), 'playwright')); }
 
-const WIDTHS = [2560, 1920, 1440, 1024, 820, 390, 360, 320];
+const WIDTHS = process.env.WIDTHS ? process.env.WIDTHS.split(",").map(Number) : [2560, 1920, 1440, 1024, 820, 390, 360, 320];
 const SHOT_DIR = resolve('output/screenshots');
 mkdirSync(SHOT_DIR, { recursive: true });
 
@@ -81,7 +81,8 @@ for (const file of files) {
           if (ox === 'auto' || ox === 'scroll') return;
         }
         const b = el.getBoundingClientRect();
-        if (el.scrollWidth > el.clientWidth + 1 && getComputedStyle(el).overflowX !== 'visible')
+        // Block-level text box whose content is wider than the box = words spilling out.
+        if (getComputedStyle(el).display !== 'inline' && el.clientWidth > 0 && el.scrollWidth > el.clientWidth + 1)
           overflow.push(`${el.className || el.tagName}: scrollWidth ${el.scrollWidth} > ${el.clientWidth}`);
         if (b.left < -1 || b.right > innerWidth + 1)
           overflow.push(`${el.className || el.tagName}: outside viewport (${b.left|0}..${b.right|0})`);
