@@ -48,7 +48,7 @@ for (const file of files) {
     page.on('pageerror', (e) => errors.push(e.message));
     // The GHL image CDN is not reachable from the test machine: serve a grey
     // placeholder at each <img>'s declared width/height instead.
-    await page.route(/filesafe\.space|leadconnectorhq|msgsndr|ytimg/, async (route) => {
+    await page.route(/filesafe\.space|leadconnectorhq|msgsndr|ytimg|img\.youtube\.com/, async (route) => {
       const m = snippet.match(new RegExp('src="' + route.request().url().replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '"[^>]*?width="(\\d+)"[^>]*?height="(\\d+)"'));
       const [w, h] = m ? [m[1], m[2]] : [800, 600];
       await route.fulfill({ contentType: 'image/svg+xml',

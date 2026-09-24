@@ -1,0 +1,590 @@
+<!-- =========================================================
+     SAS — CLIENT SUCCESS STORIES (video testimonials)
+     Section title is H2
+     Scroll-reveal section, pure black background
+     Cards link out to YouTube (links kept exactly as before)
+========================================================= -->
+
+<section id="sas-testimonials" aria-labelledby="sas-testimonials-title">
+
+    <div class="sas-testimonials-inner">
+
+        <!-- HEADER -->
+        <div class="sas-testimonials-header">
+
+            <p class="sas-testimonials-eyebrow sas-reveal" style="--sas-delay: 0s;">
+                Client Success Stories
+            </p>
+
+            <h2 id="sas-testimonials-title" class="sas-reveal" style="--sas-delay: 0.08s;">
+                What Our Clients
+                <span>Say About SAS</span>
+            </h2>
+
+        </div>
+
+
+        <!-- VIDEO GRID -->
+        <ul class="sas-testimonials-grid">
+
+            <!-- TESTIMONIAL 1 -->
+            <li class="sas-testimonials-item sas-reveal" style="--sas-delay: 0.16s;">
+                <a
+                    class="sas-testimonials-card"
+                    href="https://youtu.be/95f1nkghIlQ"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Watch client success story 1 on YouTube"
+                >
+                    <img
+                        src="https://img.youtube.com/vi/95f1nkghIlQ/hqdefault.jpg"
+                        alt="Client success story video 1"
+                        width="480"
+                        height="360"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                    <span class="sas-testimonials-play" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor" focusable="false">
+                            <path d="M8 5v14l11-7z"></path>
+                        </svg>
+                    </span>
+                </a>
+            </li>
+
+            <!-- TESTIMONIAL 2 -->
+            <li class="sas-testimonials-item sas-reveal" style="--sas-delay: 0.24s;">
+                <a
+                    class="sas-testimonials-card"
+                    href="https://youtu.be/3bHcvqY2940"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Watch client success story 2 on YouTube"
+                >
+                    <img
+                        src="https://img.youtube.com/vi/3bHcvqY2940/hqdefault.jpg"
+                        alt="Client success story video 2"
+                        width="480"
+                        height="360"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                    <span class="sas-testimonials-play" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor" focusable="false">
+                            <path d="M8 5v14l11-7z"></path>
+                        </svg>
+                    </span>
+                </a>
+            </li>
+
+            <!-- TESTIMONIAL 3 -->
+            <li class="sas-testimonials-item sas-reveal" style="--sas-delay: 0.32s;">
+                <a
+                    class="sas-testimonials-card"
+                    href="https://youtu.be/LLzmxIXqgyo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Watch client success story 3 on YouTube"
+                >
+                    <img
+                        src="https://img.youtube.com/vi/LLzmxIXqgyo/hqdefault.jpg"
+                        alt="Client success story video 3"
+                        width="480"
+                        height="360"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                    <span class="sas-testimonials-play" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor" focusable="false">
+                            <path d="M8 5v14l11-7z"></path>
+                        </svg>
+                    </span>
+                </a>
+            </li>
+
+            <!-- TESTIMONIAL 4 -->
+            <li class="sas-testimonials-item sas-reveal" style="--sas-delay: 0.40s;">
+                <a
+                    class="sas-testimonials-card"
+                    href="https://youtu.be/TL-OvgonUAs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Watch client success story 4 on YouTube"
+                >
+                    <img
+                        src="https://img.youtube.com/vi/TL-OvgonUAs/hqdefault.jpg"
+                        alt="Client success story video 4"
+                        width="480"
+                        height="360"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                    <span class="sas-testimonials-play" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor" focusable="false">
+                            <path d="M8 5v14l11-7z"></path>
+                        </svg>
+                    </span>
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+<style>
+
+/* =========================================================
+   SAS DESIGN SYSTEM — shared values
+   (Same values are reused in every SAS section)
+========================================================= */
+
+#sas-testimonials {
+    /* Colours */
+    --sas-bg: #000000;
+    --sas-surface: rgba(15,15,15,0.9);
+    --sas-gold: #D6A743;
+    --sas-gold-hover: #E2B85A;
+    --sas-white: #FFFFFF;
+    --sas-muted: #AAAAAA;
+    --sas-border: rgba(255,255,255,0.08);
+
+    /* Type */
+    --sas-font: "Inter", Arial, Helvetica, sans-serif;
+    --sas-fs-eyebrow: 13px;
+    --sas-fs-h1: clamp(38px, 3.6vw + 14px, 64px);
+    --sas-fs-h2: clamp(30px, 2.4vw + 14px, 48px);
+    --sas-fs-h3: clamp(20px, 0.8vw + 14px, 24px);
+    --sas-fs-body: clamp(16px, 0.25vw + 15px, 18px);
+    --sas-fs-small: 15px;
+    --sas-fs-btn: 15px;
+
+    /* Layout — same side spacing as the header & footer */
+    --sas-gutter: clamp(20px, 4vw, 64px);
+    --sas-max: 1440px;
+    --sas-section-y: 0px;               /* top/bottom spacing is set in GHL */
+
+    /* Motion */
+    --sas-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --sas-dur: 0.8s;
+}
+
+
+/* =========================================================
+   SECTION — full width on every screen, pure black
+========================================================= */
+
+#sas-testimonials {
+    position: relative;
+
+    /* BREAK OUT OF THE GHL ROW / COLUMN */
+    width: 100vw !important;
+    max-width: 100vw !important;
+    left: 50%;
+    right: 50%;
+    margin: 0 -50vw !important;
+
+    padding: var(--sas-section-y) var(--sas-gutter);
+
+    overflow-x: clip;
+
+    background: var(--sas-bg);
+    color: var(--sas-white);
+
+    font-family: var(--sas-font);
+    -webkit-font-smoothing: antialiased;
+
+    box-sizing: border-box;
+}
+
+#sas-testimonials *,
+#sas-testimonials *::before,
+#sas-testimonials *::after {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+#sas-testimonials .sas-testimonials-inner {
+    width: 100%;
+    max-width: var(--sas-max);
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+#sas-testimonials .sas-testimonials-header {
+    max-width: 850px;
+    margin: 0 auto 55px;
+    text-align: center;
+}
+
+#sas-testimonials .sas-testimonials-eyebrow {
+    margin: 0 0 16px;
+
+    color: var(--sas-gold);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-eyebrow);
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+#sas-testimonials .sas-testimonials-header h2 {
+    margin: 0;
+
+    color: var(--sas-white);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-h2);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+
+    text-wrap: balance;
+}
+
+#sas-testimonials .sas-testimonials-header h2 span {
+    display: block;
+    color: var(--sas-gold);
+}
+
+
+/* =========================================================
+   VIDEO GRID
+========================================================= */
+
+#sas-testimonials .sas-testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+#sas-testimonials .sas-testimonials-item {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   VIDEO CARD (SAS standard card, 16:9)
+========================================================= */
+
+#sas-testimonials .sas-testimonials-card {
+    position: relative;
+    display: block;
+
+    width: 100%;
+    min-width: 0;
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.055) 0%,
+            rgba(255,255,255,0.018) 38%,
+            rgba(0,0,0,0.20) 100%
+        ),
+        rgba(10,10,10,0.62);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        inset 0 -1px 0 rgba(255,255,255,0.015),
+        0 25px 70px rgba(0,0,0,0.30);
+
+    text-decoration: none;
+
+    transition:
+        transform 0.35s var(--sas-ease),
+        border-color 0.35s ease;
+}
+
+/* Soft top highlight + bottom shade over the thumbnail */
+#sas-testimonials .sas-testimonials-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(180deg, rgba(255,255,255,0.045) 0%, transparent 40%),
+        linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.08) 45%, rgba(0,0,0,0.62) 100%);
+}
+
+/* Thumbnail fills the 16:9 card (YouTube hqdefault is 4:3, so crop the bars) */
+#sas-testimonials .sas-testimonials-card img {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    margin: 0;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition: transform 0.7s var(--sas-ease);
+}
+
+
+/* =========================================================
+   PLAY BUTTON
+========================================================= */
+
+#sas-testimonials .sas-testimonials-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 62px;
+    height: 62px;
+
+    transform: translate(-50%, -50%);
+
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 50%;
+
+    background: rgba(8,8,8,0.62);
+    color: var(--sas-white);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 10px 35px rgba(0,0,0,0.35);
+
+    transition:
+        transform 0.3s var(--sas-ease),
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease;
+}
+
+#sas-testimonials .sas-testimonials-play svg {
+    display: block;
+    flex: 0 0 25px;
+
+    width: 25px;
+    height: 25px;
+
+    transform: translateX(2px);
+}
+
+
+/* =========================================================
+   HOVER + FOCUS
+========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+
+    #sas-testimonials .sas-testimonials-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(214,167,67,0.22);
+    }
+
+    #sas-testimonials .sas-testimonials-card:hover img {
+        transform: scale(1.06);
+    }
+
+    #sas-testimonials .sas-testimonials-card:hover .sas-testimonials-play {
+        transform: translate(-50%, -50%) scale(1.1);
+
+        background: var(--sas-gold);
+        border-color: rgba(214,167,67,0.8);
+        color: #000000;
+    }
+
+}
+
+#sas-testimonials .sas-testimonials-card:focus-visible {
+    outline: 2px solid var(--sas-gold);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   SCROLL REVEAL  (SAS standard)
+   Fade up 24px, 0.8s, soft ease, staggered 0.08s.
+   Content stays visible if JavaScript doesn't run.
+========================================================= */
+
+#sas-testimonials.sas-js-reveal .sas-reveal {
+    opacity: 0;
+    transform: translate3d(0,24px,0);
+    transition: opacity var(--sas-dur) var(--sas-ease), transform var(--sas-dur) var(--sas-ease);
+    transition-delay: var(--sas-delay, 0s);
+}
+
+#sas-testimonials.sas-js-reveal .sas-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+
+/* =========================================================
+   LAPTOP / TABLET — 2 columns
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    #sas-testimonials .sas-testimonials-header {
+        margin-bottom: 45px;
+    }
+
+    #sas-testimonials .sas-testimonials-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE — 1 column
+========================================================= */
+
+@media (max-width: 600px) {
+
+    #sas-testimonials {
+        --sas-fs-eyebrow: 12px;
+    }
+
+    #sas-testimonials .sas-testimonials-header {
+        margin-bottom: 32px;
+    }
+
+    #sas-testimonials .sas-testimonials-eyebrow {
+        margin-bottom: 14px;
+    }
+
+    #sas-testimonials .sas-testimonials-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    /* Videos appear as they scroll in, so no long stagger */
+    #sas-testimonials .sas-testimonials-item {
+        --sas-delay: 0s !important;
+    }
+
+    #sas-testimonials .sas-testimonials-card {
+        border-radius: 24px;
+    }
+
+    #sas-testimonials .sas-testimonials-play {
+        width: 56px;
+        height: 56px;
+    }
+
+    #sas-testimonials .sas-testimonials-play svg {
+        flex-basis: 23px;
+        width: 23px;
+        height: 23px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    #sas-testimonials {
+        --sas-gutter: 16px;
+    }
+
+    #sas-testimonials .sas-testimonials-grid {
+        gap: 14px;
+    }
+
+    #sas-testimonials .sas-testimonials-card {
+        border-radius: 20px;
+    }
+
+    #sas-testimonials .sas-testimonials-play {
+        width: 50px;
+        height: 50px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    #sas-testimonials .sas-reveal,
+    #sas-testimonials .sas-testimonials-card,
+    #sas-testimonials .sas-testimonials-card img,
+    #sas-testimonials .sas-testimonials-play {
+        transition: none !important;
+    }
+
+    #sas-testimonials .sas-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    #sas-testimonials .sas-testimonials-card:hover,
+    #sas-testimonials .sas-testimonials-card:hover img {
+        transform: none !important;
+    }
+
+    #sas-testimonials .sas-testimonials-card:hover .sas-testimonials-play {
+        transform: translate(-50%, -50%) !important;
+    }
+
+}
+
+</style>
+
+
+<script>
+(function(){
+  var root = document.getElementById('sas-testimonials');
+  if (!root || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  root.classList.add('sas-js-reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+  root.querySelectorAll('.sas-reveal').forEach(function(el){ io.observe(el); });
+})();
+</script>
