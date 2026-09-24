@@ -46,6 +46,14 @@ for (const file of files) {
     const page = await browser.newPage({ viewport: { width, height: 900 } });
     const errors = [];
     page.on('pageerror', (e) => errors.push(e.message));
+    // The GHL image CDN is not reachable from the test machine: serve a grey
+    // placeholder at each <img>'s declared width/height instead.
+    await page.route(/filesafe\.space|leadconnectorhq|msgsndr|ytimg/, async (route) => {
+      const m = snippet.match(new RegExp('src="' + route.request().url().replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '"[^>]*?width="(\\d+)"[^>]*?height="(\\d+)"'));
+      const [w, h] = m ? [m[1], m[2]] : [800, 600];
+      await route.fulfill({ contentType: 'image/svg+xml',
+        body: `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><rect width="100%" height="100%" fill="#2a2a2a"/><text x="50%" y="50%" fill="#777" font-size="40" text-anchor="middle" font-family="Arial">image ${w}x${h}</text></svg>` });
+    });
     await page.setContent(page_html(snippet), { waitUntil: 'load' });
 
     await page.locator('#' + rootId).scrollIntoViewIfNeeded();
@@ -79,7 +87,7 @@ for (const file of files) {
             overflow.push(`${el.className || el.tagName}: wider than its card`);
         }
       });
-      const hidden = [...root.querySelectorAll('.sas-reveal')].filter(e => getComputedStyle(e).opacity !== '1').length;
+      const hidden = [...root.querySelectorAll('.sas-reveal, .sas-anim')].filter(e => getComputedStyle(e).opacity !== '1').length;
       return {
         left: rect.left, width: rect.width, vw: innerWidth,
         scrollWidth: document.documentElement.scrollWidth,

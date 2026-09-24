@@ -172,6 +172,8 @@
 ========================================= */
 
 #sas-team-stats .sas-team-stats-card {
+    position: relative;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -188,10 +190,30 @@
     border-radius: 28px;
     box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.06),
+        inset 0 -1px 0 rgba(255,255,255,0.015),
         0 25px 70px rgba(0,0,0,0.30);
     transition:
         transform 0.35s var(--sas-ease),
         border-color 0.35s var(--sas-ease);
+}
+
+/* Soft top highlight (same as hero image card) */
+#sas-team-stats .sas-team-stats-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 42%;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(255,255,255,0.035), transparent);
+}
+
+#sas-team-stats .sas-team-stats-icon,
+#sas-team-stats .sas-team-stats-value,
+#sas-team-stats .sas-team-stats-label {
+    position: relative;
+    z-index: 2;
 }
 
 #sas-team-stats .sas-team-stats-card:hover {
