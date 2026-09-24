@@ -74,7 +74,12 @@ for (const file of files) {
       const overflow = [];
       root.querySelectorAll('*').forEach((el) => {
         const hasText = [...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim());
-        if (!hasText) return;
+        if (!hasText || el.getClientRects().length === 0) return;  // skip hidden (display:none)
+        // Content inside an intentional sideways scroller (e.g. a wide table) is fine.
+        for (let p = el.parentElement; p && p !== root; p = p.parentElement) {
+          const ox = getComputedStyle(p).overflowX;
+          if (ox === 'auto' || ox === 'scroll') return;
+        }
         const b = el.getBoundingClientRect();
         if (el.scrollWidth > el.clientWidth + 1 && getComputedStyle(el).overflowX !== 'visible')
           overflow.push(`${el.className || el.tagName}: scrollWidth ${el.scrollWidth} > ${el.clientWidth}`);
