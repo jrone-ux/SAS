@@ -1,0 +1,520 @@
+<!-- =========================================================
+     SAS — THE SAS EDGE / ADVANTAGE
+     Section title is H2, card titles are H3
+     Scroll-reveal section
+========================================================= -->
+
+<section id="sas-advantage" aria-labelledby="sas-advantage-title">
+
+    <div class="sas-advantage-inner">
+
+        <!-- HEADER -->
+        <div class="sas-advantage-header">
+
+            <p class="sas-advantage-eyebrow sas-reveal" style="--sas-delay: 0s;">
+                The SAS Edge
+            </p>
+
+            <h2 id="sas-advantage-title" class="sas-reveal" style="--sas-delay: 0.08s;">
+                The SAS Advantage: Human Expertise Meets
+                <span>AI Acceleration</span>
+            </h2>
+
+        </div>
+
+
+        <!-- CARDS -->
+        <ul class="sas-advantage-grid">
+
+            <!-- CARD 01 -->
+            <li class="sas-advantage-item sas-reveal" style="--sas-delay: 0.16s;">
+                <div class="sas-advantage-card">
+
+                    <span class="sas-advantage-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" focusable="false">
+                            <path d="M12 2a4 4 0 0 0-4 4v1H7a3 3 0 0 0 0 6h1v1a4 4 0 0 0 8 0v-1h1a3 3 0 0 0 0-6h-1V6a4 4 0 0 0-4-4z"></path>
+                        </svg>
+                    </span>
+
+                    <h3>AI-Powered Strategic Support</h3>
+
+                    <p>
+                        Our Virtual Assistants are trained AI-first, using advanced tools to execute the work of expensive US employees at a fraction of the cost. This is not outsourcing. This is a re-engineered staffing model where AI handles scale and speed, and skilled operators drive execution and judgment.
+                    </p>
+
+                </div>
+            </li>
+
+            <!-- CARD 02 -->
+            <li class="sas-advantage-item sas-reveal" style="--sas-delay: 0.24s;">
+                <div class="sas-advantage-card">
+
+                    <span class="sas-advantage-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" focusable="false">
+                            <polyline points="3 17 9 11 13 15 21 7"></polyline>
+                            <polyline points="14 7 21 7 21 14"></polyline>
+                        </svg>
+                    </span>
+
+                    <h3>Built for Scale, Not Just Support</h3>
+
+                    <p>
+                        AI is changing how businesses operate. Where a human + AI pairing is required, SAS is uniquely strong. We don’t just fill roles. We help redesign how work gets done so your business can scale faster and more efficiently.
+                    </p>
+
+                </div>
+            </li>
+
+            <!-- CARD 03 -->
+            <li class="sas-advantage-item sas-reveal" style="--sas-delay: 0.32s;">
+                <div class="sas-advantage-card">
+
+                    <span class="sas-advantage-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" focusable="false">
+                            <path d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4z"></path>
+                        </svg>
+                    </span>
+
+                    <h3>Unmatched Accountability &amp; Security</h3>
+
+                    <p>
+                        Your operations are protected through structured reporting, strict access controls, and secure systems. Every action is tracked, every outcome is measured, and your data is handled with enterprise-level security standards.
+                    </p>
+
+                </div>
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+<style>
+
+/* =========================================================
+   SAS DESIGN SYSTEM — shared values
+   (Same values are reused in every SAS section)
+========================================================= */
+
+#sas-advantage {
+    /* Colours */
+    --sas-bg: #000000;
+    --sas-surface: rgba(15,15,15,0.9);
+    --sas-gold: #D6A743;
+    --sas-gold-hover: #E2B85A;
+    --sas-white: #FFFFFF;
+    --sas-muted: #AAAAAA;
+    --sas-border: rgba(255,255,255,0.08);
+
+    /* Type */
+    --sas-font: "Inter", Arial, Helvetica, sans-serif;
+    --sas-fs-eyebrow: 13px;
+    --sas-fs-h1: clamp(38px, 3.6vw + 14px, 64px);
+    --sas-fs-h2: clamp(30px, 2.4vw + 14px, 48px);
+    --sas-fs-h3: clamp(20px, 0.8vw + 14px, 24px);
+    --sas-fs-body: clamp(16px, 0.25vw + 15px, 18px);
+    --sas-fs-small: 15px;
+    --sas-fs-btn: 15px;
+
+    /* Layout — same side spacing as the header & footer */
+    --sas-gutter: clamp(20px, 4vw, 64px);
+    --sas-max: 1440px;
+    --sas-section-y: 0px;               /* top/bottom spacing is set in GHL */
+
+    /* Motion */
+    --sas-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --sas-dur: 0.8s;
+}
+
+
+/* =========================================================
+   SECTION — full width on every screen
+========================================================= */
+
+#sas-advantage {
+    position: relative;
+
+    /* BREAK OUT OF THE GHL ROW / COLUMN */
+    width: 100vw !important;
+    max-width: 100vw !important;
+    left: 50%;
+    right: 50%;
+    margin: 0 -50vw !important;
+
+    padding: var(--sas-section-y) var(--sas-gutter);
+
+    overflow-x: clip;
+
+    background: var(--sas-bg);
+    color: var(--sas-white);
+
+    font-family: var(--sas-font);
+    -webkit-font-smoothing: antialiased;
+
+    box-sizing: border-box;
+}
+
+#sas-advantage *,
+#sas-advantage *::before,
+#sas-advantage *::after {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+#sas-advantage .sas-advantage-inner {
+    width: 100%;
+    max-width: var(--sas-max);
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+#sas-advantage .sas-advantage-header {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    text-align: center;
+}
+
+#sas-advantage .sas-advantage-eyebrow {
+    margin: 0 0 16px;
+
+    color: var(--sas-gold);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-eyebrow);
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+#sas-advantage .sas-advantage-header h2 {
+    margin: 0;
+
+    color: var(--sas-white);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-h2);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+
+    text-wrap: balance;
+}
+
+#sas-advantage .sas-advantage-header h2 span {
+    display: block;
+    color: var(--sas-gold);
+}
+
+
+/* =========================================================
+   CARD GRID
+========================================================= */
+
+#sas-advantage .sas-advantage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+#sas-advantage .sas-advantage-item {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   CARD (SAS standard)
+========================================================= */
+
+#sas-advantage .sas-advantage-card {
+    position: relative;
+
+    height: 100%;
+    min-width: 0;
+
+    padding: 38px 32px;
+
+    overflow: hidden;
+
+    text-align: left;
+
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.055) 0%,
+            rgba(255,255,255,0.018) 38%,
+            rgba(0,0,0,0.20) 100%
+        ),
+        rgba(10,10,10,0.62);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        inset 0 -1px 0 rgba(255,255,255,0.015),
+        0 25px 70px rgba(0,0,0,0.30);
+
+    transition:
+        transform 0.35s var(--sas-ease),
+        border-color 0.35s ease;
+}
+
+#sas-advantage .sas-advantage-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    width: 100%;
+    height: 42%;
+
+    pointer-events: none;
+
+    background: linear-gradient(180deg, rgba(255,255,255,0.035), transparent);
+}
+
+#sas-advantage .sas-advantage-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+#sas-advantage .sas-advantage-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(214,167,67,0.22);
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+#sas-advantage .sas-advantage-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 52px;
+    height: 52px;
+    margin-bottom: 28px;
+
+    border: 1px solid rgba(214,167,67,0.12);
+    border-radius: 16px;
+
+    background: rgba(214,167,67,0.06);
+    color: var(--sas-gold);
+}
+
+#sas-advantage .sas-advantage-icon svg {
+    display: block;
+    width: 28px;
+    height: 28px;
+}
+
+#sas-advantage .sas-advantage-card h3 {
+    margin: 0 0 16px;
+
+    color: var(--sas-white);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-h3);
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+#sas-advantage .sas-advantage-card p {
+    max-width: 65ch;
+    margin: 0;
+
+    color: var(--sas-muted);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-body);
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   SCROLL REVEAL  (SAS standard)
+   Fade up 24px, 0.8s, soft ease, staggered 0.08s.
+   Content stays visible if JavaScript doesn't run.
+========================================================= */
+
+#sas-advantage.sas-js-reveal .sas-reveal {
+    opacity: 0;
+    transform: translate3d(0,24px,0);
+    transition: opacity var(--sas-dur) var(--sas-ease), transform var(--sas-dur) var(--sas-ease);
+    transition-delay: var(--sas-delay, 0s);
+}
+
+#sas-advantage.sas-js-reveal .sas-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+
+/* =========================================================
+   LAPTOP — 2 columns, last card full width
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    #sas-advantage .sas-advantage-header {
+        margin-bottom: 50px;
+    }
+
+    #sas-advantage .sas-advantage-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    #sas-advantage .sas-advantage-item:last-child {
+        grid-column: span 2;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET — stack to 1 column
+========================================================= */
+
+@media (max-width: 860px) {
+
+    #sas-advantage .sas-advantage-header {
+        margin-bottom: 40px;
+    }
+
+    #sas-advantage .sas-advantage-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    #sas-advantage .sas-advantage-item:last-child {
+        grid-column: auto;
+    }
+
+    /* Cards appear as they scroll in, so no long stagger */
+    #sas-advantage .sas-advantage-item {
+        --sas-delay: 0s !important;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    #sas-advantage {
+        --sas-fs-eyebrow: 12px;
+    }
+
+    #sas-advantage .sas-advantage-eyebrow {
+        margin-bottom: 14px;
+    }
+
+    #sas-advantage .sas-advantage-card {
+        padding: 30px 24px;
+        border-radius: 24px;
+    }
+
+    #sas-advantage .sas-advantage-icon {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 22px;
+        border-radius: 14px;
+    }
+
+    #sas-advantage .sas-advantage-icon svg {
+        width: 25px;
+        height: 25px;
+    }
+
+    #sas-advantage .sas-advantage-card h3 {
+        margin-bottom: 14px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    #sas-advantage {
+        --sas-gutter: 16px;
+    }
+
+    #sas-advantage .sas-advantage-card {
+        padding: 28px 20px;
+        border-radius: 20px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    #sas-advantage .sas-reveal,
+    #sas-advantage .sas-advantage-card {
+        transition: none !important;
+    }
+
+    #sas-advantage .sas-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    #sas-advantage .sas-advantage-card:hover {
+        transform: none;
+    }
+
+}
+
+</style>
+
+
+<script>
+(function(){
+  var root = document.getElementById('sas-advantage');
+  if (!root || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  root.classList.add('sas-js-reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+  root.querySelectorAll('.sas-reveal').forEach(function(el){ io.observe(el); });
+})();
+</script>
