@@ -56,6 +56,8 @@ for (const file of files) {
     });
     await page.setContent(page_html(snippet), { waitUntil: 'load' });
 
+    // OPEN_DETAILS=1 opens every <details> so answers are checked too
+    if (process.env.OPEN_DETAILS) await page.evaluate(() => document.querySelectorAll('details').forEach(d => { d.removeAttribute('name'); d.open = true; }));
     await page.locator('#' + rootId).scrollIntoViewIfNeeded();
     // Scroll through the section so every reveal item intersects.
     await page.evaluate(async (id) => {
@@ -75,6 +77,8 @@ for (const file of files) {
       root.querySelectorAll('*').forEach((el) => {
         const hasText = [...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim());
         if (!hasText || el.getClientRects().length === 0) return;  // skip hidden (display:none)
+        const closed = el.closest('details:not([open])');           // skip answers inside a closed <details>
+        if (closed && !el.closest('summary')) return;
         // Content inside an intentional sideways scroller (e.g. a wide table) is fine.
         for (let p = el.parentElement; p && p !== root; p = p.parentElement) {
           const ox = getComputedStyle(p).overflowX;
