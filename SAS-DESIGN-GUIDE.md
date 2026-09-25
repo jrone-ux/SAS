@@ -118,7 +118,8 @@ Grids use `repeat(N, minmax(0, 1fr))` and every grid/flex child gets `min-width:
 **Content width rule:** cards, photos, stats bars, CTA banners and grids fill the
 FULL container width (up to `--sas-max` 1440px) so every section lines up with the
 header/footer — do NOT cap them at 1200px. Only text is narrower: section headers
-~760–900px centred, paragraphs `max-width: 65ch`. Tall photos get a `max-height`
+~760–900px centred, paragraphs `max-width: 65ch`. Exception: a single video
+card/thumbnail is capped at `max-width: 900px` and centred (full width is too big). Tall photos get a `max-height`
 (e.g. 720px) with `object-fit: cover` so they never fill more than a laptop screen.
 
 ---
