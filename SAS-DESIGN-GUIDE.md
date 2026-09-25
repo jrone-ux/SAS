@@ -273,10 +273,11 @@ Must work with no horizontal scroll from 320px to 2560px.
   (youtube-nocookie.com, `?autoplay=1&rel=0`), remove it on the `close` event
   (stops the video), return focus to the button, close on click outside
   (`e.target === dialog`). No inline `onclick`, no global functions.
-- **Auto slideshows:** only animate opacity/transform; auto-advance only while on
-  screen (IntersectionObserver) and tab visible; pause on hover/focus; include an
-  icon pause/play `<button>` with `aria-label`; reduced-motion users start paused.
-  Never `will-change` on many images.
+- **Auto slideshows:** ALWAYS auto-advance (every 2.5s) — also with the mouse over
+  it and for reduce-motion users (they get a fade only, no zoom/slide). Pause only
+  when off screen (IntersectionObserver), tab hidden, keyboard focus inside, or the
+  visitor presses the icon pause/play `<button>` (with `aria-label`). Only animate
+  opacity/transform. Never `will-change` on many images.
 - **`:has()`** rules go in their own rule block so unsupported browsers skip only that rule.
 - **Wide tables:** keep in a card, table in a wrapper with `overflow-x: auto`,
   `role="region" tabindex="0" aria-labelledby`, "Swipe to compare" hint only ≤860px,

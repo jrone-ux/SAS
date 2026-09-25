@@ -1,10 +1,7 @@
 <!-- =========================================================
      SAS — OUR TEAM CULTURE (photo slideshow + culture video)
-     Section title is H2
-     Scroll-reveal section
-     Slideshow: auto-advances only while on screen, pauses on
-     hover/focus, has a pause/play button; video opens in a
-     native <dialog> (always on top, Esc closes).
+     Slideshow always auto-advances (every 2.5s) while on screen.
+     Pause/play button for visitors who want it stopped.
 ========================================================= -->
 
 <section id="sas-culture" aria-labelledby="sas-culture-title">
@@ -24,7 +21,7 @@
                 <img class="sas-culture-slide" src="https://assets.cdn.filesafe.space/q4ggFuA18YjLTc3AidgT/media/6a9ebe484793a2d512ac9d58.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Strategic Assistant Staffing team culture, photo 6 of 7">
                 <img class="sas-culture-slide" src="https://assets.cdn.filesafe.space/q4ggFuA18YjLTc3AidgT/media/6a9ebeb7a2de8f8e8fbadc21.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Strategic Assistant Staffing team culture, photo 7 of 7">
 
-                <!-- Pause / play (icon only; label is read by screen readers) -->
+                <!-- Pause / play toggle button -->
                 <button type="button" class="sas-culture-toggle" aria-label="Pause slideshow" hidden>
                     <svg class="sas-culture-icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
                     <svg class="sas-culture-icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg>
@@ -82,7 +79,7 @@
     </div>
 
 
-    <!-- VIDEO DIALOG (iframe is only loaded when the video card is clicked) -->
+    <!-- VIDEO DIALOG -->
     <dialog id="sas-culture-modal" aria-label="Strategic Assistant Staffing team culture video">
         <div class="sas-culture-modal-content">
 
@@ -101,12 +98,10 @@
 <style>
 
 /* =========================================================
-   SAS DESIGN SYSTEM — shared values
-   (Same values are reused in every SAS section)
+   DESIGN TOKENS
 ========================================================= */
 
-#sas-culture,
-#sas-culture-modal {
+#sas-culture {
     /* Colours */
     --sas-bg: #000000;
     --sas-surface: rgba(15,15,15,0.9);
@@ -126,25 +121,36 @@
     --sas-fs-small: 15px;
     --sas-fs-btn: 15px;
 
-    /* Layout — same side spacing as the header & footer */
+    /* Layout */
     --sas-gutter: clamp(20px, 4vw, 64px);
     --sas-max: 1440px;
-    --sas-section-y: 0px;               /* top/bottom spacing is set in GHL */
+    --sas-section-y: 0px;
 
     /* Motion */
     --sas-ease: cubic-bezier(0.22, 1, 0.36, 1);
     --sas-dur: 0.8s;
 }
 
+@media (max-width: 600px) {
+    #sas-culture {
+        --sas-fs-eyebrow: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    #sas-culture {
+        --sas-gutter: 16px;
+    }
+}
+
 
 /* =========================================================
-   SECTION — full width on every screen
+   SECTION ROOT & BREAKOUT
 ========================================================= */
 
 #sas-culture {
     position: relative;
 
-    /* BREAK OUT OF THE GHL ROW / COLUMN */
     width: 100vw !important;
     max-width: 100vw !important;
     left: 50%;
@@ -153,7 +159,7 @@
 
     padding: var(--sas-section-y) var(--sas-gutter);
 
-    overflow-x: clip;          /* also hides the side photos where they pass the screen edge */
+    overflow-x: clip;
 
     background: var(--sas-bg);
     color: var(--sas-white);
@@ -170,11 +176,6 @@
     box-sizing: border-box;
 }
 
-
-/* =========================================================
-   CONTAINER
-========================================================= */
-
 #sas-culture .sas-culture-inner {
     width: 100%;
     max-width: var(--sas-max);
@@ -184,8 +185,6 @@
 
 /* =========================================================
    PHOTO SLIDESHOW
-   Active photo in the centre, previous/next peek at the sides.
-   Only opacity + transform are animated.
 ========================================================= */
 
 #sas-culture .sas-culture-slider-wrap {
@@ -196,7 +195,6 @@
 
 #sas-culture .sas-culture-slider {
     position: relative;
-
     width: 100%;
     height: 500px;
 }
@@ -247,7 +245,6 @@
     transform: translate3d(8%, -50%, 0) scale(0.72);
 }
 
-/* Pause / play */
 #sas-culture .sas-culture-toggle {
     position: absolute;
     right: calc(50% - min(31vw, 340px) + 16px);
@@ -305,11 +302,11 @@
 
 
 /* =========================================================
-   CONTENT
+   CONTENT & TYPOGRAPHY
 ========================================================= */
 
 #sas-culture .sas-culture-content {
-    max-width: 760px;
+    max-width: 800px;
     margin: 0 auto;
     text-align: center;
 }
@@ -361,11 +358,11 @@
 
 
 /* =========================================================
-   VIDEO CARD (SAS standard card, 16:9)
+   VIDEO CARD
 ========================================================= */
 
 #sas-culture .sas-culture-video-wrap {
-    max-width: 600px;
+    max-width: 800px;
     margin: 42px auto 0;
 }
 
@@ -400,7 +397,6 @@
         border-color 0.35s ease;
 }
 
-/* bottom shade over the thumbnail */
 #sas-culture .sas-culture-video-card::before {
     content: "";
     position: absolute;
@@ -436,8 +432,8 @@
     align-items: center;
     justify-content: center;
 
-    width: 68px;
-    height: 68px;
+    width: 76px;
+    height: 76px;
 
     transform: translate(-50%, -50%);
 
@@ -455,8 +451,8 @@
 }
 
 #sas-culture .sas-culture-play svg {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     transform: translateX(2px);
 }
 
@@ -485,15 +481,15 @@
 
 
 /* =========================================================
-   VIDEO DIALOG (native <dialog> = always on top, centred)
+   VIDEO DIALOG
 ========================================================= */
 
-#sas-culture-modal {
-    width: min(900px, calc(100vw - 40px));
+#sas-culture #sas-culture-modal {
+    width: min(1000px, calc(100vw - 40px));
     max-width: none;
     max-height: none;
     margin: auto;
-    padding: 56px 0 0;          /* room for the close button above the video */
+    padding: 56px 0 0;
 
     overflow: visible;
 
@@ -505,11 +501,11 @@
     font-family: var(--sas-font);
 }
 
-#sas-culture-modal[open] {
+#sas-culture #sas-culture-modal[open] {
     animation: sasCultureModalIn 0.35s var(--sas-ease) both;
 }
 
-#sas-culture-modal::backdrop {
+#sas-culture #sas-culture-modal::backdrop {
     background: rgba(0,0,0,0.90);
 }
 
@@ -518,12 +514,12 @@
     to   { opacity: 1; transform: none; }
 }
 
-#sas-culture-modal .sas-culture-modal-content {
+#sas-culture #sas-culture-modal .sas-culture-modal-content {
     position: relative;
     width: 100%;
 }
 
-#sas-culture-modal .sas-culture-modal-video {
+#sas-culture #sas-culture-modal .sas-culture-modal-video {
     position: relative;
 
     width: 100%;
@@ -539,7 +535,7 @@
     box-shadow: 0 30px 100px rgba(0,0,0,0.60);
 }
 
-#sas-culture-modal .sas-culture-modal-video iframe {
+#sas-culture #sas-culture-modal .sas-culture-modal-video iframe {
     position: absolute;
     inset: 0;
 
@@ -549,7 +545,7 @@
     border: 0;
 }
 
-#sas-culture-modal .sas-culture-modal-close {
+#sas-culture #sas-culture-modal .sas-culture-modal-close {
     position: absolute;
     top: -48px;
     right: 0;
@@ -580,22 +576,20 @@
         color 0.3s ease;
 }
 
-#sas-culture-modal .sas-culture-modal-close:hover {
+#sas-culture #sas-culture-modal .sas-culture-modal-close:hover {
     transform: rotate(90deg);
     background: var(--sas-gold);
     color: #000000;
 }
 
-#sas-culture-modal .sas-culture-modal-close:focus-visible {
+#sas-culture #sas-culture-modal .sas-culture-modal-close:focus-visible {
     outline: 2px solid var(--sas-gold);
     outline-offset: 3px;
 }
 
 
 /* =========================================================
-   SCROLL REVEAL  (SAS standard)
-   Fade up 24px, 0.8s, soft ease, staggered 0.08s.
-   Content stays visible if JavaScript doesn't run.
+   SCROLL REVEAL
 ========================================================= */
 
 #sas-culture.sas-js-reveal .sas-reveal {
@@ -612,7 +606,7 @@
 
 
 /* =========================================================
-   LAPTOP
+   BREAKPOINTS
 ========================================================= */
 
 @media (max-width: 1100px) {
@@ -645,11 +639,6 @@
 
 }
 
-
-/* =========================================================
-   TABLET — one photo at a time
-========================================================= */
-
 @media (max-width: 860px) {
 
     #sas-culture .sas-culture-slide.sas-culture-prev,
@@ -664,17 +653,7 @@
 
 }
 
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
 @media (max-width: 600px) {
-
-    #sas-culture,
-    #sas-culture-modal {
-        --sas-fs-eyebrow: 12px;
-    }
 
     #sas-culture .sas-culture-slider-wrap {
         margin-bottom: 48px;
@@ -709,22 +688,13 @@
         height: 24px;
     }
 
-    #sas-culture-modal .sas-culture-modal-video {
+    #sas-culture #sas-culture-modal .sas-culture-modal-video {
         border-radius: 16px;
     }
 
 }
 
-
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
-
 @media (max-width: 480px) {
-
-    #sas-culture {
-        --sas-gutter: 16px;
-    }
 
     #sas-culture .sas-culture-slider {
         height: 250px;
@@ -752,18 +722,22 @@
 
 
 /* =========================================================
-   REDUCED MOTION — no auto-advance, photos swap instantly
+   REDUCED MOTION
+   Slideshow keeps running, but photos only fade (no zoom/slide).
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
     #sas-culture .sas-reveal,
-    #sas-culture .sas-culture-slide,
     #sas-culture .sas-culture-video-card,
     #sas-culture .sas-culture-video-card img,
     #sas-culture .sas-culture-play,
-    #sas-culture-modal .sas-culture-modal-close {
+    #sas-culture #sas-culture-modal .sas-culture-modal-close {
         transition: none !important;
+    }
+
+    #sas-culture .sas-culture-slide {
+        transition: opacity 0.75s ease !important;
     }
 
     #sas-culture .sas-reveal {
@@ -771,13 +745,13 @@
         transform: none !important;
     }
 
-    #sas-culture-modal[open] {
+    #sas-culture #sas-culture-modal[open] {
         animation: none;
     }
 
     #sas-culture .sas-culture-video-card:hover,
     #sas-culture .sas-culture-video-card:hover img,
-    #sas-culture-modal .sas-culture-modal-close:hover {
+    #sas-culture #sas-culture-modal .sas-culture-modal-close:hover {
         transform: none !important;
     }
 
@@ -796,13 +770,15 @@
   if (!root) return;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Photo slideshow ---------- */
+  /* ---------- Photo slideshow: always automatic (every 2.5s) ----------
+     Pauses only when: off screen, browser tab hidden, keyboard focus is on
+     the slideshow, or the visitor presses the pause button. */
   var slider = root.querySelector('.sas-culture-slider');
   var slides = root.querySelectorAll('.sas-culture-slide');
   var toggle = root.querySelector('.sas-culture-toggle');
   var current = 0, timer = null;
-  var userPaused = reduceMotion;              /* reduced motion: start paused, play button still works */
-  var onScreen = false, hovering = false;
+  var userPaused = false;
+  var onScreen = false, focused = false;
 
   function show(i){
     var n = slides.length;
@@ -815,10 +791,9 @@
     });
   }
 
-  /* Runs only while on screen, tab visible, not hovered/focused, not paused */
   function update(){
-    var run = !userPaused && onScreen && !hovering && !document.hidden;
-    if (run && !timer) timer = setInterval(function(){ show(current + 1); }, reduceMotion ? 4000 : 2500);
+    var run = !userPaused && onScreen && !focused && !document.hidden;
+    if (run && !timer) timer = setInterval(function(){ show(current + 1); }, 2500);
     if (!run && timer) { clearInterval(timer); timer = null; }
   }
 
@@ -833,12 +808,10 @@
     show(0);
     if (slides.length > 1 && toggle) {
       toggle.hidden = false;
-      setPaused(userPaused);
+      setPaused(false);
       toggle.addEventListener('click', function(){ setPaused(!userPaused); });
-      slider.addEventListener('mouseenter', function(){ hovering = true; update(); });
-      slider.addEventListener('mouseleave', function(){ hovering = false; update(); });
-      slider.addEventListener('focusin', function(){ hovering = true; update(); });
-      slider.addEventListener('focusout', function(){ hovering = false; update(); });
+      slider.addEventListener('focusin', function(){ focused = true; update(); });
+      slider.addEventListener('focusout', function(){ focused = false; update(); });
       document.addEventListener('visibilitychange', update);
       if ('IntersectionObserver' in window) {
         new IntersectionObserver(function(entries){ onScreen = entries[0].isIntersecting; update(); }, { threshold: 0.2 }).observe(slider);
@@ -846,7 +819,7 @@
     }
   }
 
-  /* ---------- Culture video (YouTube, privacy-enhanced, loaded only on click) ---------- */
+  /* ---------- Culture video (YouTube, privacy-enhanced) ---------- */
   var modal = document.getElementById('sas-culture-modal');
   var frameBox = modal && modal.querySelector('.sas-culture-modal-video');
   var closeBtn = modal && modal.querySelector('.sas-culture-modal-close');
@@ -872,16 +845,16 @@
 
   if (modal) {
     closeBtn.addEventListener('click', function(){ modal.close(); });
-    modal.addEventListener('click', function(e){ if (e.target === modal) modal.close(); });   /* click outside video */
-    modal.addEventListener('close', function(){                                             /* Esc, ×, outside */
-      frameBox.innerHTML = '';                                                              /* stops the video */
+    modal.addEventListener('click', function(e){ if (e.target === modal) modal.close(); });
+    modal.addEventListener('close', function(){
+      frameBox.innerHTML = '';
       document.documentElement.style.overflow = '';
       if (trigger) trigger.focus();
       trigger = null;
     });
   }
 
-  /* ---------- Scroll reveal (SAS standard) ---------- */
+  /* ---------- Scroll reveal ---------- */
   if (!('IntersectionObserver' in window) || reduceMotion) return;
   root.classList.add('sas-js-reveal');
   var io = new IntersectionObserver(function(entries){
