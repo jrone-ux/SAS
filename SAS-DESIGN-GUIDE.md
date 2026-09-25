@@ -266,6 +266,17 @@ Must work with no horizontal scroll from 320px to 2560px.
   Use a real `<button>` to flip; move focus to the visible face in cross-fade mode.
   Faces: `isolation: isolate`, highlight `::before` at `z-index: -1`, no z-index on
   children (Safari backface bug).
+- **Video pop-up (modal):** native `<dialog>` + `showModal()` (always on top, even
+  inside GHL rows with transforms). Style: `width: min(900px, calc(100vw - 40px));
+  margin: auto; padding-top: 56px` (room for the × above the video); darken with
+  `::backdrop` only (no extra overlay div). Inject the `<iframe>` on click
+  (youtube-nocookie.com, `?autoplay=1&rel=0`), remove it on the `close` event
+  (stops the video), return focus to the button, close on click outside
+  (`e.target === dialog`). No inline `onclick`, no global functions.
+- **Auto slideshows:** only animate opacity/transform; auto-advance only while on
+  screen (IntersectionObserver) and tab visible; pause on hover/focus; include an
+  icon pause/play `<button>` with `aria-label`; reduced-motion users start paused.
+  Never `will-change` on many images.
 - **`:has()`** rules go in their own rule block so unsupported browsers skip only that rule.
 - **Wide tables:** keep in a card, table in a wrapper with `overflow-x: auto`,
   `role="region" tabindex="0" aria-labelledby`, "Swipe to compare" hint only ≤860px,

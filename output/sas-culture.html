@@ -1,0 +1,894 @@
+<!-- =========================================================
+     SAS — OUR TEAM CULTURE (photo slideshow + culture video)
+     Section title is H2
+     Scroll-reveal section
+     Slideshow: auto-advances only while on screen, pauses on
+     hover/focus, has a pause/play button; video opens in a
+     native <dialog> (always on top, Esc closes).
+========================================================= -->
+
+<section id="sas-culture" aria-labelledby="sas-culture-title">
+
+    <div class="sas-culture-inner">
+
+        <!-- PHOTO SLIDESHOW -->
+        <div class="sas-culture-slider-wrap sas-reveal" style="--sas-delay: 0s;">
+
+            <div class="sas-culture-slider" role="group" aria-roledescription="carousel" aria-label="Team culture photos">
+
+                <img class="sas-culture-slide" src="https://assets.cdn.filesafe.space/q4ggFuA18YjLTc3AidgT/media/6a9ebdeca423db57772c70f9.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Strategic Assistant Staffing team culture, photo 1 of 7">
+                <img class="sas-culture-slide" src="https://assets.cdn.filesafe.space/q4ggFuA18YjLTc3AidgT/media/6a9ebe2961d6b4accd46b326.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Strategic Assistant Staffing team culture, photo 2 of 7">
+                <img class="sas-culture-slide" src="https://assets.cdn.filesafe.space/q4ggFuA18YjLTc3AidgT/media/6a9ebe29355bf4eb55d8703d.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Strategic Assistant Staffing team culture, photo 3 of 7">
+                <img class="sas-culture-slide" src="https://assets.cdn.filesafe.space/q4ggFuA18YjLTc3AidgT/media/6a9ebe29b69081a31c673d03.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Strategic Assistant Staffing team culture, photo 4 of 7">
+                <img class="sas-culture-slide" src="https://assets.cdn.filesafe.space/q4ggFuA18YjLTc3AidgT/media/6a9ebe48ee97c416946115c9.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Strategic Assistant Staffing team culture, photo 5 of 7">
+                <img class="sas-culture-slide" src="https://assets.cdn.filesafe.space/q4ggFuA18YjLTc3AidgT/media/6a9ebe484793a2d512ac9d58.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Strategic Assistant Staffing team culture, photo 6 of 7">
+                <img class="sas-culture-slide" src="https://assets.cdn.filesafe.space/q4ggFuA18YjLTc3AidgT/media/6a9ebeb7a2de8f8e8fbadc21.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="Strategic Assistant Staffing team culture, photo 7 of 7">
+
+                <!-- Pause / play (icon only; label is read by screen readers) -->
+                <button type="button" class="sas-culture-toggle" aria-label="Pause slideshow" hidden>
+                    <svg class="sas-culture-icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+                    <svg class="sas-culture-icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- CULTURE CONTENT -->
+        <div class="sas-culture-content">
+
+            <p class="sas-culture-eyebrow sas-reveal" style="--sas-delay: 0.08s;">
+                Our Community
+            </p>
+
+            <h2 id="sas-culture-title" class="sas-reveal" style="--sas-delay: 0.16s;">
+                Our Team Culture
+            </h2>
+
+            <p class="sas-culture-description sas-reveal" style="--sas-delay: 0.24s;">
+                Beyond business metrics, we invest in relationships and leadership development while
+                <strong>Strategic Assistant Staffing</strong> builds a culture of excellence, connection, and growth.
+            </p>
+
+
+            <!-- VIDEO CARD -->
+            <div class="sas-culture-video-wrap sas-reveal" style="--sas-delay: 0.32s;">
+
+                <button
+                    type="button"
+                    class="sas-culture-video-card"
+                    data-video="ozoZnv1FY4k"
+                    aria-label="Watch the Strategic Assistant Staffing team culture video"
+                    aria-haspopup="dialog"
+                >
+                    <img
+                        src="https://img.youtube.com/vi/ozoZnv1FY4k/maxresdefault.jpg"
+                        alt=""
+                        width="1280"
+                        height="720"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                    <span class="sas-culture-play" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M8 5v14l11-7z"/></svg>
+                    </span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- VIDEO DIALOG (iframe is only loaded when the video card is clicked) -->
+    <dialog id="sas-culture-modal" aria-label="Strategic Assistant Staffing team culture video">
+        <div class="sas-culture-modal-content">
+
+            <button type="button" class="sas-culture-modal-close" aria-label="Close video">
+                <span aria-hidden="true">×</span>
+            </button>
+
+            <div class="sas-culture-modal-video"></div>
+
+        </div>
+    </dialog>
+
+</section>
+
+
+<style>
+
+/* =========================================================
+   SAS DESIGN SYSTEM — shared values
+   (Same values are reused in every SAS section)
+========================================================= */
+
+#sas-culture,
+#sas-culture-modal {
+    /* Colours */
+    --sas-bg: #000000;
+    --sas-surface: rgba(15,15,15,0.9);
+    --sas-gold: #D6A743;
+    --sas-gold-hover: #E2B85A;
+    --sas-white: #FFFFFF;
+    --sas-muted: #AAAAAA;
+    --sas-border: rgba(255,255,255,0.08);
+
+    /* Type */
+    --sas-font: "Inter", Arial, Helvetica, sans-serif;
+    --sas-fs-eyebrow: 13px;
+    --sas-fs-h1: clamp(38px, 3.6vw + 14px, 64px);
+    --sas-fs-h2: clamp(30px, 2.4vw + 14px, 48px);
+    --sas-fs-h3: clamp(20px, 0.8vw + 14px, 24px);
+    --sas-fs-body: clamp(16px, 0.25vw + 15px, 18px);
+    --sas-fs-small: 15px;
+    --sas-fs-btn: 15px;
+
+    /* Layout — same side spacing as the header & footer */
+    --sas-gutter: clamp(20px, 4vw, 64px);
+    --sas-max: 1440px;
+    --sas-section-y: 0px;               /* top/bottom spacing is set in GHL */
+
+    /* Motion */
+    --sas-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --sas-dur: 0.8s;
+}
+
+
+/* =========================================================
+   SECTION — full width on every screen
+========================================================= */
+
+#sas-culture {
+    position: relative;
+
+    /* BREAK OUT OF THE GHL ROW / COLUMN */
+    width: 100vw !important;
+    max-width: 100vw !important;
+    left: 50%;
+    right: 50%;
+    margin: 0 -50vw !important;
+
+    padding: var(--sas-section-y) var(--sas-gutter);
+
+    overflow-x: clip;          /* also hides the side photos where they pass the screen edge */
+
+    background: var(--sas-bg);
+    color: var(--sas-white);
+
+    font-family: var(--sas-font);
+    -webkit-font-smoothing: antialiased;
+
+    box-sizing: border-box;
+}
+
+#sas-culture *,
+#sas-culture *::before,
+#sas-culture *::after {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+#sas-culture .sas-culture-inner {
+    width: 100%;
+    max-width: var(--sas-max);
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   PHOTO SLIDESHOW
+   Active photo in the centre, previous/next peek at the sides.
+   Only opacity + transform are animated.
+========================================================= */
+
+#sas-culture .sas-culture-slider-wrap {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 65px;
+}
+
+#sas-culture .sas-culture-slider {
+    position: relative;
+
+    width: 100%;
+    height: 500px;
+}
+
+#sas-culture .sas-culture-slide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: min(62vw, 680px);
+    height: 440px;
+    max-width: 100%;
+
+    object-fit: cover;
+
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 28px;
+
+    background: #060606;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 25px 70px rgba(0,0,0,0.30);
+
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(0.58);
+
+    transition:
+        transform 0.75s var(--sas-ease),
+        opacity 0.75s ease;
+}
+
+#sas-culture .sas-culture-slide.sas-culture-active {
+    z-index: 3;
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) scale(1);
+}
+
+#sas-culture .sas-culture-slide.sas-culture-prev {
+    z-index: 2;
+    opacity: 0.28;
+    transform: translate3d(-108%, -50%, 0) scale(0.72);
+}
+
+#sas-culture .sas-culture-slide.sas-culture-next {
+    z-index: 2;
+    opacity: 0.28;
+    transform: translate3d(8%, -50%, 0) scale(0.72);
+}
+
+/* Pause / play */
+#sas-culture .sas-culture-toggle {
+    position: absolute;
+    right: calc(50% - min(31vw, 340px) + 16px);
+    bottom: 46px;
+    z-index: 4;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+    padding: 0;
+
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 50%;
+
+    background: rgba(8,8,8,0.72);
+    color: var(--sas-white);
+
+    cursor: pointer;
+
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+#sas-culture .sas-culture-toggle[hidden] {
+    display: none;
+}
+
+#sas-culture .sas-culture-toggle svg {
+    width: 18px;
+    height: 18px;
+}
+
+#sas-culture .sas-culture-toggle .sas-culture-icon-play,
+#sas-culture .sas-culture-toggle.is-paused .sas-culture-icon-pause {
+    display: none;
+}
+
+#sas-culture .sas-culture-toggle.is-paused .sas-culture-icon-play {
+    display: block;
+    margin-left: 2px;
+}
+
+#sas-culture .sas-culture-toggle:hover {
+    background: var(--sas-gold);
+    border-color: var(--sas-gold);
+    color: #000000;
+}
+
+#sas-culture .sas-culture-toggle:focus-visible {
+    outline: 2px solid var(--sas-gold);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+#sas-culture .sas-culture-content {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#sas-culture .sas-culture-eyebrow {
+    margin: 0 0 18px;
+
+    color: var(--sas-gold);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-eyebrow);
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+#sas-culture .sas-culture-content h2 {
+    margin: 0 0 20px;
+
+    color: var(--sas-white);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-h2);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+
+    text-wrap: balance;
+}
+
+#sas-culture .sas-culture-description {
+    max-width: 65ch;
+    margin: 0 auto;
+
+    color: var(--sas-muted);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-body);
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+#sas-culture .sas-culture-description strong {
+    color: var(--sas-white);
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   VIDEO CARD (SAS standard card, 16:9)
+========================================================= */
+
+#sas-culture .sas-culture-video-wrap {
+    max-width: 600px;
+    margin: 42px auto 0;
+}
+
+#sas-culture .sas-culture-video-card {
+    position: relative;
+    display: block;
+
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 28px;
+
+    background:
+        linear-gradient(145deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.018) 38%, rgba(0,0,0,0.20) 100%),
+        rgba(10,10,10,0.62);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        inset 0 -1px 0 rgba(255,255,255,0.015),
+        0 25px 70px rgba(0,0,0,0.30);
+
+    font-family: inherit;
+    cursor: pointer;
+
+    transition:
+        transform 0.35s var(--sas-ease),
+        border-color 0.35s ease;
+}
+
+/* bottom shade over the thumbnail */
+#sas-culture .sas-culture-video-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    pointer-events: none;
+
+    background: linear-gradient(to top, rgba(0,0,0,0.60), rgba(0,0,0,0.05) 65%);
+}
+
+#sas-culture .sas-culture-video-card img {
+    position: absolute;
+    inset: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 0.7s var(--sas-ease);
+}
+
+#sas-culture .sas-culture-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 68px;
+    height: 68px;
+
+    transform: translate(-50%, -50%);
+
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 50%;
+
+    background: var(--sas-gold);
+    color: #000000;
+
+    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+
+    transition:
+        transform 0.35s var(--sas-ease),
+        background-color 0.35s ease;
+}
+
+#sas-culture .sas-culture-play svg {
+    width: 28px;
+    height: 28px;
+    transform: translateX(2px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+    #sas-culture .sas-culture-video-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(214,167,67,0.22);
+    }
+
+    #sas-culture .sas-culture-video-card:hover img {
+        transform: scale(1.05);
+    }
+
+    #sas-culture .sas-culture-video-card:hover .sas-culture-play {
+        transform: translate(-50%, -50%) scale(1.1);
+        background: var(--sas-gold-hover);
+    }
+
+}
+
+#sas-culture .sas-culture-video-card:focus-visible {
+    outline: 2px solid var(--sas-gold);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   VIDEO DIALOG (native <dialog> = always on top, centred)
+========================================================= */
+
+#sas-culture-modal {
+    width: min(900px, calc(100vw - 40px));
+    max-width: none;
+    max-height: none;
+    margin: auto;
+    padding: 56px 0 0;          /* room for the close button above the video */
+
+    overflow: visible;
+
+    border: 0;
+
+    background: transparent;
+    color: var(--sas-white);
+
+    font-family: var(--sas-font);
+}
+
+#sas-culture-modal[open] {
+    animation: sasCultureModalIn 0.35s var(--sas-ease) both;
+}
+
+#sas-culture-modal::backdrop {
+    background: rgba(0,0,0,0.90);
+}
+
+@keyframes sasCultureModalIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to   { opacity: 1; transform: none; }
+}
+
+#sas-culture-modal .sas-culture-modal-content {
+    position: relative;
+    width: 100%;
+}
+
+#sas-culture-modal .sas-culture-modal-video {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 20px;
+
+    background: #000000;
+
+    box-shadow: 0 30px 100px rgba(0,0,0,0.60);
+}
+
+#sas-culture-modal .sas-culture-modal-video iframe {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+}
+
+#sas-culture-modal .sas-culture-modal-close {
+    position: absolute;
+    top: -48px;
+    right: 0;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+    padding: 0;
+
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.06);
+    color: var(--sas-white);
+
+    font-family: Arial, sans-serif;
+    font-size: 27px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s var(--sas-ease),
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+#sas-culture-modal .sas-culture-modal-close:hover {
+    transform: rotate(90deg);
+    background: var(--sas-gold);
+    color: #000000;
+}
+
+#sas-culture-modal .sas-culture-modal-close:focus-visible {
+    outline: 2px solid var(--sas-gold);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   SCROLL REVEAL  (SAS standard)
+   Fade up 24px, 0.8s, soft ease, staggered 0.08s.
+   Content stays visible if JavaScript doesn't run.
+========================================================= */
+
+#sas-culture.sas-js-reveal .sas-reveal {
+    opacity: 0;
+    transform: translate3d(0,24px,0);
+    transition: opacity var(--sas-dur) var(--sas-ease), transform var(--sas-dur) var(--sas-ease);
+    transition-delay: var(--sas-delay, 0s);
+}
+
+#sas-culture.sas-js-reveal .sas-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    #sas-culture .sas-culture-slider-wrap {
+        margin-bottom: 55px;
+    }
+
+    #sas-culture .sas-culture-slider {
+        height: 410px;
+    }
+
+    #sas-culture .sas-culture-slide {
+        width: min(72vw, 620px);
+        height: 370px;
+    }
+
+    #sas-culture .sas-culture-slide.sas-culture-prev {
+        transform: translate3d(-96%, -50%, 0) scale(0.68);
+    }
+
+    #sas-culture .sas-culture-slide.sas-culture-next {
+        transform: translate3d(-4%, -50%, 0) scale(0.68);
+    }
+
+    #sas-culture .sas-culture-toggle {
+        right: calc(50% - min(36vw, 310px) + 16px);
+        bottom: 36px;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET — one photo at a time
+========================================================= */
+
+@media (max-width: 860px) {
+
+    #sas-culture .sas-culture-slide.sas-culture-prev,
+    #sas-culture .sas-culture-slide.sas-culture-next {
+        opacity: 0;
+        transform: translate3d(-50%, -50%, 0) scale(0.85);
+    }
+
+    #sas-culture .sas-reveal {
+        --sas-delay: 0s !important;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    #sas-culture,
+    #sas-culture-modal {
+        --sas-fs-eyebrow: 12px;
+    }
+
+    #sas-culture .sas-culture-slider-wrap {
+        margin-bottom: 48px;
+    }
+
+    #sas-culture .sas-culture-slider {
+        height: 280px;
+    }
+
+    #sas-culture .sas-culture-slide {
+        width: 100%;
+        height: 260px;
+        border-radius: 24px;
+    }
+
+    #sas-culture .sas-culture-toggle {
+        right: 12px;
+        bottom: 22px;
+    }
+
+    #sas-culture .sas-culture-video-card {
+        border-radius: 24px;
+    }
+
+    #sas-culture .sas-culture-play {
+        width: 60px;
+        height: 60px;
+    }
+
+    #sas-culture .sas-culture-play svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    #sas-culture-modal .sas-culture-modal-video {
+        border-radius: 16px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    #sas-culture {
+        --sas-gutter: 16px;
+    }
+
+    #sas-culture .sas-culture-slider {
+        height: 250px;
+    }
+
+    #sas-culture .sas-culture-slide {
+        height: 230px;
+        border-radius: 20px;
+    }
+
+    #sas-culture .sas-culture-toggle {
+        bottom: 22px;
+    }
+
+    #sas-culture .sas-culture-video-card {
+        border-radius: 20px;
+    }
+
+    #sas-culture .sas-culture-play {
+        width: 54px;
+        height: 54px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION — no auto-advance, photos swap instantly
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    #sas-culture .sas-reveal,
+    #sas-culture .sas-culture-slide,
+    #sas-culture .sas-culture-video-card,
+    #sas-culture .sas-culture-video-card img,
+    #sas-culture .sas-culture-play,
+    #sas-culture-modal .sas-culture-modal-close {
+        transition: none !important;
+    }
+
+    #sas-culture .sas-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    #sas-culture-modal[open] {
+        animation: none;
+    }
+
+    #sas-culture .sas-culture-video-card:hover,
+    #sas-culture .sas-culture-video-card:hover img,
+    #sas-culture-modal .sas-culture-modal-close:hover {
+        transform: none !important;
+    }
+
+    #sas-culture .sas-culture-video-card:hover .sas-culture-play {
+        transform: translate(-50%, -50%) !important;
+    }
+
+}
+
+</style>
+
+
+<script>
+(function(){
+  var root = document.getElementById('sas-culture');
+  if (!root) return;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Photo slideshow ---------- */
+  var slider = root.querySelector('.sas-culture-slider');
+  var slides = root.querySelectorAll('.sas-culture-slide');
+  var toggle = root.querySelector('.sas-culture-toggle');
+  var current = 0, timer = null;
+  var userPaused = reduceMotion;              /* reduced motion: start paused, play button still works */
+  var onScreen = false, hovering = false;
+
+  function show(i){
+    var n = slides.length;
+    current = (i + n) % n;
+    slides.forEach(function(s, k){
+      s.classList.remove('sas-culture-active', 'sas-culture-prev', 'sas-culture-next');
+      if (k === current) s.classList.add('sas-culture-active');
+      else if (k === (current - 1 + n) % n) s.classList.add('sas-culture-prev');
+      else if (k === (current + 1) % n) s.classList.add('sas-culture-next');
+    });
+  }
+
+  /* Runs only while on screen, tab visible, not hovered/focused, not paused */
+  function update(){
+    var run = !userPaused && onScreen && !hovering && !document.hidden;
+    if (run && !timer) timer = setInterval(function(){ show(current + 1); }, reduceMotion ? 4000 : 2500);
+    if (!run && timer) { clearInterval(timer); timer = null; }
+  }
+
+  function setPaused(p){
+    userPaused = p;
+    toggle.classList.toggle('is-paused', p);
+    toggle.setAttribute('aria-label', p ? 'Play slideshow' : 'Pause slideshow');
+    update();
+  }
+
+  if (slides.length) {
+    show(0);
+    if (slides.length > 1 && toggle) {
+      toggle.hidden = false;
+      setPaused(userPaused);
+      toggle.addEventListener('click', function(){ setPaused(!userPaused); });
+      slider.addEventListener('mouseenter', function(){ hovering = true; update(); });
+      slider.addEventListener('mouseleave', function(){ hovering = false; update(); });
+      slider.addEventListener('focusin', function(){ hovering = true; update(); });
+      slider.addEventListener('focusout', function(){ hovering = false; update(); });
+      document.addEventListener('visibilitychange', update);
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function(entries){ onScreen = entries[0].isIntersecting; update(); }, { threshold: 0.2 }).observe(slider);
+      } else { onScreen = true; update(); }
+    }
+  }
+
+  /* ---------- Culture video (YouTube, privacy-enhanced, loaded only on click) ---------- */
+  var modal = document.getElementById('sas-culture-modal');
+  var frameBox = modal && modal.querySelector('.sas-culture-modal-video');
+  var closeBtn = modal && modal.querySelector('.sas-culture-modal-close');
+  var trigger = null;
+
+  function openVideo(id, btn){
+    if (!modal || typeof modal.showModal !== 'function') {
+      window.open('https://www.youtube.com/watch?v=' + id, '_blank', 'noopener');
+      return;
+    }
+    trigger = btn;
+    frameBox.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
+      '?autoplay=1&rel=0" title="Strategic Assistant Staffing team culture video" ' +
+      'allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+    modal.showModal();
+    document.documentElement.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  root.querySelectorAll('.sas-culture-video-card').forEach(function(btn){
+    btn.addEventListener('click', function(){ openVideo(btn.getAttribute('data-video'), btn); });
+  });
+
+  if (modal) {
+    closeBtn.addEventListener('click', function(){ modal.close(); });
+    modal.addEventListener('click', function(e){ if (e.target === modal) modal.close(); });   /* click outside video */
+    modal.addEventListener('close', function(){                                             /* Esc, ×, outside */
+      frameBox.innerHTML = '';                                                              /* stops the video */
+      document.documentElement.style.overflow = '';
+      if (trigger) trigger.focus();
+      trigger = null;
+    });
+  }
+
+  /* ---------- Scroll reveal (SAS standard) ---------- */
+  if (!('IntersectionObserver' in window) || reduceMotion) return;
+  root.classList.add('sas-js-reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+  root.querySelectorAll('.sas-reveal').forEach(function(el){ io.observe(el); });
+})();
+</script>
