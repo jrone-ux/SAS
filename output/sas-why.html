@@ -1,0 +1,774 @@
+<!-- =========================================================
+     SAS — THE WHY BEHIND SAS (our story, team & values)
+     Section title is H2, value cards are H3
+     Scroll-reveal section
+========================================================= -->
+
+<section id="sas-why" aria-labelledby="sas-why-title">
+
+    <div class="sas-why-inner">
+
+        <!-- HEADER -->
+        <div class="sas-why-header">
+
+            <p class="sas-why-eyebrow sas-reveal" style="--sas-delay: 0s;">
+                The Story
+            </p>
+
+            <h2 id="sas-why-title" class="sas-why-title sas-reveal" style="--sas-delay: 0.08s;">
+                The Why Behind SAS
+            </h2>
+
+            <p class="sas-why-intro sas-reveal" style="--sas-delay: 0.16s;">
+                Strategic Assistant Staffing was built on a simple belief:
+                when you take care of people, performance follows.
+            </p>
+
+        </div>
+
+
+        <!-- VISUAL + VALUES CARDS -->
+        <div class="sas-why-visual">
+
+            <!-- TEAM IMAGE (fades in + gentle zoom) -->
+            <div class="sas-why-image-wrap sas-reveal sas-reveal-scale" style="--sas-delay: 0.24s;">
+
+                <img
+                    class="sas-why-team-image"
+                    src="https://assets.cdn.filesafe.space/q4ggFuA18YjLTc3AidgT/media/6aad3fa330b0f957cc6e8268.png"
+                    loading="lazy"
+                    decoding="async"
+                    width="1200"
+                    height="800"
+                    alt="Strategic Assistant Staffing team"
+                >
+
+            </div>
+
+
+            <!-- VALUES CARD SHELL (fades up once, as one piece) -->
+            <div class="sas-why-card-shell sas-reveal" style="--sas-delay: 0.32s;">
+
+                <ul class="sas-why-cards">
+
+                    <!-- CARD 01 -->
+                    <li>
+                        <article class="sas-why-card">
+                            <span class="sas-why-number" aria-hidden="true">01</span>
+                            <h3>Values-Driven Leadership</h3>
+                            <p>Integrity, accountability, and long-term thinking guide every decision.</p>
+                        </article>
+                    </li>
+
+                    <!-- CARD 02 -->
+                    <li>
+                        <article class="sas-why-card">
+                            <span class="sas-why-number" aria-hidden="true">02</span>
+                            <h3>Care for Virtual Assistants</h3>
+                            <p>Top 20% industry pay, mentorship, and structured growth.</p>
+                        </article>
+                    </li>
+
+                    <!-- CARD 03 -->
+                    <li>
+                        <article class="sas-why-card">
+                            <span class="sas-why-number" aria-hidden="true">03</span>
+                            <h3>Care for Clients</h3>
+                            <p>White-glove support, strong retention, and operational excellence.</p>
+                        </article>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <!-- CTA -->
+        <div class="sas-why-cta sas-reveal" style="--sas-delay: 0s;">
+
+            <div class="sas-why-cta-content">
+
+                <p class="sas-why-cta-eyebrow">
+                    Build With SAS
+                </p>
+
+                <h2>
+                    Build With a Team That Cares
+                </h2>
+
+                <p class="sas-why-cta-text">
+                    Join us and make your company a better place with expert support.
+                </p>
+
+            </div>
+
+
+            <div class="sas-why-cta-action">
+
+                <a href="/our-core-roles-page" class="sas-why-button">
+                    Get a Virtual Assistant
+                    <span class="sas-why-button-arrow" aria-hidden="true">→</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+
+/* =========================================================
+   DESIGN TOKENS
+========================================================= */
+
+#sas-why {
+    /* Colours */
+    --sas-bg: #000000;
+    --sas-surface: rgba(15,15,15,0.9);
+    --sas-gold: #D6A743;
+    --sas-gold-hover: #E2B85A;
+    --sas-white: #FFFFFF;
+    --sas-muted: #AAAAAA;
+    --sas-border: rgba(255,255,255,0.08);
+
+    /* Type */
+    --sas-font: "Inter", Arial, Helvetica, sans-serif;
+    --sas-fs-eyebrow: 13px;
+    --sas-fs-h1: clamp(38px, 3.6vw + 14px, 64px);
+    --sas-fs-h2: clamp(30px, 2.4vw + 14px, 48px);
+    --sas-fs-h3: clamp(20px, 0.8vw + 14px, 24px);
+    --sas-fs-body: clamp(16px, 0.25vw + 15px, 18px);
+    --sas-fs-small: 15px;
+    --sas-fs-btn: 15px;
+
+    /* Layout */
+    --sas-gutter: clamp(20px, 4vw, 64px);
+    --sas-max: 1440px;
+    --sas-section-y: 0px;
+
+    /* Motion */
+    --sas-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --sas-dur: 0.8s;
+}
+
+
+/* =========================================================
+   SECTION ROOT & BREAKOUT
+========================================================= */
+
+#sas-why {
+    position: relative;
+
+    width: 100vw !important;
+    max-width: 100vw !important;
+    left: 50%;
+    right: 50%;
+    margin: 0 -50vw !important;
+
+    padding: var(--sas-section-y) var(--sas-gutter);
+
+    overflow-x: clip;
+
+    background: var(--sas-bg);
+    color: var(--sas-white);
+
+    font-family: var(--sas-font);
+    -webkit-font-smoothing: antialiased;
+
+    box-sizing: border-box;
+}
+
+#sas-why *,
+#sas-why *::before,
+#sas-why *::after {
+    box-sizing: border-box;
+}
+
+#sas-why .sas-why-inner {
+    width: 100%;
+    max-width: var(--sas-max);
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+#sas-why .sas-why-header {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto 55px;
+    text-align: center;
+}
+
+#sas-why .sas-why-eyebrow {
+    margin: 0 0 18px;
+
+    color: var(--sas-gold);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-eyebrow);
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+#sas-why .sas-why-title {
+    margin: 0 0 20px;
+
+    color: var(--sas-white);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-h2);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+
+    text-wrap: balance;
+}
+
+#sas-why .sas-why-intro {
+    max-width: 65ch;
+    margin: 0 auto;
+
+    color: var(--sas-muted);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-body);
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   VISUAL & TEAM IMAGE
+========================================================= */
+
+#sas-why .sas-why-visual {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#sas-why .sas-why-image-wrap {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 28px 28px 0 0;
+}
+
+#sas-why .sas-why-team-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 460px;
+
+    object-fit: cover;
+    object-position: center;
+
+    -webkit-mask-image: linear-gradient(to bottom, #000000 70%, rgba(0,0,0,0.92) 82%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000000 70%, rgba(0,0,0,0.92) 82%, transparent 100%);
+}
+
+
+/* =========================================================
+   CARD SHELL & CARDS GRID
+========================================================= */
+
+#sas-why .sas-why-card-shell {
+    position: relative;
+
+    width: calc(100% - 80px);
+    margin: -150px auto 0;
+    padding: 22px;
+
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 28px;
+
+    background:
+        linear-gradient(145deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.018) 38%, rgba(0,0,0,0.20) 100%),
+        rgba(10,10,10,0.62);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        inset 0 -1px 0 rgba(255,255,255,0.015),
+        0 25px 70px rgba(0,0,0,0.30);
+}
+
+#sas-why .sas-why-card-shell::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    width: 100%;
+    height: 42%;
+
+    border-radius: 28px 28px 0 0;
+
+    pointer-events: none;
+
+    background: linear-gradient(180deg, rgba(255,255,255,0.035), transparent);
+}
+
+#sas-why .sas-why-cards {
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+#sas-why .sas-why-cards > li {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#sas-why .sas-why-card {
+    position: relative;
+
+    height: 100%;
+    min-width: 0;
+    min-height: 240px;
+    padding: 30px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+
+    background: #060606;
+
+    transition:
+        transform 0.35s var(--sas-ease),
+        border-color 0.35s ease;
+}
+
+#sas-why .sas-why-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    width: 100%;
+    height: 42%;
+
+    pointer-events: none;
+
+    background: linear-gradient(180deg, rgba(255,255,255,0.035), transparent);
+}
+
+#sas-why .sas-why-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    #sas-why .sas-why-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(214,167,67,0.22);
+    }
+}
+
+#sas-why .sas-why-number {
+    display: block;
+    margin-bottom: 42px;
+
+    color: var(--sas-gold);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-small);
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: 3px;
+}
+
+#sas-why .sas-why-card h3 {
+    margin: 0 0 14px;
+
+    color: var(--sas-white);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-h3);
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+#sas-why .sas-why-card p {
+    margin: 0;
+
+    color: var(--sas-muted);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-body);
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   CTA BANNER
+========================================================= */
+
+#sas-why .sas-why-cta {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+
+    width: 100%;
+    max-width: 1200px;
+    margin: 90px auto 0;
+    padding: 48px 52px;
+
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 28px;
+
+    background:
+        linear-gradient(145deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.018) 38%, rgba(0,0,0,0.20) 100%),
+        rgba(10,10,10,0.62);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        inset 0 -1px 0 rgba(255,255,255,0.015),
+        0 25px 70px rgba(0,0,0,0.30);
+}
+
+#sas-why .sas-why-cta-content {
+    min-width: 0;
+    flex: 1;
+}
+
+#sas-why .sas-why-cta-eyebrow {
+    margin: 0 0 14px;
+
+    color: var(--sas-gold);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-eyebrow);
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+#sas-why .sas-why-cta-content h2 {
+    margin: 0 0 12px;
+
+    color: var(--sas-white);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-h2);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+
+    text-wrap: balance;
+}
+
+#sas-why .sas-why-cta-text {
+    max-width: 600px;
+    margin: 0;
+
+    color: var(--sas-muted);
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-body);
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+#sas-why .sas-why-cta-action {
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+#sas-why .sas-why-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    min-height: 54px;
+    padding: 0 28px;
+
+    border: 0;
+    border-radius: 999px;
+
+    background: var(--sas-gold);
+    color: #000000 !important;
+
+    font-family: var(--sas-font);
+    font-size: var(--sas-fs-btn);
+    font-weight: 800;
+    line-height: 1;
+
+    text-decoration: none !important;
+    white-space: normal;
+
+    transition:
+        transform 0.3s var(--sas-ease),
+        background-color 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    #sas-why .sas-why-button:hover {
+        transform: translateY(-2px);
+        background-color: var(--sas-gold-hover);
+    }
+
+    #sas-why .sas-why-button:hover .sas-why-button-arrow {
+        transform: translateX(3px);
+    }
+}
+
+#sas-why .sas-why-button:focus-visible {
+    outline: 2px solid var(--sas-gold);
+    outline-offset: 3px;
+}
+
+#sas-why .sas-why-button-arrow {
+    display: inline-block;
+
+    color: #000000;
+
+    font-size: 20px;
+    line-height: 1;
+
+    transition: transform 0.3s var(--sas-ease);
+}
+
+
+/* =========================================================
+   SCROLL REVEAL  (SAS standard)
+   Fade up 24px, 0.8s, soft ease, staggered 0.08s.
+   The team photo fades in + scales from 0.98 instead.
+   Content stays visible if JavaScript doesn't run.
+========================================================= */
+
+#sas-why.sas-js-reveal .sas-reveal {
+    opacity: 0;
+    transform: translate3d(0,24px,0);
+    transition: opacity var(--sas-dur) var(--sas-ease), transform var(--sas-dur) var(--sas-ease);
+    transition-delay: var(--sas-delay, 0s);
+}
+
+#sas-why.sas-js-reveal .sas-reveal-scale {
+    transform: scale(0.98);
+}
+
+#sas-why.sas-js-reveal .sas-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+
+/* =========================================================
+   BREAKPOINTS
+========================================================= */
+
+@media (max-width: 1100px) {
+    #sas-why .sas-why-card-shell {
+        width: calc(100% - 48px);
+        margin-top: -110px;
+    }
+
+    #sas-why .sas-why-team-image {
+        min-height: 400px;
+    }
+
+    #sas-why .sas-why-card {
+        padding: 26px;
+    }
+
+    #sas-why .sas-why-number {
+        margin-bottom: 32px;
+    }
+
+    #sas-why .sas-why-cta {
+        padding: 42px 40px;
+    }
+}
+
+@media (max-width: 860px) {
+    #sas-why .sas-reveal {
+        --sas-delay: 0s !important;
+    }
+
+    #sas-why .sas-why-card-shell {
+        width: calc(100% - 32px);
+        margin-top: -80px;
+    }
+
+    #sas-why .sas-why-cards {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+    }
+
+    #sas-why .sas-why-card {
+        min-height: auto;
+    }
+
+    #sas-why .sas-why-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    #sas-why .sas-why-cta-action {
+        width: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    #sas-why {
+        --sas-fs-eyebrow: 12px;
+    }
+
+    #sas-why .sas-why-header {
+        margin-bottom: 40px;
+    }
+
+    #sas-why .sas-why-image-wrap {
+        border-radius: 24px 24px 0 0;
+    }
+
+    #sas-why .sas-why-team-image {
+        height: 300px;
+        min-height: 300px;
+    }
+
+    #sas-why .sas-why-card-shell {
+        width: 100%;
+        margin-top: -55px;
+        padding: 12px;
+        border-radius: 24px;
+    }
+
+    #sas-why .sas-why-card-shell::before {
+        border-radius: 24px 24px 0 0;
+    }
+
+    #sas-why .sas-why-card {
+        padding: 28px 24px;
+        border-radius: 20px;
+    }
+
+    #sas-why .sas-why-number {
+        margin-bottom: 25px;
+    }
+
+    #sas-why .sas-why-cta {
+        align-items: center;
+        margin-top: 60px;
+        padding: 36px 24px;
+        border-radius: 24px;
+        text-align: center;
+    }
+
+    #sas-why .sas-why-cta-action {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    #sas-why .sas-why-button {
+        width: 100%;
+        max-width: 380px;
+    }
+}
+
+@media (max-width: 480px) {
+    #sas-why {
+        --sas-gutter: 16px;
+    }
+
+    #sas-why .sas-why-team-image {
+        height: 260px;
+        min-height: 260px;
+    }
+
+    #sas-why .sas-why-card-shell {
+        margin-top: -40px;
+        padding: 10px;
+    }
+
+    #sas-why .sas-why-card {
+        padding: 26px 20px;
+        border-radius: 20px;
+    }
+
+    #sas-why .sas-why-cta {
+        margin-top: 50px;
+        padding: 32px 20px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    #sas-why .sas-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    #sas-why .sas-why-card,
+    #sas-why .sas-why-button,
+    #sas-why .sas-why-button-arrow {
+        transition: none !important;
+    }
+
+    #sas-why .sas-why-card:hover,
+    #sas-why .sas-why-button:hover,
+    #sas-why .sas-why-button:hover .sas-why-button-arrow {
+        transform: none !important;
+    }
+}
+
+</style>
+
+
+<script>
+(function(){
+  var root = document.getElementById('sas-why');
+  if (!root || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  root.classList.add('sas-js-reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+  root.querySelectorAll('.sas-reveal').forEach(function(el){ io.observe(el); });
+})();
+</script>
