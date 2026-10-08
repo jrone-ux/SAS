@@ -1,7 +1,8 @@
-// Exports outro/sas-outro.html to a 1080x1920 (9:16) MP4, frame by frame.
+// Exports an outro page (outro/<name>.html) to a 1080x1920 (9:16) MP4, frame by frame.
 //
-// Usage: node outro/render-outro.mjs [fps]        (default 30)
-// Output: outro/sas-outro.mp4 and outro/sas-outro-poster.png
+// Usage: node outro/render-outro.mjs [name] [fps]   (default: sas-outro 30)
+// e.g.   node outro/render-outro.mjs sas-outro-v2
+// Output: outro/<name>.mp4 and outro/<name>-poster.png
 // Needs: ffmpeg on PATH and Playwright (local or global).
 
 import { createRequire } from 'module';
@@ -17,7 +18,8 @@ try { playwright = require('playwright'); }
 catch { playwright = require(resolve(execSync('npm root -g').toString().trim(), 'playwright')); }
 
 const DIR = dirname(fileURLToPath(import.meta.url));
-const FPS = Number(process.argv[2]) || 30;
+const NAME = process.argv[2] || 'sas-outro';
+const FPS = Number(process.argv[3]) || 30;
 const TYPES = { '.html': 'text/html', '.png': 'image/png' };
 
 // Serve the folder over http so the CSS logo mask loads (file:// blocks it).
@@ -32,7 +34,8 @@ const port = server.address().port;
 
 const browser = await playwright.chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
-await page.goto(`http://localhost:${port}/sas-outro.html?export`);
+await page.goto(`http://localhost:${port}/${NAME}.html?export`);
+await page.evaluate(() => window.SAS_OUTRO.ready);
 await page.evaluate(() => document.fonts.ready);
 await page.waitForFunction(() => [...document.images].every(i => i.complete));
 
@@ -44,11 +47,12 @@ const ffmpeg = spawn('ffmpeg', [
   '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-',
   '-c:v', 'libx264', '-preset', 'slow', '-crf', '16',
   '-pix_fmt', 'yuv420p', '-movflags', '+faststart',
-  join(DIR, 'sas-outro.mp4'),
+  join(DIR, `${NAME}.mp4`),
 ], { stdio: ['pipe', 'inherit', 'inherit'] });
 const done = new Promise((ok, fail) => ffmpeg.on('close', c => c ? fail(new Error('ffmpeg ' + c)) : ok()));
 
 const stage = page.locator('#stage');
+const poster = await page.evaluate(() => window.SAS_OUTRO.poster ?? 4.4);
 for (let f = 0; f < frames; f++) {
   await page.evaluate(t => window.SAS_OUTRO.render(t), f / FPS);
   const png = await stage.screenshot({ type: 'png' });
@@ -59,9 +63,9 @@ ffmpeg.stdin.end();
 await done;
 
 // Still of the fully built end card (handy as a thumbnail).
-await page.evaluate(() => window.SAS_OUTRO.render(4.4));
-await stage.screenshot({ path: join(DIR, 'sas-outro-poster.png') });
+await page.evaluate(t => window.SAS_OUTRO.render(t), poster);
+await stage.screenshot({ path: join(DIR, `${NAME}-poster.png`) });
 
 await browser.close();
 server.close();
-console.log(`\nWrote sas-outro.mp4 (${frames} frames @ ${FPS}fps) and sas-outro-poster.png`);
+console.log(`\nWrote ${NAME}.mp4 (${frames} frames @ ${FPS}fps) and ${NAME}-poster.png`);

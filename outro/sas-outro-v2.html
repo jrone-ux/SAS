@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SAS Outro v2</title>
+<!--
+  SAS video outro v2 — 1080 x 1920 (9:16), black background, 10 seconds.
+  Logo-sting style: line → square → iris opens → logo disc pops with
+  spinning arcs → disc flies up as social icons rise → brand name
+  reveals letter by letter → drifts out.
+  Everything is drawn on one canvas by render(t), with real motion blur
+  (several sub-frame samples averaged), so outro/render-outro.mjs can
+  export it frame-perfect. Open in a browser to preview.
+-->
+<style>
+  html, body { margin: 0; background: #000; overflow: hidden; }
+  #stage { display: block; width: 1080px; height: 1920px; background: #000; transform-origin: 0 0; }
+</style>
+</head>
+<body>
+<canvas id="stage" width="1080" height="1920"></canvas>
+
+<script>
+(function () {
+  var DURATION = 10;
+  var W = 1080, H = 1920;
+  var CX = 540, CY = 860;           // where the logo disc lives
+  var GOLD = '#D6A743', GOLD_LIGHT = '#F7D774', GOLD_DEEP = '#9A6A1E';
+  var FONT = '"Inter", Arial, Helvetica, sans-serif';
+  var NAME = 'Strategic Assistant Staffing';
+  var SAMPLES = 6;                  // motion-blur samples per frame
+  var SHUTTER = 1 / 60;             // 180° shutter at 30fps
+
+  var main = document.getElementById('stage').getContext('2d');
+  var scene = document.createElement('canvas'); scene.width = W; scene.height = H;
+  var sc = scene.getContext('2d');
+  var tmp = document.createElement('canvas'); tmp.width = 900; tmp.height = 900;
+  var tc = tmp.getContext('2d');
+
+  var logo = new Image();
+  logo.src = 'sas-logo.png';
+
+  // ---- helpers ------------------------------------------------------------
+  function clamp(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
+  function prog(t, a, b) { return clamp((t - a) / (b - a)); }
+  function lerp(a, b, x) { return a + (b - a) * x; }
+  function outCubic(x) { return 1 - Math.pow(1 - x, 3); }
+  function inCubic(x) { return x * x * x; }
+  function outExpo(x) { return x >= 1 ? 1 : 1 - Math.pow(2, -10 * x); }
+  function inOut(x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+  function outBack(x, c) { c = c || 1.7; var d = c + 1; return 1 + d * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); }
+
+  function goldFill(ctx, x0, y0, x1, y1) {
+    var g = ctx.createLinearGradient(x0, y0, x1, y1);
+    g.addColorStop(0, GOLD_LIGHT);
+    g.addColorStop(0.5, GOLD);
+    g.addColorStop(1, GOLD_DEEP);
+    return g;
+  }
+
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  // ---- pieces -------------------------------------------------------------
+  function background(ctx) {
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, W, H);
+    // Barely-there warm vignette so the black has depth.
+    var g = ctx.createRadialGradient(CX, CY, 0, CX, CY, 900);
+    g.addColorStop(0, 'rgba(60,42,12,0.30)');
+    g.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, H);
+  }
+
+  // Line that straightens, thickens into a square, then an iris opens in it.
+  function opener(ctx, t) {
+    if (t < 0.15 || t > 1.75) return;
+    var SIDE = 380;
+    var len = SIDE * outExpo(prog(t, 0.15, 0.6));
+    var ang = lerp(-0.42, 0, outCubic(prog(t, 0.15, 0.7)));
+    var th = lerp(12, SIDE, inOut(prog(t, 0.68, 1.02)));
+    var hole = lerp(0, SIDE * 0.75, outCubic(prog(t, 1.05, 1.55)));
+    var a = 1 - prog(t, 1.45, 1.7);
+
+    ctx.save();
+    ctx.globalAlpha = a;
+    ctx.translate(CX, CY);
+    ctx.rotate(ang);
+    ctx.beginPath();
+    ctx.rect(-len / 2, -th / 2, len, th);
+    if (hole > 0) {
+      ctx.moveTo(hole, 0);
+      ctx.arc(0, 0, hole, 0, Math.PI * 2, true);
+    }
+    ctx.fillStyle = goldFill(ctx, 0, -SIDE / 2, 0, SIDE / 2);
+    ctx.fill('evenodd');
+    ctx.restore();
+  }
+
+  // The logo, with a light sweep across it (sweep = 0..1, or <0 for none).
+  function drawLogo(ctx, cx, cy, size, sweep) {
+    if (!logo.complete || !logo.naturalWidth) return;
+    var s = Math.ceil(size);
+    if (s > tmp.width) s = tmp.width;
+    tc.clearRect(0, 0, s, s);
+    tc.globalCompositeOperation = 'source-over';
+    tc.drawImage(logo, 0, 0, s, s);
+    if (sweep >= 0 && sweep <= 1) {
+      var x = lerp(-0.4, 1.4, sweep) * s;
+      var g = tc.createLinearGradient(x - s * 0.18, 0, x + s * 0.18, s * 0.25);
+      g.addColorStop(0, 'rgba(255,250,225,0)');
+      g.addColorStop(0.5, 'rgba(255,250,225,0.9)');
+      g.addColorStop(1, 'rgba(255,250,225,0)');
+      tc.globalCompositeOperation = 'source-atop';
+      tc.fillStyle = g;
+      tc.fillRect(0, 0, s, s);
+      tc.globalCompositeOperation = 'source-over';
+    }
+    ctx.drawImage(tmp, 0, 0, s, s, cx - size / 2, cy - size / 2, size, size);
+  }
+
+  // Dark disc with a gold rim and the logo inside.
+  function disc(ctx, cx, cy, r, alpha, sweep) {
+    if (r <= 0.5 || alpha <= 0) return;
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    // soft gold halo
+    var halo = ctx.createRadialGradient(cx, cy, r * 0.9, cx, cy, r * 1.6);
+    halo.addColorStop(0, 'rgba(214,167,67,0.28)');
+    halo.addColorStop(1, 'rgba(214,167,67,0)');
+    ctx.fillStyle = halo;
+    ctx.fillRect(cx - r * 1.6, cy - r * 1.6, r * 3.2, r * 3.2);
+    // body
+    var body = ctx.createRadialGradient(cx - r * 0.3, cy - r * 0.4, r * 0.1, cx, cy, r);
+    body.addColorStop(0, '#1c1710');
+    body.addColorStop(1, '#050505');
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.fillStyle = body;
+    ctx.fill();
+    // rim
+    ctx.lineWidth = Math.max(2, r * 0.055);
+    ctx.strokeStyle = goldFill(ctx, cx - r, cy - r, cx + r, cy + r);
+    ctx.stroke();
+    // logo
+    drawLogo(ctx, cx, cy + r * 0.04, r * 1.48, sweep);
+    ctx.restore();
+  }
+
+  // Four gold arcs that whip around the disc and fly apart.
+  function arcs(ctx, t, cx, cy, r) {
+    var p = prog(t, 1.85, 2.65);
+    if (p <= 0 || p >= 1) return;
+    var e = outCubic(p);
+    var rad = r + lerp(24, 150, e);
+    var span = lerp(1.25, 0.05, inCubic(p));
+    var rot = lerp(-0.6, 1.9, e);
+    ctx.save();
+    ctx.lineCap = 'round';
+    ctx.lineWidth = lerp(22, 4, e);
+    ctx.strokeStyle = GOLD;
+    ctx.globalAlpha = 1 - inCubic(p);
+    for (var i = 0; i < 4; i++) {
+      var a0 = rot + i * Math.PI / 2;
+      ctx.beginPath();
+      ctx.arc(cx, cy, rad, a0, a0 + span);
+      ctx.stroke();
+    }
+    // small sparks flying out on the diagonals
+    ctx.lineWidth = 5;
+    for (var k = 0; k < 8; k++) {
+      var a = k * Math.PI / 4 + Math.PI / 8;
+      var d0 = r + lerp(40, 230, e), d1 = d0 + lerp(40, 4, e);
+      ctx.beginPath();
+      ctx.moveTo(cx + Math.cos(a) * d0, cy + Math.sin(a) * d0);
+      ctx.lineTo(cx + Math.cos(a) * d1, cy + Math.sin(a) * d1);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  // Social icons (gold circles, black glyphs).
+  var ICONS = ['linkedin', 'instagram', 'facebook', 'youtube'];
+  function icon(ctx, kind, x, y, r) {
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = goldFill(ctx, x, y - r, x, y + r);
+    ctx.fill();
+    ctx.fillStyle = '#000';
+    ctx.strokeStyle = '#000';
+    var u = r / 46;
+    if (kind === 'linkedin') {
+      ctx.font = '800 ' + (46 * u) + 'px ' + FONT;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText('in', x + 1 * u, y + 1 * u);
+    } else if (kind === 'facebook') {
+      ctx.font = '900 ' + (60 * u) + 'px ' + FONT;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText('f', x + 2 * u, y + 4 * u);
+    } else if (kind === 'instagram') {
+      ctx.lineWidth = 6 * u;
+      roundRect(ctx, x - 20 * u, y - 20 * u, 40 * u, 40 * u, 12 * u);
+      ctx.stroke();
+      ctx.beginPath(); ctx.arc(x, y, 9 * u, 0, Math.PI * 2); ctx.stroke();
+      ctx.beginPath(); ctx.arc(x + 11 * u, y - 11 * u, 3 * u, 0, Math.PI * 2); ctx.fill();
+    } else if (kind === 'youtube') {
+      roundRect(ctx, x - 26 * u, y - 18 * u, 52 * u, 36 * u, 10 * u);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(x - 7 * u, y - 10 * u);
+      ctx.lineTo(x + 11 * u, y);
+      ctx.lineTo(x - 7 * u, y + 10 * u);
+      ctx.closePath();
+      ctx.fillStyle = GOLD;
+      ctx.fill();
+    }
+  }
+
+  function icons(ctx, t) {
+    if (t < 3.75 || t > 6.6) return;
+    var R = 46, GAP = 128, Y = 960;
+    var x0 = CX - GAP * (ICONS.length - 1) / 2;
+    var out = inCubic(prog(t, 5.95, 6.45));
+    for (var i = 0; i < ICONS.length; i++) {
+      var pin = prog(t, 3.8 + i * 0.07, 4.45 + i * 0.07);
+      if (pin <= 0) continue;
+      var y = Y + lerp(260, 0, outBack(pin, 1.3)) - out * 260;
+      var a = clamp(pin * 3) * (1 - out);
+      var bob = Math.sin((t - 4.5) * 2.4 + i * 0.8) * 5 * prog(t, 4.5, 5.0);
+      ctx.save();
+      ctx.globalAlpha = a;
+      icon(ctx, ICONS[i], x0 + i * GAP, y + bob, R);
+      ctx.restore();
+    }
+  }
+
+  // Brand name: each letter flips up into place, then the line drifts down.
+  function brand(ctx, t) {
+    if (t < 6.2) return;
+    var SIZE = 56;
+    ctx.save();
+    ctx.font = '800 ' + SIZE + 'px ' + FONT;
+    ctx.textBaseline = 'alphabetic';
+    ctx.textAlign = 'left';
+    var total = ctx.measureText(NAME).width;
+    var x = CX - total / 2;
+    var baseY = 960 + SIZE * 0.35;
+    var out = inCubic(prog(t, 8.7, 9.4));
+    var fill = goldFill(ctx, 0, baseY - SIZE, 0, baseY + 8);
+    for (var i = 0; i < NAME.length; i++) {
+      var ch = NAME[i];
+      var w = ctx.measureText(ch).width;
+      var p = outCubic(prog(t, 6.25 + i * 0.028, 6.85 + i * 0.028));
+      if (p > 0 && ch !== ' ') {
+        ctx.save();
+        ctx.globalAlpha = clamp(p * 1.6) * (1 - out);
+        ctx.translate(x + w / 2, baseY + lerp(46, 0, p) + out * 70);
+        ctx.rotate(lerp(0.55, 0, p));
+        ctx.fillStyle = fill;
+        ctx.fillText(ch, -w / 2, 0);
+        ctx.restore();
+      }
+      x += w;
+    }
+    // thin gold underline that draws out once the word has landed
+    var u = outExpo(prog(t, 7.0, 7.6));
+    if (u > 0) {
+      ctx.globalAlpha = 1 - out;
+      var half = 120 * u;
+      var g = ctx.createLinearGradient(CX - half, 0, CX + half, 0);
+      g.addColorStop(0, 'rgba(214,167,67,0)');
+      g.addColorStop(0.5, GOLD_LIGHT);
+      g.addColorStop(1, 'rgba(214,167,67,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(CX - half, baseY + 44 + out * 70, half * 2, 3);
+    }
+    ctx.restore();
+  }
+
+  // ---- one instant of the scene -------------------------------------------
+  function drawScene(ctx, t) {
+    background(ctx);
+    opener(ctx, t);
+
+    // disc: pop in with overshoot → slow shrink → shoot up and away
+    var pop = prog(t, 1.32, 2.0);
+    var r = 0;
+    if (pop > 0) r = 320 * outBack(pop, 2.2);
+    r *= lerp(1, 0.84, inOut(prog(t, 2.2, 3.7)));
+    var fly = inCubic(prog(t, 3.65, 4.15));
+    r *= lerp(1, 0.55, fly);
+    var cy = CY - fly * 1150;
+    var sweep = prog(t, 2.35, 3.15);
+    disc(ctx, CX, cy, r, fly >= 1 ? 0 : 1, sweep > 0 && sweep < 1 ? sweep : -1);
+    if (t < 3.6) arcs(ctx, t, CX, cy, r);
+
+    icons(ctx, t);
+    brand(ctx, t);
+  }
+
+  // ---- frame: average several sub-frame samples for motion blur ------------
+  function render(t) {
+    main.globalAlpha = 1;
+    for (var k = 0; k < SAMPLES; k++) {
+      drawScene(sc, Math.max(0, t - SHUTTER * k / SAMPLES));
+      main.globalAlpha = 1 / (k + 1);
+      main.drawImage(scene, 0, 0);
+    }
+    main.globalAlpha = 1;
+    // final fade to black
+    var f = prog(t, DURATION - 0.5, DURATION);
+    if (f > 0) { main.fillStyle = 'rgba(0,0,0,' + f + ')'; main.fillRect(0, 0, W, H); }
+  }
+
+  var ready = Promise.all([
+    new Promise(function (ok) { logo.complete ? ok() : (logo.onload = ok); }),
+    document.fonts.load('800 56px Inter'),
+    document.fonts.load('900 60px Inter')
+  ]);
+
+  window.SAS_OUTRO = { render: render, duration: DURATION, ready: ready, poster: 3.0 };
+
+  // Live preview (skipped when exporting).
+  if (!/[?&]export/.test(location.search)) {
+    var stage = document.getElementById('stage');
+    function fit() {
+      var s = Math.min(innerWidth / W, innerHeight / H);
+      stage.style.transform = 'scale(' + s + ')';
+      stage.style.marginLeft = (innerWidth - W * s) / 2 + 'px';
+    }
+    addEventListener('resize', fit); fit();
+    ready.then(function () {
+      var start = performance.now();
+      (function loop(now) {
+        render(((now - start) / 1000) % (DURATION + 0.8));
+        requestAnimationFrame(loop);
+      })(start);
+    });
+  }
+})();
+</script>
+</body>
+</html>
