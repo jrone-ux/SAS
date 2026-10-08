@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SAS Outro</title>
+<!--
+  SAS video outro — 1080 x 1920 (9:16), black background, 7 seconds.
+  Every frame is drawn by render(t) from the time t (seconds), so the
+  animation can be exported frame-perfect with outro/render-outro.mjs.
+  Open this file in a browser to preview it playing in real time.
+-->
+<style>
+  :root {
+    --sas-gold: #D6A743;
+    --sas-gold-light: #F7D774;
+    --sas-gold-deep: #9A6A1E;
+    --sas-white: #FFFFFF;
+    --sas-muted: #AAAAAA;
+    --sas-font: "Inter", Arial, Helvetica, sans-serif;
+  }
+  html, body { margin: 0; background: #000; }
+  body { overflow: hidden; }
+
+  #stage {
+    position: relative;
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    background: #000;
+    font-family: var(--sas-font);
+    -webkit-font-smoothing: antialiased;
+    transform-origin: 0 0;
+  }
+  #stage > * { position: absolute; }
+
+  #fx { inset: 0; }
+
+  /* Logo block */
+  #logo-wrap {
+    left: 50%; top: 380px;
+    width: 760px; height: 760px;
+    margin-left: -380px;
+  }
+  #logo-wrap img, #shine { position: absolute; inset: 0; width: 100%; height: 100%; }
+  #shine {
+    -webkit-mask: url(sas-logo.png) center / contain no-repeat;
+            mask: url(sas-logo.png) center / contain no-repeat;
+    background: linear-gradient(105deg,
+      transparent 0%, transparent 40%,
+      rgba(255,250,225,0.95) 50%,
+      transparent 60%, transparent 100%);
+    background-size: 300% 100%;
+    mix-blend-mode: screen;
+  }
+
+  /* Text block */
+  .line { left: 0; right: 0; text-align: center; white-space: nowrap; }
+
+  #name {
+    top: 1215px;
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    background: linear-gradient(180deg, var(--sas-gold-light) 0%, var(--sas-gold) 55%, var(--sas-gold-deep) 100%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+  }
+  #rule {
+    top: 1310px; left: 50%;
+    width: 220px; height: 3px; margin-left: -110px;
+    background: linear-gradient(90deg, transparent, var(--sas-gold) 20%, var(--sas-gold-light) 50%, var(--sas-gold) 80%, transparent);
+  }
+  #thanks {
+    top: 1360px;
+    font-size: 40px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--sas-white);
+  }
+  #cta {
+    top: 1470px; left: 50%;
+    height: 96px; padding: 0 56px;
+    transform-origin: 50% 50%;
+    display: flex; align-items: center; gap: 18px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #E9BE5C 0%, var(--sas-gold) 60%, #B8862C 100%);
+    color: #000;
+    font-size: 36px; font-weight: 800;
+    box-shadow: 0 0 0 1px rgba(255,235,170,0.35) inset, 0 18px 60px rgba(214,167,67,0.25);
+    white-space: nowrap;
+  }
+  #cta svg { width: 36px; height: 36px; }
+
+  #fade { inset: 0; background: #000; pointer-events: none; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <canvas id="fx" width="1080" height="1920"></canvas>
+
+  <div id="logo-wrap">
+    <img id="logo" src="sas-logo.png" alt="SAS logo">
+    <div id="shine"></div>
+  </div>
+
+  <div id="name" class="line">STRATEGIC ASSISTANT STAFFING</div>
+  <div id="rule"></div>
+  <div id="thanks" class="line">Thank you for watching</div>
+  <div id="cta">
+    Follow for more
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </div>
+
+  <div id="fade"></div>
+</div>
+
+<script>
+(function () {
+  var DURATION = 7;          // seconds
+  var W = 1080, H = 1920;
+  var LOGO_CX = 540, LOGO_CY = 380 + 380;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var fx = $('fx').getContext('2d');
+  var logoWrap = $('logo-wrap'), logo = $('logo'), shine = $('shine');
+  var nameEl = $('name'), rule = $('rule'), thanks = $('thanks'), cta = $('cta'), fade = $('fade');
+
+  // ---- helpers ------------------------------------------------------------
+  function clamp(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
+  function prog(t, a, b) { return clamp((t - a) / (b - a)); }
+  function easeOutCubic(x) { return 1 - Math.pow(1 - x, 3); }
+  function easeOutExpo(x) { return x >= 1 ? 1 : 1 - Math.pow(2, -10 * x); }
+  function easeInOut(x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+  function easeOutBack(x) { var c = 1.4, d = c + 1; return 1 + d * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); }
+  function lerp(a, b, x) { return a + (b - a) * x; }
+
+  // Seeded random so every export is identical.
+  function rng(seed) {
+    return function () {
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      var r = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      r = r + Math.imul(r ^ r >>> 7, 61 | r) ^ r;
+      return ((r ^ r >>> 14) >>> 0) / 4294967296;
+    };
+  }
+
+  // Gold dust: slow drift upward across the whole frame.
+  var rand = rng(20261008);
+  var dust = [];
+  for (var i = 0; i < 90; i++) {
+    dust.push({
+      x: rand() * W,
+      y: rand() * H,
+      r: 0.8 + rand() * 2.6,
+      speed: 18 + rand() * 46,
+      sway: 10 + rand() * 26,
+      phase: rand() * Math.PI * 2,
+      tw: 0.6 + rand() * 1.8,
+      a: 0.25 + rand() * 0.6
+    });
+  }
+
+  // Burst sparks when the logo lands.
+  var sparks = [];
+  for (var j = 0; j < 46; j++) {
+    var ang = rand() * Math.PI * 2;
+    sparks.push({ ang: ang, dist: 260 + rand() * 340, r: 1.2 + rand() * 2.4, delay: rand() * 0.15 });
+  }
+
+  // ---- frame --------------------------------------------------------------
+  function render(t) {
+    fx.clearRect(0, 0, W, H);
+
+    // 1. Light streak: a thin gold line flashes open across the centre (0 – 0.9s).
+    var sIn = easeOutExpo(prog(t, 0.05, 0.6));
+    var sOut = prog(t, 0.55, 1.1);
+    var sA = (1 - sOut) * sIn;
+    if (sA > 0) {
+      var half = 540 * sIn;
+      var g = fx.createLinearGradient(LOGO_CX - half, 0, LOGO_CX + half, 0);
+      g.addColorStop(0, 'rgba(214,167,67,0)');
+      g.addColorStop(0.5, 'rgba(255,236,170,' + sA + ')');
+      g.addColorStop(1, 'rgba(214,167,67,0)');
+      fx.fillStyle = g;
+      fx.fillRect(LOGO_CX - half, LOGO_CY + 200 - 1.5, half * 2, 3 + 6 * sOut);
+      var flare = fx.createRadialGradient(LOGO_CX, LOGO_CY + 200, 0, LOGO_CX, LOGO_CY + 200, 120);
+      flare.addColorStop(0, 'rgba(255,240,190,' + 0.55 * sA + ')');
+      flare.addColorStop(1, 'rgba(214,167,67,0)');
+      fx.fillStyle = flare;
+      fx.fillRect(LOGO_CX - 120, LOGO_CY + 80, 240, 240);
+    }
+
+    // 2. Soft glow behind the logo (breathes slowly once visible).
+    var glowIn = easeOutCubic(prog(t, 0.6, 2.0));
+    var breathe = 0.85 + 0.15 * Math.sin(t * 2.2);
+    var glowA = 0.22 * glowIn * breathe;
+    if (glowA > 0) {
+      var rg = fx.createRadialGradient(LOGO_CX, LOGO_CY, 0, LOGO_CX, LOGO_CY, 560);
+      rg.addColorStop(0, 'rgba(214,167,67,' + glowA + ')');
+      rg.addColorStop(0.55, 'rgba(214,167,67,' + glowA * 0.25 + ')');
+      rg.addColorStop(1, 'rgba(214,167,67,0)');
+      fx.fillStyle = rg;
+      fx.fillRect(0, LOGO_CY - 560, W, 1120);
+    }
+
+    // 3. Gold dust.
+    var dustA = easeOutCubic(prog(t, 0.4, 2.0));
+    for (var i = 0; i < dust.length; i++) {
+      var p = dust[i];
+      var y = ((p.y - p.speed * t) % H + H) % H;
+      var x = p.x + Math.sin(t * 0.8 + p.phase) * p.sway;
+      var a = p.a * dustA * (0.55 + 0.45 * Math.sin(t * p.tw * 2 + p.phase));
+      if (a <= 0.01) continue;
+      fx.beginPath();
+      fx.fillStyle = 'rgba(240,200,110,' + a + ')';
+      fx.arc(x, y, p.r, 0, Math.PI * 2);
+      fx.fill();
+    }
+
+    // 4. Spark burst as the logo finishes rising (~1.55s).
+    for (var k = 0; k < sparks.length; k++) {
+      var s = sparks[k];
+      var sp = prog(t, 1.45 + s.delay, 2.6 + s.delay);
+      if (sp <= 0 || sp >= 1) continue;
+      var d = easeOutCubic(sp) * s.dist;
+      var sx = LOGO_CX + Math.cos(s.ang) * d;
+      var sy = LOGO_CY + Math.sin(s.ang) * d * 0.8;
+      fx.beginPath();
+      fx.fillStyle = 'rgba(255,226,150,' + (1 - sp) * 0.9 + ')';
+      fx.arc(sx, sy, s.r * (1 - sp * 0.5), 0, Math.PI * 2);
+      fx.fill();
+    }
+
+    // 5. Logo rises up from the light line like a skyline, then settles.
+    var lp = prog(t, 0.45, 1.6);
+    var rise = easeOutCubic(lp);
+    logoWrap.style.clipPath = 'inset(' + (100 - rise * 100) + '% 0 0 0)';
+    var scale = lerp(0.9, 1, easeOutCubic(prog(t, 0.45, 2.2)));
+    var lift = lerp(60, 0, rise);
+    // Gentle float once settled.
+    var float = Math.sin(Math.max(0, t - 2.2) * 1.6) * 6 * prog(t, 2.2, 3.0);
+    logoWrap.style.transform = 'translateY(' + (lift + float) + 'px) scale(' + scale + ')';
+    logo.style.opacity = clamp(lp * 3);
+
+    // 6. Shine sweeps across the logo twice.
+    var sh1 = prog(t, 1.7, 2.6), sh2 = prog(t, 5.0, 5.9);
+    var sh = sh1 > 0 && sh1 < 1 ? sh1 : sh2;
+    shine.style.opacity = (sh > 0 && sh < 1) ? 1 : 0;
+    shine.style.backgroundPosition = lerp(100, 0, easeInOut(sh)) + '% 0';
+
+    // 7. Company name: tracks in from wide letter-spacing.
+    var np = easeOutCubic(prog(t, 1.9, 3.0));
+    nameEl.style.opacity = np;
+    nameEl.style.letterSpacing = lerp(0.42, 0.14, np) + 'em';
+    nameEl.style.transform = 'translateY(' + lerp(24, 0, np) + 'px)';
+
+    // 8. Divider draws out from the centre.
+    var rp = easeOutExpo(prog(t, 2.5, 3.3));
+    rule.style.transform = 'scaleX(' + rp + ')';
+    rule.style.opacity = rp > 0 ? 1 : 0;
+
+    // 9. "Thank you for watching" fades up.
+    var tp = easeOutCubic(prog(t, 2.8, 3.6));
+    thanks.style.opacity = tp;
+    thanks.style.transform = 'translateY(' + lerp(24, 0, tp) + 'px)';
+
+    // 10. CTA pill pops in, then pulses once.
+    var cp = prog(t, 3.3, 4.0);
+    var pop = cp > 0 ? easeOutBack(cp) : 0;
+    var pulse = 1 + 0.035 * Math.sin(prog(t, 4.6, 5.2) * Math.PI);
+    cta.style.opacity = clamp(cp * 2.5);
+    cta.style.transform = 'translateX(-50%) scale(' + (lerp(0.7, 1, pop) * pulse) + ')';
+
+    // 11. Fade to black at the very end.
+    fade.style.opacity = easeInOut(prog(t, DURATION - 0.6, DURATION));
+  }
+
+  window.SAS_OUTRO = { render: render, duration: DURATION };
+
+  // Live preview: scale the stage to the window and loop (skipped when exporting).
+  if (!/[?&]export/.test(location.search)) {
+    var stage = $('stage');
+    function fit() {
+      var s = Math.min(innerWidth / W, innerHeight / H);
+      stage.style.transform = 'scale(' + s + ')';
+      stage.style.marginLeft = (innerWidth - W * s) / 2 + 'px';
+    }
+    addEventListener('resize', fit); fit();
+    var start = performance.now();
+    (function loop(now) {
+      render(((now - start) / 1000) % (DURATION + 0.8));
+      requestAnimationFrame(loop);
+    })(start);
+  } else {
+    render(0);
+  }
+})();
+</script>
+</body>
+</html>
