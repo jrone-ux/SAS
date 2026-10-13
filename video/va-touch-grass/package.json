@@ -1,0 +1,12 @@
+{
+  "name": "va-touch-grass",
+  "private": true,
+  "type": "module",
+  "description": "30s vertical (1080x1920) 3D comedy short: a WFH virtual assistant touches grass",
+  "scripts": {
+    "render": "node render.mjs"
+  },
+  "dependencies": {
+    "three": "0.169.0"
+  }
+}
