@@ -1,0 +1,89 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    #hook-card {
+      position: absolute;
+      left: 70px;
+      right: 70px;
+      top: 220px;
+      padding: 40px 44px 44px;
+      border-radius: 40px;
+      background: rgba(15, 16, 22, 0.78);
+      backdrop-filter: blur(22px);
+      border: 2px solid rgba(214, 167, 67, 0.55);
+      text-align: center;
+    }
+    #hook-sun {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 18px;
+    }
+    #hook-kicker {
+      font-weight: 700;
+      font-size: 34px;
+      letter-spacing: 0.24em;
+      color: #ffffff;
+    }
+    #hook-title {
+      margin-top: 10px;
+      font-weight: 900;
+      font-size: 104px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+    }
+    .hook-gold {
+      background: linear-gradient(135deg, #f7d774 0%, #d6a743 55%, #9a6a1e 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    #hook-by {
+      margin-top: 22px;
+      font-weight: 700;
+      font-size: 30px;
+      letter-spacing: 0.08em;
+      color: #f7d774;
+    }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hook-card" class="clip" data-start="0" data-duration="3.6">
+      <svg id="hook-sun" viewBox="-60 -60 120 120">
+        <defs>
+          <linearGradient id="hook-sun-g" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#F7D774" />
+            <stop offset="0.55" stop-color="#D6A743" />
+            <stop offset="1" stop-color="#9A6A1E" />
+          </linearGradient>
+        </defs>
+        <g id="hook-rays">
+          <polygon points="0,-58 7,-26 -7,-26" fill="url(#hook-sun-g)" />
+          <polygon points="0,-58 7,-26 -7,-26" fill="url(#hook-sun-g)" transform="rotate(45)" />
+          <polygon points="0,-58 7,-26 -7,-26" fill="url(#hook-sun-g)" transform="rotate(90)" />
+          <polygon points="0,-58 7,-26 -7,-26" fill="url(#hook-sun-g)" transform="rotate(135)" />
+          <polygon points="0,-58 7,-26 -7,-26" fill="url(#hook-sun-g)" transform="rotate(180)" />
+          <polygon points="0,-58 7,-26 -7,-26" fill="url(#hook-sun-g)" transform="rotate(225)" />
+          <polygon points="0,-58 7,-26 -7,-26" fill="url(#hook-sun-g)" transform="rotate(270)" />
+          <polygon points="0,-58 7,-26 -7,-26" fill="url(#hook-sun-g)" transform="rotate(315)" />
+        </g>
+        <circle cx="0" cy="0" r="21" fill="url(#hook-sun-g)" />
+      </svg>
+      <div id="hook-kicker">WHY I BELIEVE IN</div>
+      <div id="hook-title"><span class="hook-gold">FILIPINO</span><br />TALENT</div>
+      <div id="hook-by">Regine · CEO &amp; Founder, SAS</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Frame 0 already shows the hook (it is the thumbnail); the sun turns and the byline lands.
+    tl.fromTo("#hook-rays", { rotation: 0, svgOrigin: "0 0" }, { rotation: 90, svgOrigin: "0 0", duration: 3.6, ease: "none" }, 0);
+    tl.fromTo("#hook-title", { scale: 1.06 }, { scale: 1, duration: 0.6, ease: "power3.out" }, 0);
+    tl.fromTo("#hook-by", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 1.0);
+    tl.fromTo("#hook-card", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power2.in" }, 3.25);
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

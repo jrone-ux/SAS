@@ -1,0 +1,49 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    #bg-pill {
+      position: absolute;
+      left: 60px;
+      top: 240px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 24px 10px 12px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.55);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: 0.08em;
+    }
+    #bg-logo {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+    }
+    #bg-progress {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 1080px;
+      height: 10px;
+      background: linear-gradient(90deg, #f7d774, #d6a743, #9a6a1e);
+      transform-origin: 0 50%;
+    }
+  </style>
+  <div id="root" data-composition-id="bug" data-width="1080" data-height="1920">
+    <div id="bg-pill" class="clip" data-start="0" data-duration="17.42"><img id="bg-logo" src="assets/sas-logo.png" alt="SAS" /><span>FOUNDERS MEETING · 2027 PLANNING</span></div>
+    <div id="bg-progress" class="clip" data-start="0" data-duration="17.42" data-layout-ignore></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#bg-pill", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 0.1);
+    tl.fromTo("#bg-progress", { scaleX: 0 }, { scaleX: 1, duration: 17.42, ease: "none" }, 0);
+    tl.to("#bg-pill", { opacity: 0, duration: 0.2, ease: "power2.in" }, 17.2);
+    window.__timelines["bug"] = tl;
+  </script>
+</template>

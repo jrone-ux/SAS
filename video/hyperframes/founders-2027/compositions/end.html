@@ -1,0 +1,93 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    #en-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 540px 820px, #2a2010 0%, #050505 62%);
+    }
+    #en-year {
+      position: absolute;
+      left: 0;
+      width: 1080px;
+      top: 300px;
+      text-align: center;
+      font-weight: 900;
+      font-size: 360px;
+      line-height: 1;
+      letter-spacing: -0.06em;
+      color: transparent;
+      -webkit-text-stroke: 3px rgba(214, 167, 67, 0.35);
+    }
+    #en-logo {
+      position: absolute;
+      left: 330px;
+      top: 460px;
+      width: 420px;
+      height: 420px;
+      object-fit: contain;
+    }
+    #en-name {
+      position: absolute;
+      left: 110px;
+      width: 760px;
+      top: 930px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 30px;
+      letter-spacing: 0.16em;
+      color: #ffffff;
+    }
+    #en-line {
+      position: absolute;
+      left: 110px;
+      width: 760px;
+      top: 1000px;
+      text-align: center;
+      font-weight: 900;
+      font-size: 82px;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+    }
+    .en-gold {
+      background: linear-gradient(135deg, #f7d774 0%, #d6a743 55%, #9a6a1e 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    #en-meta {
+      position: absolute;
+      left: 110px;
+      width: 760px;
+      top: 1190px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: 0.1em;
+      color: #f7d774;
+    }
+  </style>
+  <div id="root" data-composition-id="end" data-width="1080" data-height="1920">
+    <div id="en-bg" class="clip" data-start="0" data-duration="3.677"></div>
+    <div id="en-year" class="clip" data-start="0" data-duration="3.677" data-var-text="year" data-layout-ignore>2027</div>
+    <img id="en-logo" class="clip" data-start="0" data-duration="3.677" src="assets/sas-logo.png" alt="SAS" data-layout-allow-occlusion />
+    <div id="en-name" class="clip" data-start="0" data-duration="3.677">STRATEGIC ASSISTANT STAFFING</div>
+    <div id="en-line" class="clip" data-start="0" data-duration="3.677">Here's to <span class="en-gold">2027.</span></div>
+    <div id="en-meta" class="clip" data-start="0" data-duration="3.677">FOUNDERS MEETING · <span data-var-text="meetingDate">NOV 17, 2026</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#en-bg", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 0);
+    tl.fromTo("#en-year", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, 0.05);
+    tl.fromTo("#en-logo", { opacity: 0, scale: 0.4, rotation: -15 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.6, ease: "back.out(1.8)" }, 0.1);
+    tl.fromTo("#en-name", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 0.55);
+    tl.fromTo("#en-line", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.9);
+    tl.fromTo("#en-meta", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.3);
+    window.__timelines["end"] = tl;
+  </script>
+</template>

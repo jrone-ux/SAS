@@ -1,0 +1,58 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    .nm-tag {
+      position: absolute;
+      left: 70px;
+      top: 1110px;
+      display: flex;
+      align-items: stretch;
+    }
+    .nm-bar {
+      width: 10px;
+      border-radius: 5px;
+      background: linear-gradient(180deg, #f7d774, #d6a743 55%, #9a6a1e);
+    }
+    .nm-box {
+      margin-left: 18px;
+      padding: 18px 32px 20px;
+      border-radius: 20px;
+      background: rgba(10, 10, 12, 0.74);
+      backdrop-filter: blur(16px);
+      color: #ffffff;
+    }
+    .nm-name {
+      font-weight: 900;
+      font-size: 66px;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .nm-role {
+      margin-top: 8px;
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: 0.16em;
+      color: #f7d774;
+    }
+  </style>
+  <div id="root" data-composition-id="names" data-width="1080" data-height="1920">
+    <div id="nm-ryan" class="nm-tag clip" data-start="0" data-duration="2.419"><div class="nm-bar"></div><div class="nm-box"><div class="nm-name">Ryan</div></div></div>
+    <div id="nm-reyshan" class="nm-tag clip" data-start="2.419" data-duration="2.419"><div class="nm-bar"></div><div class="nm-box"><div class="nm-name">Reyshan</div></div></div>
+    <div id="nm-regine" class="nm-tag clip" data-start="4.838" data-duration="2.42"><div class="nm-bar"></div><div class="nm-box"><div class="nm-name">Regine</div><div class="nm-role">CEO &amp; FOUNDER</div></div></div>
+    <div id="nm-rhezamay" class="nm-tag clip" data-start="7.258" data-duration="2.419"><div class="nm-bar"></div><div class="nm-box"><div class="nm-name">Rhezamay</div></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    [["#nm-ryan", 0], ["#nm-reyshan", 2.419], ["#nm-regine", 4.838], ["#nm-rhezamay", 7.258]].forEach(([el, at]) => {
+      tl.fromTo(`${el} .nm-bar`, { scaleY: 0 }, { scaleY: 1, duration: 0.3, ease: "power3.out", transformOrigin: "50% 100%" }, at + 0.2);
+      tl.fromTo(`${el} .nm-box`, { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, at + 0.28);
+      tl.to(`${el} .nm-box`, { opacity: 0, x: -20, duration: 0.2, ease: "power2.in" }, at + 2.15);
+      tl.to(`${el} .nm-bar`, { scaleY: 0, duration: 0.2, ease: "power2.in" }, at + 2.15);
+    });
+    window.__timelines["names"] = tl;
+  </script>
+</template>

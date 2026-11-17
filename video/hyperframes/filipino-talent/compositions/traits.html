@@ -1,0 +1,124 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    .tr-card {
+      position: absolute;
+      left: 70px;
+      right: 70px;
+      top: 220px;
+      padding: 38px 40px 40px;
+      border-radius: 40px;
+      background: rgba(15, 16, 22, 0.78);
+      backdrop-filter: blur(22px);
+      border: 2px solid rgba(214, 167, 67, 0.55);
+      color: #ffffff;
+    }
+    .tr-kicker {
+      font-weight: 700;
+      font-size: 30px;
+      letter-spacing: 0.22em;
+      color: #d6a743;
+    }
+    .tr-gold {
+      background: linear-gradient(135deg, #f7d774 0%, #d6a743 55%, #9a6a1e 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    #tr-more-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 26px;
+    }
+    #tr-skill {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 34px;
+      border-radius: 999px;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      font-weight: 700;
+      font-size: 46px;
+    }
+    #tr-plus {
+      font-weight: 900;
+      font-size: 56px;
+      letter-spacing: -0.02em;
+    }
+    #tr-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 28px;
+    }
+    .tr-chip {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 22px 24px;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 2px solid rgba(214, 167, 67, 0.45);
+      font-weight: 700;
+      font-size: 33px;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+    .tr-dot {
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f7d774, #d6a743 55%, #9a6a1e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #tr-c4 {
+      grid-column: span 2;
+    }
+  </style>
+  <div id="root" data-composition-id="traits" data-width="1080" data-height="1920">
+    <!-- 3.6–6.5 "Because Filipino VAs bring more than just skills." -->
+    <div id="tr-more" class="tr-card clip" data-start="0" data-duration="3.0">
+      <div class="tr-kicker">FILIPINO VAs BRING</div>
+      <div id="tr-more-row">
+        <div id="tr-skill">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+          Skills
+        </div>
+        <div id="tr-plus"><span class="tr-gold">+ so much more</span></div>
+      </div>
+    </div>
+    <!-- 6.6–11.9 "They bring dedication, creativity, resourcefulness, and willingness to learn and grow." -->
+    <div id="tr-bring" class="tr-card clip" data-start="3.0" data-duration="5.3">
+      <div class="tr-kicker">THEY BRING</div>
+      <div id="tr-grid">
+        <div id="tr-c1" class="tr-chip"><span class="tr-dot">♥</span>Dedication</div>
+        <div id="tr-c2" class="tr-chip"><span class="tr-dot">✦</span>Creativity</div>
+        <div id="tr-c3" class="tr-chip"><span class="tr-dot">⚙</span>Resourcefulness</div>
+        <div id="tr-c4" class="tr-chip"><span class="tr-dot">↗</span>Willingness to learn &amp; grow</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#tr-more", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0);
+    tl.fromTo("#tr-skill", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, 1.0);
+    tl.fromTo("#tr-plus", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 1.45);
+    tl.to("#tr-more", { opacity: 0, duration: 0.35, ease: "power2.in" }, 2.62);
+
+    tl.fromTo("#tr-bring", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 3.0);
+    // chips land on the words (video times 7.28, 8.02, 8.77, 10.4)
+    [["#tr-c1", 3.68], ["#tr-c2", 4.42], ["#tr-c3", 5.17], ["#tr-c4", 6.8]].forEach(([el, at]) => {
+      tl.fromTo(el, { opacity: 0, scale: 0.7, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: "back.out(2)" }, at);
+    });
+    tl.to("#tr-bring", { opacity: 0, duration: 0.35, ease: "power2.in" }, 7.9);
+    window.__timelines["traits"] = tl;
+  </script>
+</template>

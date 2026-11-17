@@ -1,0 +1,154 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    .fd-gold {
+      background: linear-gradient(135deg, #f7d774 0%, #d6a743 55%, #9a6a1e 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    #fd-agency {
+      position: absolute;
+      left: 70px;
+      right: 70px;
+      top: 220px;
+      padding: 34px 40px 38px;
+      border-radius: 40px;
+      background: rgba(15, 16, 22, 0.78);
+      backdrop-filter: blur(22px);
+      border: 2px solid rgba(214, 167, 67, 0.55);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    #fd-logo-wrap {
+      flex-shrink: 0;
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      background: #0a0a0a;
+      border: 5px solid #d6a743;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 60px rgba(214, 167, 67, 0.5);
+    }
+    #fd-logo {
+      width: 160px;
+      height: 160px;
+      object-fit: contain;
+    }
+    #fd-kicker {
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: 0.2em;
+      color: #d6a743;
+    }
+    #fd-name {
+      margin-top: 8px;
+      font-weight: 900;
+      font-size: 54px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    #fd-by {
+      margin-top: 14px;
+      font-weight: 700;
+      font-size: 28px;
+      color: #f7d774;
+      letter-spacing: 0.04em;
+    }
+    #fd-deserve {
+      position: absolute;
+      left: 70px;
+      right: 70px;
+      top: 200px;
+      padding: 32px 40px 36px;
+      border-radius: 40px;
+      background: rgba(15, 16, 22, 0.78);
+      backdrop-filter: blur(22px);
+      border: 2px solid rgba(214, 167, 67, 0.55);
+      color: #ffffff;
+      text-align: center;
+      overflow: visible;
+    }
+    #fd-lead {
+      font-weight: 700;
+      font-size: 34px;
+      letter-spacing: 0.12em;
+    }
+    #fd-words {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      gap: 26px;
+      margin-top: 18px;
+      font-weight: 900;
+      font-size: 86px;
+      letter-spacing: -0.03em;
+    }
+    #fd-burst {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 640px;
+      height: 640px;
+      margin: -320px 0 0 -320px;
+      pointer-events: none;
+    }
+  </style>
+  <div id="root" data-composition-id="founder" data-width="1080" data-height="1920">
+    <!-- 22.8–25.1 "That's why I started a VA agency." -->
+    <div id="fd-agency" class="clip" data-start="0" data-duration="2.9">
+      <div id="fd-logo-wrap"><img id="fd-logo" src="assets/sas-logo.png" alt="SAS" /></div>
+      <div>
+        <div id="fd-kicker">THAT'S WHY I STARTED</div>
+        <div id="fd-name">Strategic Assistant <span class="fd-gold">Staffing</span></div>
+        <div id="fd-by">Regine · CEO &amp; Founder</div>
+      </div>
+    </div>
+    <!-- 25.5–30.9 "Filipino talent deserves to be seen, trusted, and given the opportunity to shine." -->
+    <div id="fd-deserve" class="clip" data-start="2.95" data-duration="5.45" data-layout-allow-overflow>
+      <svg id="fd-burst" viewBox="-100 -100 200 200">
+        <g id="fd-rays" fill="rgba(247,215,116,0.35)">
+          <polygon points="0,-98 6,-30 -6,-30" />
+          <polygon points="0,-98 6,-30 -6,-30" transform="rotate(45)" />
+          <polygon points="0,-98 6,-30 -6,-30" transform="rotate(90)" />
+          <polygon points="0,-98 6,-30 -6,-30" transform="rotate(135)" />
+          <polygon points="0,-98 6,-30 -6,-30" transform="rotate(180)" />
+          <polygon points="0,-98 6,-30 -6,-30" transform="rotate(225)" />
+          <polygon points="0,-98 6,-30 -6,-30" transform="rotate(270)" />
+          <polygon points="0,-98 6,-30 -6,-30" transform="rotate(315)" />
+        </g>
+      </svg>
+      <div id="fd-lead">FILIPINO TALENT DESERVES TO BE</div>
+      <div id="fd-words">
+        <span id="fd-w1">SEEN.</span>
+        <span id="fd-w2">TRUSTED.</span>
+      </div>
+      <div id="fd-shine" style="position: relative; margin-top: 6px; font-weight: 900; font-size: 128px; letter-spacing: -0.03em; line-height: 1"><span class="fd-gold">SHINE.</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#fd-agency", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0);
+    tl.fromTo("#fd-logo-wrap", { scale: 0.3, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.6, ease: "back.out(1.8)" }, 1.1);
+    tl.fromTo("#fd-name", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 1.2);
+    tl.fromTo("#fd-by", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 1.4);
+    tl.to("#fd-agency", { opacity: 0, duration: 0.35, ease: "power2.in" }, 2.55);
+
+    tl.fromTo("#fd-deserve", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 2.95);
+    tl.fromTo("#fd-lead", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 3.0);
+    tl.fromTo("#fd-w1", { opacity: 0, scale: 1.8 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power3.out" }, 5.4);
+    tl.fromTo("#fd-w2", { opacity: 0, scale: 1.8 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power3.out" }, 6.1);
+    tl.fromTo("#fd-shine", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 7.9);
+    tl.fromTo("#fd-burst", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" }, 7.9);
+    tl.fromTo("#fd-rays", { rotation: 0, svgOrigin: "0 0" }, { rotation: 40, svgOrigin: "0 0", duration: 0.9, ease: "none" }, 7.9);
+    window.__timelines["founder"] = tl;
+  </script>
+</template>

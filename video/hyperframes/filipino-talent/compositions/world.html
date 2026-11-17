@@ -1,0 +1,129 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    .wd-card {
+      position: absolute;
+      left: 70px;
+      right: 70px;
+      top: 220px;
+      padding: 36px 40px 40px;
+      border-radius: 40px;
+      background: rgba(15, 16, 22, 0.78);
+      backdrop-filter: blur(22px);
+      border: 2px solid rgba(214, 167, 67, 0.55);
+      color: #ffffff;
+    }
+    .wd-kicker {
+      font-weight: 700;
+      font-size: 30px;
+      letter-spacing: 0.22em;
+      color: #d6a743;
+    }
+    .wd-gold {
+      background: linear-gradient(135deg, #f7d774 0%, #d6a743 55%, #9a6a1e 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    #wd-row {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      margin-top: 18px;
+    }
+    #wd-globe {
+      flex-shrink: 0;
+      width: 230px;
+      height: 230px;
+    }
+    #wd-text {
+      font-weight: 800;
+      font-size: 50px;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+    }
+    #wd-line2 {
+      margin-top: 12px;
+      font-size: 40px;
+      font-weight: 700;
+      color: #d9d9d9;
+    }
+    .wd-step {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin-top: 22px;
+      font-weight: 800;
+      font-size: 46px;
+      line-height: 1.12;
+    }
+    .wd-num {
+      flex-shrink: 0;
+      width: 70px;
+      height: 70px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #f7d774, #d6a743 55%, #9a6a1e);
+      color: #111;
+      font-weight: 900;
+      font-size: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+  <div id="root" data-composition-id="world" data-width="1080" data-height="1920">
+    <!-- 12.2–17.1 "…just as skilled and experienced as anyone in the global workforce." -->
+    <div id="wd-global" class="wd-card clip" data-start="0" data-duration="5.3">
+      <div class="wd-kicker">I'VE MET FILIPINOS WHO ARE</div>
+      <div id="wd-row">
+        <svg id="wd-globe" viewBox="-60 -60 120 120">
+          <circle cx="0" cy="0" r="54" fill="rgba(214,167,67,0.08)" stroke="#D6A743" stroke-width="2.5" />
+          <g id="wd-meridians" fill="none" stroke="rgba(214,167,67,0.6)" stroke-width="1.6">
+            <ellipse id="wd-m1" cx="0" cy="0" rx="18" ry="54" />
+            <ellipse id="wd-m2" cx="0" cy="0" rx="38" ry="54" />
+          </g>
+          <g fill="none" stroke="rgba(214,167,67,0.45)" stroke-width="1.4">
+            <line x1="-54" y1="0" x2="54" y2="0" />
+            <path d="M -47 -27 Q 0 -20 47 -27" />
+            <path d="M -47 27 Q 0 20 47 27" />
+          </g>
+          <g id="wd-pin">
+            <path d="M 26 -6 C 26 -6, 16 -18, 16 -25 A 10 10 0 0 1 36 -25 C 36 -18, 26 -6, 26 -6 Z" fill="#F7D774" />
+            <circle cx="26" cy="-25" r="4" fill="#111" />
+          </g>
+        </svg>
+        <div id="wd-text">
+          <div id="wd-line1">Just as <span class="wd-gold">skilled</span> &amp; <span class="wd-gold">experienced</span></div>
+          <div id="wd-line2">as anyone in the global workforce</div>
+        </div>
+      </div>
+    </div>
+    <!-- 17.5–22.3 "All they need is the right opportunity and a client willing to give them a chance." -->
+    <div id="wd-need" class="wd-card clip" data-start="5.4" data-duration="5.35">
+      <div class="wd-kicker">SOMETIMES ALL THEY NEED IS</div>
+      <div id="wd-s1" class="wd-step"><span class="wd-num">1</span><span>The <span class="wd-gold">right opportunity</span></span></div>
+      <div id="wd-s2" class="wd-step"><span class="wd-num">2</span><span>A client willing to give them <span class="wd-gold">a chance</span></span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#wd-global", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0);
+    // a slow turning globe: the meridians squeeze as if the sphere rotates
+    tl.fromTo("#wd-m1", { attr: { rx: 18 } }, { attr: { rx: 52 }, duration: 5.3, ease: "none" }, 0);
+    tl.fromTo("#wd-m2", { attr: { rx: 38 } }, { attr: { rx: 6 }, duration: 5.3, ease: "none" }, 0);
+    tl.fromTo("#wd-pin", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.45, ease: "back.out(2.4)" }, 2.0);
+    tl.fromTo("#wd-line1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 1.6);
+    tl.fromTo("#wd-line2", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 3.15);
+    tl.to("#wd-global", { opacity: 0, duration: 0.35, ease: "power2.in" }, 4.94);
+
+    tl.fromTo("#wd-need", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 5.45);
+    tl.fromTo("#wd-s1", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 7.1);
+    tl.fromTo("#wd-s2", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 8.15);
+    tl.to("#wd-need", { opacity: 0, duration: 0.35, ease: "power2.in" }, 10.38);
+    window.__timelines["world"] = tl;
+  </script>
+</template>

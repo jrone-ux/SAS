@@ -1,0 +1,36 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    .fx-sweep {
+      position: absolute;
+      left: -1200px;
+      top: -200px;
+      width: 900px;
+      height: 2400px;
+      background: linear-gradient(90deg, rgba(247, 215, 116, 0) 0%, rgba(247, 215, 116, 0.45) 45%, rgba(255, 246, 216, 0.7) 50%, rgba(247, 215, 116, 0.45) 55%, rgba(247, 215, 116, 0) 100%);
+      mix-blend-mode: screen;
+    }
+  </style>
+  <!-- A gold light sweep across every cut -->
+  <div id="root" data-composition-id="fx" data-width="1080" data-height="1920">
+    <div id="fx-s1" class="clip" data-start="2.73" data-duration="0.4" data-layout-ignore><div class="fx-sweep"></div></div>
+    <div id="fx-s2" class="clip" data-start="5.15" data-duration="0.4" data-layout-ignore><div class="fx-sweep"></div></div>
+    <div id="fx-s3" class="clip" data-start="7.57" data-duration="0.4" data-layout-ignore><div class="fx-sweep"></div></div>
+    <div id="fx-s4" class="clip" data-start="9.99" data-duration="0.4" data-layout-ignore><div class="fx-sweep"></div></div>
+    <div id="fx-s5" class="clip" data-start="12.41" data-duration="0.4" data-layout-ignore><div class="fx-sweep"></div></div>
+    <div id="fx-s6" class="clip" data-start="14.83" data-duration="0.4" data-layout-ignore><div class="fx-sweep"></div></div>
+    <div id="fx-s7" class="clip" data-start="17.73" data-duration="0.4" data-layout-ignore><div class="fx-sweep"></div></div>
+    <div id="fx-s8" class="clip" data-start="20.15" data-duration="0.4" data-layout-ignore><div class="fx-sweep"></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    ["#fx-s1", "#fx-s2", "#fx-s3", "#fx-s4", "#fx-s5", "#fx-s6", "#fx-s7", "#fx-s8"].forEach((el, i) => {
+      const at = [2.73, 5.15, 7.57, 9.99, 12.41, 14.83, 17.73, 20.15][i];
+      tl.fromTo(`${el} .fx-sweep`, { x: 0, rotation: 18 }, { x: 2600, rotation: 18, duration: 0.4, ease: "power2.inOut" }, at);
+    });
+    window.__timelines["fx"] = tl;
+  </script>
+</template>

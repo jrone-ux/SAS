@@ -1,0 +1,113 @@
+<!doctype html>
+<html
+  lang="en"
+  data-resolution="portrait"
+  data-composition-variables='[{"id":"meetingDate","type":"string","label":"Meeting date","default":"NOV 17, 2026"},{"id":"year","type":"string","label":"Planning year","default":"2027"}]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        font-family: "Inter", sans-serif;
+      }
+      .wrap {
+        position: absolute;
+        inset: 0;
+      }
+      .shot {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1080px;
+        height: 1920px;
+        object-fit: cover;
+      }
+      #shade {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 32%, rgba(0, 0, 0, 0) 52%, rgba(0, 0, 0, 0.55) 80%, rgba(0, 0, 0, 0.2) 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Beat grid: 124 bpm, cuts on beats 0, 6, 11, 16, 21, 26, 31, 37, 42 -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="24" data-width="1080" data-height="1920">
+      <div id="w-logo" class="wrap"><video id="v-logo" class="clip shot" data-start="0" data-duration="2.903" data-track-index="0" muted playsinline src="assets/logo.mp4" style="z-index: 1"></video></div>
+      <div id="w-wide" class="wrap"><video id="v-wide" class="clip shot" data-start="2.903" data-duration="2.42" data-track-index="0" muted playsinline src="assets/wide.mp4" style="z-index: 1"></video></div>
+      <div id="w-ryan" class="wrap"><video id="v-ryan" class="clip shot" data-start="5.323" data-duration="2.419" data-track-index="0" muted playsinline src="assets/ryan.mp4" style="z-index: 1"></video></div>
+      <div id="w-reyshan" class="wrap"><video id="v-reyshan" class="clip shot" data-start="7.742" data-duration="2.419" data-track-index="0" muted playsinline src="assets/reyshan.mp4" style="z-index: 1"></video></div>
+      <div id="w-regine" class="wrap"><video id="v-regine" class="clip shot" data-start="10.161" data-duration="2.42" data-track-index="0" muted playsinline src="assets/regine.mp4" style="z-index: 1"></video></div>
+      <div id="w-rhezamay" class="wrap"><video id="v-rhezamay" class="clip shot" data-start="12.581" data-duration="2.419" data-track-index="0" muted playsinline src="assets/rhezamay.mp4" style="z-index: 1"></video></div>
+      <div id="w-docs" class="wrap"><video id="v-docs" class="clip shot" data-start="15" data-duration="2.903" data-track-index="0" muted playsinline src="assets/docs.mp4" style="z-index: 1"></video></div>
+      <div id="w-reyshan2" class="wrap"><video id="v-reyshan2" class="clip shot" data-start="17.903" data-duration="2.42" data-track-index="0" muted playsinline src="assets/reyshan2.mp4" style="z-index: 1"></video></div>
+      <div id="shade" class="clip" data-start="0" data-duration="20.323" data-track-index="1" style="z-index: 2"></div>
+
+      <div id="hook" data-composition-id="hook" data-composition-src="compositions/hook.html" data-start="0" data-duration="2.903" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 3"></div>
+      <div id="plan" data-composition-id="plan" data-composition-src="compositions/plan.html" data-start="2.903" data-duration="2.42" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 3"></div>
+      <div id="names" data-composition-id="names" data-composition-src="compositions/names.html" data-start="5.323" data-duration="9.677" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 3"></div>
+      <div id="goals" data-composition-id="goals" data-composition-src="compositions/goals.html" data-start="15" data-duration="5.323" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 3"></div>
+      <div id="bug" data-composition-id="bug" data-composition-src="compositions/bug.html" data-start="2.903" data-duration="17.42" data-track-index="3" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 4"></div>
+      <div id="fx" data-composition-id="fx" data-composition-src="compositions/fx.html" data-start="0" data-duration="20.6" data-track-index="4" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 6"></div>
+      <div id="end" data-composition-id="end" data-composition-src="compositions/end.html" data-start="20.323" data-duration="3.677" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 5"></div>
+
+      <!-- music (original, royalty-free) and sound effects -->
+      <audio id="music" class="clip" data-start="0" data-duration="24" data-track-index="6" data-volume="0.8" data-fade-out="1" src="assets/music.wav"></audio>
+      <audio id="sfx-hit0" class="clip" data-start="0" data-duration="1.88" data-track-index="7" data-volume="0.28" src="assets/impact.wav"></audio>
+      <audio id="sfx-w1" class="clip" data-start="2.8" data-duration="0.73" data-track-index="8" data-volume="0.3" src="assets/whoosh.wav"></audio>
+      <audio id="sfx-hit1" class="clip" data-start="3.75" data-duration="1.88" data-track-index="7" data-volume="0.32" src="assets/impact.wav"></audio>
+      <audio id="sfx-w2" class="clip" data-start="5.22" data-duration="0.73" data-track-index="8" data-volume="0.26" src="assets/whoosh.wav"></audio>
+      <audio id="sfx-p1" class="clip" data-start="5.6" data-duration="0.25" data-track-index="9" data-volume="0.3" src="assets/pop.wav"></audio>
+      <audio id="sfx-w3" class="clip" data-start="7.64" data-duration="0.73" data-track-index="8" data-volume="0.26" src="assets/whoosh.wav"></audio>
+      <audio id="sfx-p2" class="clip" data-start="8.02" data-duration="0.25" data-track-index="9" data-volume="0.3" src="assets/pop.wav"></audio>
+      <audio id="sfx-w4" class="clip" data-start="10.06" data-duration="0.73" data-track-index="8" data-volume="0.26" src="assets/whoosh.wav"></audio>
+      <audio id="sfx-p3" class="clip" data-start="10.44" data-duration="0.25" data-track-index="9" data-volume="0.3" src="assets/pop.wav"></audio>
+      <audio id="sfx-w5" class="clip" data-start="12.48" data-duration="0.73" data-track-index="8" data-volume="0.26" src="assets/whoosh.wav"></audio>
+      <audio id="sfx-p4" class="clip" data-start="12.86" data-duration="0.25" data-track-index="9" data-volume="0.3" src="assets/pop.wav"></audio>
+      <audio id="sfx-w6" class="clip" data-start="14.9" data-duration="0.73" data-track-index="8" data-volume="0.28" src="assets/whoosh.wav"></audio>
+      <audio id="sfx-t1" class="clip" data-start="15.48" data-duration="0.12" data-track-index="9" data-volume="0.38" src="assets/tick.wav"></audio>
+      <audio id="sfx-t2" class="clip" data-start="15.97" data-duration="0.12" data-track-index="10" data-volume="0.38" src="assets/tick.wav"></audio>
+      <audio id="sfx-t3" class="clip" data-start="16.45" data-duration="0.12" data-track-index="9" data-volume="0.38" src="assets/tick.wav"></audio>
+      <audio id="sfx-w7" class="clip" data-start="17.8" data-duration="0.73" data-track-index="8" data-volume="0.28" src="assets/whoosh.wav"></audio>
+      <audio id="sfx-r1" class="clip" data-start="18.75" data-duration="1.6" data-track-index="10" data-volume="0.24" src="assets/riser.wav"></audio>
+      <audio id="sfx-hit2" class="clip" data-start="20.33" data-duration="1.88" data-track-index="7" data-volume="0.36" src="assets/impact.wav"></audio>
+      <audio id="sfx-ch" class="clip" data-start="21.3" data-duration="1.72" data-track-index="9" data-volume="0.24" src="assets/chime.wav"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      // Slow push-in on every shot, alternating direction, like a handheld dolly.
+      const shots = [
+        ["#w-logo", 0, 2.903, 1.0, 1.12, "50% 78%"],
+        ["#w-wide", 2.903, 2.42, 1.0, 1.08],
+        ["#w-ryan", 5.323, 2.419, 1.0, 1.1],
+        ["#w-reyshan", 7.742, 2.419, 1.1, 1.0],
+        ["#w-regine", 10.161, 2.42, 1.0, 1.1],
+        ["#w-rhezamay", 12.581, 2.419, 1.1, 1.0],
+        ["#w-docs", 15, 2.903, 1.0, 1.08],
+        ["#w-reyshan2", 17.903, 2.42, 1.0, 1.12],
+      ];
+      shots.forEach(([el, at, d, a, b, origin = "50% 40%"]) => {
+        tl.fromTo(el, { scale: a, transformOrigin: origin }, { scale: b, duration: d, ease: "none" }, at);
+      });
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
