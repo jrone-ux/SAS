@@ -54,7 +54,7 @@ card = scene("card", """    <div id="cd-bg" class="clip" data-start="0" data-dur
       <div id="cd-kicker">CHAPTER <span data-var-text="num">01</span></div>
       <div id="cd-title" data-var-text="title">THE TEAM</div>
       <div id="cd-line"></div>
-      <div id="cd-sub" data-var-text="sub">Most of the operations team. One room.</div>
+      <div id="cd-sub" data-var-text="sub">The operations team. One room.</div>
     </div>""", """    #cd-bg { position: absolute; inset: 0; background: radial-gradient(circle at 540px 860px, #2a2010 0%, #050505 62%); }
     #cd-num { position: absolute; left: 0; width: 1080px; top: 420px; text-align: center; font-weight: 900; font-size: 520px; line-height: 1; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: 3px rgba(214,167,67,0.28); }
     #cd-block { position: absolute; left: 110px; width: 860px; top: 640px; text-align: center; color: #fff; }
@@ -93,17 +93,17 @@ def beats_scene(cid, s0, s1, beats, top=300):
 t0, t1 = sec["team"]
 cut = [it["start"] for it in items if it["section"] == "team"] + [t1]
 beats_scene("team", t0, t1, [
-    (cut[0], cut[2], "DAY 3 · OPERATIONS TEAM", 'Most of the team.<br /><span class="gold">One room.</span>'),
+    (cut[0], cut[2], "DAY 3 · OPERATIONS TEAM", 'The operations team.<br /><span class="gold">One room.</span>'),
     (cut[3], cut[5], "WHY WE'RE HERE", 'Talking about <span class="gold">2027.</span>'),
-    (cut[6], cut[8], "IN THE ROOM", 'Listening. Planning.<br /><span class="gold">Owning it.</span>'),
+    (cut[6], cut[7], "IN THE ROOM", 'Listening. Planning.<br /><span class="gold">Owning it.</span>'),
 ])
 t0, t1 = sec["dept"]
 cut = [it["start"] for it in items if it["section"] == "dept"] + [t1]
 beats_scene("dept", t0, t1, [
     (cut[0], cut[2], "01 · THE REPORT", 'Where each department <span class="gold">stands today.</span>'),
-    (cut[2], cut[5], "02 · THE PLAN", 'How each team gets there <span class="gold">in 2027.</span>'),
-    (cut[5], cut[8], "03 · THE GOALS", 'What we need <span class="gold">to achieve.</span>'),
-    (cut[8], cut[10], "EVERY DEPARTMENT", 'One <span class="gold">direction.</span>'),
+    (cut[2], cut[4], "02 · THE PLAN", 'How each team gets there <span class="gold">in 2027.</span>'),
+    (cut[4], cut[7], "03 · THE GOALS", 'What we need <span class="gold">to achieve.</span>'),
+    (cut[7], cut[8], "EVERY DEPARTMENT", 'One <span class="gold">direction.</span>'),
 ])
 t0, t1 = sec["goals"]
 cut = [it["start"] for it in items if it["section"] == "goals"] + [t1]
@@ -161,12 +161,12 @@ vids, pushes = [], []
 for k, it in enumerate([x for x in items if x["kind"] in ("clip", "photo")]):
     i = it["i"]; nid = f"s{i:02d}"
     if it["kind"] == "clip":
-        vids.append(f'      <div id="w-{nid}" class="wrap"><video id="v-{nid}" class="clip shot" data-start="{it["start"]}" data-duration="{r(it["dur"] - 0.01)}" data-track-index="0" muted playsinline src="assets/seg{i:02d}.mp4" style="z-index: 1"></video></div>')
+        vids.append(f'      <div id="w-{nid}" class="wrap"><video id="v-{nid}" class="clip shot" data-start="{it["start"]}" data-duration="{r(it["dur"] - 0.01)}" data-track-index="0" muted playsinline src="assets/seg_{it["name"]}_{int(round(it["ss"]*10))}.mp4" style="z-index: 1"></video></div>')
     else:
         vids.append(f'      <div id="w-{nid}" class="wrap"><img id="v-{nid}" class="clip shot" data-start="{it["start"]}" data-duration="{r(it["dur"])}" data-track-index="0" src="assets/photo{it["name"]}.jpg" alt="Day 3 photo" style="z-index: 1" /></div>')
     a, b = (1.0, 1.08) if k % 2 == 0 else (1.08, 1.0)
     pushes.append(f'      ["#w-{nid}", {it["start"]}, {it["dur"]}, {a}, {b}],')
-cards = {"card1": ("01", "THE TEAM", "Most of the operations team. One room."),
+cards = {"card1": ("01", "THE TEAM", "The operations team. One room."),
          "card2": ("02", "DEPARTMENT REPORTS", "Its report, its plan, its goals."),
          "card3": ("03", "2027 GOALS", "The 2027 Sales Plan and Forecast.")}
 hosts = []
@@ -203,7 +203,7 @@ index = f"""<!doctype html>
     </style>
   </head>
   <body>
-    <!-- Day 3 · Operations team · 2027 planning. Edit list: tools/edl2.py. Music: Stock-Waves, Relaxed Corporate. -->
+    <!-- Day 3 · Operations team · 2027 planning. Edit list: tools/edl3.py. Music: Stock-Waves, Relaxed Corporate. -->
     <div id="root" data-composition-id="main" data-start="0" data-duration="{TOTAL}" data-width="1080" data-height="1920">
 {chr(10).join(vids)}
       <div id="shade" class="clip" data-start="0" data-duration="{r(sec['outro'][0])}" data-track-index="1" style="z-index: 2"></div>

@@ -7,7 +7,7 @@ Source projects and finished renders for the SAS social reels.
 | `remotion/` | Remotion project with every Remotion reel (see `src/Root.tsx` for the composition list) |
 | `hyperframes/filipino-talent/` | "Why I believe in Filipino talent" (HyperFrames version) |
 | `hyperframes/founders-2027/` | Founders Meeting · 2027 Planning reel |
-| `hyperframes/day3-operations/` | Day 3 · Operations Team · 2027 Planning (2:23); `tools/` holds the edit list and scene builder |
+| `hyperframes/day3-operations/` | Day 3 · Operations Team · 2027 Planning (2:13); `tools/` holds the edit list and scene builder |
 | `renders/` | Finished MP4s and thumbnails |
 
 ## Reels
