@@ -52,9 +52,9 @@ card = scene("card", """    <div id="cd-bg" class="clip" data-start="0" data-dur
     <div id="cd-num" class="clip" data-start="0" data-duration="2.903" data-var-text="num" data-layout-ignore>01</div>
     <div id="cd-block" class="clip" data-start="0" data-duration="2.903">
       <div id="cd-kicker">CHAPTER <span data-var-text="num">01</span></div>
-      <div id="cd-title" data-var-text="title">THE TEAM</div>
+      <div id="cd-title" data-var-text="title">THE PEOPLE</div>
       <div id="cd-line"></div>
-      <div id="cd-sub" data-var-text="sub">The operations team. One room.</div>
+      <div id="cd-sub" data-var-text="sub">The people behind every client we serve.</div>
     </div>""", """    #cd-bg { position: absolute; inset: 0; background: radial-gradient(circle at 540px 860px, #2a2010 0%, #050505 62%); }
     #cd-num { position: absolute; left: 0; width: 1080px; top: 420px; text-align: center; font-weight: 900; font-size: 520px; line-height: 1; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: 3px rgba(214,167,67,0.28); }
     #cd-block { position: absolute; left: 110px; width: 860px; top: 640px; text-align: center; color: #fff; }
@@ -93,26 +93,61 @@ def beats_scene(cid, s0, s1, beats, top=300):
 t0, t1 = sec["team"]
 cut = [it["start"] for it in items if it["section"] == "team"] + [t1]
 beats_scene("team", t0, t1, [
-    (cut[0], cut[2], "DAY 3 · OPERATIONS TEAM", 'The operations team.<br /><span class="gold">One room.</span>'),
-    (cut[3], cut[5], "WHY WE'RE HERE", 'Talking about <span class="gold">2027.</span>'),
-    (cut[6], cut[7], "IN THE ROOM", 'Listening. Planning.<br /><span class="gold">Owning it.</span>'),
+    (cut[0], cut[2], "DAY 3 · OPERATIONS TEAM", 'Same table.<br /><span class="gold">Same goal.</span>'),
+    (cut[3], cut[5], "THE QUESTION", 'What will 2027 <span class="gold">ask of us?</span>'),
+    (cut[6], cut[7], "THE ROOM", 'Every voice <span class="gold">counts here.</span>'),
 ])
 t0, t1 = sec["dept"]
 cut = [it["start"] for it in items if it["section"] == "dept"] + [t1]
 beats_scene("dept", t0, t1, [
-    (cut[0], cut[2], "01 · THE REPORT", 'Where each department <span class="gold">stands today.</span>'),
-    (cut[2], cut[4], "02 · THE PLAN", 'How each team gets there <span class="gold">in 2027.</span>'),
-    (cut[4], cut[7], "03 · THE GOALS", 'What we need <span class="gold">to achieve.</span>'),
-    (cut[7], cut[8], "EVERY DEPARTMENT", 'One <span class="gold">direction.</span>'),
+    (cut[0], cut[2], "01 · LOOK BACK", 'What 2026 <span class="gold">taught us.</span>'),
+    (cut[2], cut[4], "02 · LOOK AHEAD", 'What each team <span class="gold">will own in 2027.</span>'),
+    (cut[4], cut[7], "03 · LOCK IT IN", 'Goals every team <span class="gold">can stand behind.</span>'),
+    (cut[7], cut[8], "ALL DEPARTMENTS", 'Many roles. <span class="gold">One plan.</span>'),
 ])
 t0, t1 = sec["goals"]
 cut = [it["start"] for it in items if it["section"] == "goals"] + [t1]
 mid = cut[1] + (cut[2] - cut[1]) / 2
 beats_scene("goals", t0, t1, [
-    (mid, cut[2], "THE 2027 GOAL", 'To <span class="gold">serve more.</span>'),
-    (cut[2], cut[3], "HOW", 'Better support for<br />every client we serve.'),
-    (cut[3], cut[4], "DAY 3 · DONE", 'Building 2027.<br /><span class="gold">Together.</span>'),
+    (mid, cut[2], "THE AIM", 'Grow so we can <span class="gold">serve more clients.</span>'),
 ], top=300)
+
+SCENE_BG = "position: absolute; inset: 0; background: radial-gradient(circle at 540px 860px, #2a2010 0%, #050505 62%);"
+dA = sec["goalsA"][1] - sec["goalsA"][0]
+rows = [("PLAN", "together"), ("SERVE", "more clients"), ("SUPPORT", "every client")]
+w("goalsA", scene("goalsA", f"""    <div id="ga-bg" class="clip" data-start="0" data-duration="{r(dA)}"></div>
+    <div id="ga-block" class="clip" data-start="0" data-duration="{r(dA)}">
+      <div id="ga-kick">WHAT IT MEANS</div>
+""" + "\n".join(f'      <div id="ga-r{k}" class="ga-row"><span class="gold ga-word">{a}</span><span class="ga-rest">{b}</span></div>' for k, (a, b) in enumerate(rows)) + """
+    </div>""", f"""    #ga-bg {{ {SCENE_BG} }}
+    #ga-block {{ position: absolute; left: 110px; width: 860px; top: 560px; color: #fff; }}
+    #ga-kick {{ font-weight: 700; font-size: 32px; letter-spacing: 0.3em; color: #d6a743; text-align: center; }}
+    .ga-row {{ display: flex; align-items: baseline; gap: 26px; margin-top: 46px; padding-bottom: 26px; border-bottom: 2px solid rgba(214,167,67,0.35); }}
+    .ga-word {{ font-weight: 900; font-size: 104px; line-height: 1; letter-spacing: -0.035em; }}
+    .ga-rest {{ font-weight: 600; font-size: 44px; color: #e8e2d4; white-space: nowrap; }}""",
+f"""    tl.fromTo("#ga-bg", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.3, ease: "power2.out" }}, 0);
+    tl.fromTo("#ga-kick", {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }}, 0.1);
+    tl.fromTo("#ga-r0", {{ opacity: 0, x: -60 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, 0.3);
+    tl.fromTo("#ga-r1", {{ opacity: 0, x: -60 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, 0.75);
+    tl.fromTo("#ga-r2", {{ opacity: 0, x: -60 }}, {{ opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }}, 1.2);
+    tl.to("#ga-block", {{ opacity: 0, duration: 0.25, ease: "power2.in" }}, {r(dA - 0.3)});"""))
+
+dB = sec["goalsB"][1] - sec["goalsB"][0]
+w("goalsB", scene("goalsB", f"""    <div id="gb-bg" class="clip" data-start="0" data-duration="{r(dB)}"></div>
+    <div id="gb-block" class="clip" data-start="0" data-duration="{r(dB)}">
+      <div id="gb-kick">DAY 3 · COMPLETE</div>
+      <div id="gb-line">2027 starts<br /><span class="gold">in this room.</span></div>
+      <div id="gb-rule"></div>
+    </div>""", f"""    #gb-bg {{ {SCENE_BG} }}
+    #gb-block {{ position: absolute; left: 110px; width: 860px; top: 640px; text-align: center; color: #fff; }}
+    #gb-kick {{ font-weight: 700; font-size: 32px; letter-spacing: 0.3em; color: #d6a743; }}
+    #gb-line {{ margin-top: 24px; font-weight: 900; font-size: 120px; line-height: 1; letter-spacing: -0.04em; }}
+    #gb-rule {{ width: 300px; height: 6px; margin: 40px auto 0; border-radius: 3px; background: linear-gradient(90deg,#f7d774,#d6a743,#9a6a1e); }}""",
+f"""    tl.fromTo("#gb-bg", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.3, ease: "power2.out" }}, 0);
+    tl.fromTo("#gb-kick", {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }}, 0.1);
+    tl.fromTo("#gb-line", {{ opacity: 0, y: 40 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }}, 0.25);
+    tl.fromTo("#gb-rule", {{ scaleX: 0 }}, {{ scaleX: 1, duration: 0.6, ease: "power3.out" }}, 0.6);
+    tl.to("#gb-block", {{ opacity: 0, duration: 0.25, ease: "power2.in" }}, {r(dB - 0.3)});"""))
 
 # Ryan name tag on the first presenting shot of the goals section (and in the intro clip)
 g0 = cut[1]
@@ -132,14 +167,14 @@ w("outro", scene("outro", f"""    <div id="ot-bg" class="clip" data-start="0" da
     <div id="ot-year" class="clip" data-start="0" data-duration="{r(od)}" data-layout-ignore>2027</div>
     <img id="ot-logo" class="clip" data-start="0" data-duration="{r(od)}" src="assets/sas-logo.png" alt="SAS" data-layout-allow-occlusion />
     <div id="ot-name" class="clip" data-start="0" data-duration="{r(od)}">STRATEGIC ASSISTANT STAFFING</div>
-    <div id="ot-line" class="clip" data-start="0" data-duration="{r(od)}">Serve more.<br /><span class="gold">Grow together.</span></div>
+    <div id="ot-line" class="clip" data-start="0" data-duration="{r(od)}">Planned together.<br /><span class="gold">Built together.</span></div>
     <div id="ot-meta" class="clip" data-start="0" data-duration="{r(od)}">DAY 3 · OPERATIONS TEAM · 2027 PLANNING</div>""",
 """    #ot-bg { position: absolute; inset: 0; background: radial-gradient(circle at 540px 760px, #2a2010 0%, #050505 62%); }
     #ot-year { position: absolute; left: 0; width: 1080px; top: 270px; text-align: center; font-weight: 900; font-size: 360px; line-height: 1; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: 3px rgba(214,167,67,0.3); }
     #ot-logo { position: absolute; left: 340px; top: 400px; width: 400px; height: 400px; object-fit: contain; }
     #ot-name { position: absolute; left: 110px; width: 760px; top: 850px; text-align: center; font-weight: 700; font-size: 30px; letter-spacing: 0.16em; color: #fff; }
-    #ot-line { position: absolute; left: 110px; width: 760px; top: 920px; text-align: center; font-weight: 900; font-size: 92px; line-height: 1.04; letter-spacing: -0.03em; color: #fff; }
-    #ot-meta { position: absolute; left: 110px; width: 760px; top: 1170px; text-align: center; font-weight: 700; font-size: 28px; letter-spacing: 0.08em; color: #f7d774; }""",
+    #ot-line { position: absolute; left: 90px; width: 900px; top: 920px; text-align: center; font-weight: 900; font-size: 78px; white-space: nowrap; line-height: 1.04; letter-spacing: -0.03em; color: #fff; }
+    #ot-meta { position: absolute; left: 110px; width: 760px; top: 1140px; text-align: center; font-weight: 700; font-size: 28px; letter-spacing: 0.08em; color: #f7d774; }""",
 """    tl.fromTo("#ot-bg", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0);
     tl.fromTo("#ot-year", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.9, ease: "power3.out" }, 0.05);
     tl.fromTo("#ot-logo", { opacity: 0, scale: 0.4, rotation: -15 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.6, ease: "back.out(1.8)" }, 0.15);
@@ -149,7 +184,7 @@ w("outro", scene("outro", f"""    <div id="ot-bg" class="clip" data-start="0" da
 
 # ---- persistent label + progress (from the first card to the outro) ----
 b0 = sec["card1"][0]; b1 = sec["outro"][0]; bd = b1 - b0
-w("bug", scene("bug", f"""    <div id="bg-pill" class="clip" data-start="0" data-duration="{r(bd)}"><img id="bg-logo" src="assets/sas-logo.png" alt="SAS" /><span>DAY 3 · OPERATIONS TEAM · 2027</span></div>
+w("bug", scene("bug", f"""    <div id="bg-pill" class="clip" data-start="0" data-duration="{r(bd)}"><img id="bg-logo" src="assets/sas-logo.png" alt="SAS" /><span>DAY 3 · OPS TEAM · PLANNING 2027</span></div>
     <div id="bg-progress" class="clip" data-start="0" data-duration="{r(bd)}" data-layout-ignore></div>""",
 """    #bg-pill { position: absolute; left: 60px; top: 220px; display: flex; align-items: center; gap: 14px; padding: 10px 24px 10px 12px; border-radius: 999px; background: rgba(0,0,0,0.55); color: #fff; font-weight: 700; font-size: 28px; letter-spacing: 0.06em; }
     #bg-logo { width: 54px; height: 54px; object-fit: contain; }
@@ -166,9 +201,9 @@ for k, it in enumerate([x for x in items if x["kind"] in ("clip", "photo")]):
         vids.append(f'      <div id="w-{nid}" class="wrap"><img id="v-{nid}" class="clip shot" data-start="{it["start"]}" data-duration="{r(it["dur"])}" data-track-index="0" src="assets/photo{it["name"]}.jpg" alt="Day 3 photo" style="z-index: 1" /></div>')
     a, b = (1.0, 1.08) if k % 2 == 0 else (1.08, 1.0)
     pushes.append(f'      ["#w-{nid}", {it["start"]}, {it["dur"]}, {a}, {b}],')
-cards = {"card1": ("01", "THE TEAM", "The operations team. One room."),
-         "card2": ("02", "DEPARTMENT REPORTS", "Its report, its plan, its goals."),
-         "card3": ("03", "2027 GOALS", "The 2027 Sales Plan and Forecast.")}
+cards = {"card1": ("01", "THE PEOPLE", "The people behind every client we serve."),
+         "card2": ("02", "EVERY DEPARTMENT", "Where we are. Where we're going."),
+         "card3": ("03", "THE ROAD TO 2027", "The 2027 Sales Plan and Forecast.")}
 hosts = []
 for key, (num, title, sub) in cards.items():
     s0, s1 = sec[key]
@@ -178,7 +213,8 @@ def host(cid, s0, s1, track, z):
     return f'      <div id="{cid}" data-composition-id="{cid}" data-composition-src="compositions/{cid}.html" data-start="{r(s0)}" data-duration="{r(s1 - s0)}" data-track-index="{track}" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: {z}"></div>'
 hosts += [host("intro", *sec["intro"], 3, 3), host("team", *sec["team"], 3, 3), host("dept", *sec["dept"], 3, 3),
           host("goals", *sec["goals"], 3, 3), host("ryan", cut[1], mid, 4, 3),
-          host("bug", b0, b1, 5, 4), host("outro", *sec["outro"], 2, 6)]
+          host("bug", b0, b1, 5, 4), host("outro", *sec["outro"], 2, 6),
+          host("goalsA", *sec["goalsA"], 2, 5), host("goalsB", *sec["goalsB"], 2, 5)]
 lens = {"whoosh": 0.73, "impact": 1.88, "riser": 1.6, "chime": 1.72, "pop": 0.25}
 sfx = []
 def a(name, at, vol, track):
@@ -203,7 +239,7 @@ index = f"""<!doctype html>
     </style>
   </head>
   <body>
-    <!-- Day 3 · Operations team · 2027 planning. Edit list: tools/edl3.py. Music: Stock-Waves, Relaxed Corporate. -->
+    <!-- Day 3 · Operations team · 2027 planning. Edit list: tools/edl.py. Music: Stock-Waves, Relaxed Corporate. -->
     <div id="root" data-composition-id="main" data-start="0" data-duration="{TOTAL}" data-width="1080" data-height="1920">
 {chr(10).join(vids)}
       <div id="shade" class="clip" data-start="0" data-duration="{r(sec['outro'][0])}" data-track-index="1" style="z-index: 2"></div>

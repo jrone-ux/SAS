@@ -1,5 +1,6 @@
 # Day 3 edit v3: photos + clips. Left out: IMG_3187, IMG_3195 (client slide), IMG_3148 (inbox),
-# and duplicate-person photos IMG_3149, IMG_3150, IMG_3157. Prints JSON.
+# and duplicate-person photos IMG_3149, IMG_3150, IMG_3157. No clip appears twice:
+# the goals chapter ends on two graphic scenes. Prints JSON.
 import json
 src = {n: f for n, f in [
  ("3181","1a4d319e"),("3182","b470a2b0"),("3183","6d755377"),("3184","a752b928"),("3185","ea2a132b"),
@@ -16,7 +17,7 @@ plan = [
  P("3171", 3.5, "dept"), P("3165", 3.5, "dept"), C("3184", 0.2, 6.5, "dept"), C("3186", 0.2, 5.0, "dept"), P("3162", 3.5, "dept"),
  C("3192", 0.2, 6.0, "dept"), C("3193", 0.1, 2.9, "dept"), C("3194", 0.3, 6.0, "dept"), C("3190", 0.2, 4.4, "dept"),
  ("card3", "card", None, 0, 3.0),
- P("3176", 4.5, "goals"), C("3181", 0.2, 11.0, "goals"), C("3196", 6.7, 3.3, "goals"), C("3182", 6.7, 4.0, "goals"),
+ P("3176", 4.5, "goals"), C("3181", 0.2, 11.0, "goals"), ("goalsA", "scene", None, 0, 4.2), ("goalsB", "scene", None, 0, 3.6),
  ("outro", "card", None, 0, 6.5),
 ]
 t = 0.0; out = []
