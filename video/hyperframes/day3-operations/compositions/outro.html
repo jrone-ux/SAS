@@ -1,0 +1,30 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Inter", sans-serif; }
+    .gold { background: linear-gradient(135deg, #f7d774 0%, #d6a743 55%, #9a6a1e 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    #ot-bg { position: absolute; inset: 0; background: radial-gradient(circle at 540px 760px, #2a2010 0%, #050505 62%); }
+    #ot-year { position: absolute; left: 0; width: 1080px; top: 270px; text-align: center; font-weight: 900; font-size: 360px; line-height: 1; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: 3px rgba(214,167,67,0.3); }
+    #ot-logo { position: absolute; left: 340px; top: 400px; width: 400px; height: 400px; object-fit: contain; }
+    #ot-name { position: absolute; left: 110px; width: 760px; top: 850px; text-align: center; font-weight: 700; font-size: 30px; letter-spacing: 0.16em; color: #fff; }
+    #ot-line { position: absolute; left: 110px; width: 760px; top: 920px; text-align: center; font-weight: 900; font-size: 92px; line-height: 1.04; letter-spacing: -0.03em; color: #fff; }
+    #ot-meta { position: absolute; left: 110px; width: 760px; top: 1170px; text-align: center; font-weight: 700; font-size: 28px; letter-spacing: 0.08em; color: #f7d774; }
+  </style>
+  <div id="root" data-composition-id="outro" data-width="1080" data-height="1920">
+    <div id="ot-bg" class="clip" data-start="0" data-duration="6.5"></div>
+    <div id="ot-year" class="clip" data-start="0" data-duration="6.5" data-layout-ignore>2027</div>
+    <img id="ot-logo" class="clip" data-start="0" data-duration="6.5" src="assets/sas-logo.png" alt="SAS" data-layout-allow-occlusion />
+    <div id="ot-name" class="clip" data-start="0" data-duration="6.5">STRATEGIC ASSISTANT STAFFING</div>
+    <div id="ot-line" class="clip" data-start="0" data-duration="6.5">Serve more.<br /><span class="gold">Grow together.</span></div>
+    <div id="ot-meta" class="clip" data-start="0" data-duration="6.5">DAY 3 · OPERATIONS TEAM · 2027 PLANNING</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#ot-bg", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0);
+    tl.fromTo("#ot-year", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.9, ease: "power3.out" }, 0.05);
+    tl.fromTo("#ot-logo", { opacity: 0, scale: 0.4, rotation: -15 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.6, ease: "back.out(1.8)" }, 0.15);
+    tl.fromTo("#ot-name", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 0.6);
+    tl.fromTo("#ot-line", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.95);
+    tl.fromTo("#ot-meta", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.5);
+    window.__timelines["outro"] = tl;
+  </script>
+</template>

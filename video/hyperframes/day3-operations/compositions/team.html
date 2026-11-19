@@ -1,0 +1,37 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Inter", sans-serif; }
+    .gold { background: linear-gradient(135deg, #f7d774 0%, #d6a743 55%, #9a6a1e 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .team-card { position: absolute; left: 80px; right: 80px; top: 300px; padding: 34px 40px 38px; border-radius: 36px; background: rgba(12, 12, 14, 0.78); backdrop-filter: blur(20px); border: 2px solid rgba(214, 167, 67, 0.55); color: #fff; }
+    .team-kick { font-weight: 700; font-size: 28px; letter-spacing: 0.22em; color: #d6a743; }
+    .team-text { margin-top: 14px; font-weight: 800; font-size: 54px; line-height: 1.12; letter-spacing: -0.02em; }
+    .team-small { display: block; margin-top: 10px; font-weight: 600; font-size: 36px; color: #e8e2d4; letter-spacing: 0; }
+  </style>
+  <div id="root" data-composition-id="team" data-width="1080" data-height="1920">
+    <div id="team-b0" class="team-card clip" data-start="0.0" data-duration="13.3">
+      <div class="team-kick">DAY 3 · OPERATIONS TEAM</div>
+      <div class="team-text">Most of the team.<br /><span class="gold">One room.</span></div>
+    </div>
+    <div id="team-b1" class="team-card clip" data-start="19.3" data-duration="9.5">
+      <div class="team-kick">WHY WE'RE HERE</div>
+      <div class="team-text">Talking about <span class="gold">2027.</span></div>
+    </div>
+    <div id="team-b2" class="team-card clip" data-start="35.3" data-duration="12.0">
+      <div class="team-kick">IN THE ROOM</div>
+      <div class="team-text">Listening. Planning.<br /><span class="gold">Owning it.</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#team-b0", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.05);
+    tl.fromTo("#team-b0 .team-text", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.2);
+    tl.to("#team-b0", { opacity: 0, duration: 0.3, ease: "power2.in" }, 12.95);
+    tl.fromTo("#team-b1", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 19.35);
+    tl.fromTo("#team-b1 .team-text", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 19.5);
+    tl.to("#team-b1", { opacity: 0, duration: 0.3, ease: "power2.in" }, 28.45);
+    tl.fromTo("#team-b2", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 35.35);
+    tl.fromTo("#team-b2 .team-text", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 35.5);
+    tl.to("#team-b2", { opacity: 0, duration: 0.3, ease: "power2.in" }, 46.95);
+    window.__timelines["team"] = tl;
+  </script>
+</template>

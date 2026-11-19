@@ -7,6 +7,7 @@ Source projects and finished renders for the SAS social reels.
 | `remotion/` | Remotion project with every Remotion reel (see `src/Root.tsx` for the composition list) |
 | `hyperframes/filipino-talent/` | "Why I believe in Filipino talent" (HyperFrames version) |
 | `hyperframes/founders-2027/` | Founders Meeting · 2027 Planning reel |
+| `hyperframes/day3-operations/` | Day 3 · Operations Team · 2027 Planning (2:23); `tools/` holds the edit list and scene builder |
 | `renders/` | Finished MP4s and thumbnails |
 
 ## Reels
@@ -23,8 +24,9 @@ Source projects and finished renders for the SAS social reels.
 | `sas-filipino-talent-hyperframes.mp4` | `hyperframes/filipino-talent` |
 | `sas-cover-workmate-task-reel.mp4` | Remotion `CoverTaskReel` |
 | `sas-founders-meeting-2027.mp4` | `hyperframes/founders-2027` |
+| `sas-day3-operations-2027.mp4` | `hyperframes/day3-operations` |
 
-Music and sound effects are original and synthesized in code (no licensing).
+Music and sound effects are original and synthesized in code (no licensing), except the Day 3 video, which uses the supplied Stock-Waves "Relaxed Corporate" track.
 
 ## Rendering
 

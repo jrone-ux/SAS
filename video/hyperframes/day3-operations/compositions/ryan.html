@@ -1,0 +1,21 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Inter", sans-serif; }
+    .gold { background: linear-gradient(135deg, #f7d774 0%, #d6a743 55%, #9a6a1e 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    #ry-tag { position: absolute; left: 70px; top: 1110px; display: flex; align-items: stretch; }
+    #ry-bar { width: 10px; border-radius: 5px; background: linear-gradient(180deg,#f7d774,#d6a743 55%,#9a6a1e); }
+    #ry-box { margin-left: 18px; padding: 18px 32px 20px; border-radius: 20px; background: rgba(10,10,12,0.74); backdrop-filter: blur(16px); color: #fff; }
+    #ry-name { font-weight: 900; font-size: 66px; letter-spacing: -0.02em; line-height: 1; }
+    #ry-role { margin-top: 8px; font-weight: 700; font-size: 30px; color: #f7d774; }
+  </style>
+  <div id="root" data-composition-id="ryan" data-width="1080" data-height="1920">
+    <div id="ry-tag" class="clip" data-start="0.2" data-duration="5.2"><div id="ry-bar"></div><div id="ry-box"><div id="ry-name">Ryan</div><div id="ry-role">President</div></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#ry-bar", { scaleY: 0 }, { scaleY: 1, duration: 0.3, ease: "power3.out", transformOrigin: "50% 100%" }, 0.25);
+    tl.fromTo("#ry-box", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 0.32);
+    tl.to("#ry-tag", { opacity: 0, duration: 0.25, ease: "power2.in" }, 4.9);
+    window.__timelines["ryan"] = tl;
+  </script>
+</template>

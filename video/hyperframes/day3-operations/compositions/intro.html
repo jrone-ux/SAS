@@ -1,0 +1,27 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Inter", sans-serif; }
+    .gold { background: linear-gradient(135deg, #f7d774 0%, #d6a743 55%, #9a6a1e 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    #in-block { position: absolute; left: 90px; width: 900px; top: 1010px; text-align: center; color: #fff; text-shadow: 0 10px 40px rgba(0,0,0,0.55); }
+    #in-day { font-weight: 900; font-size: 120px; line-height: 0.9; letter-spacing: -0.04em; }
+    #in-title { margin-top: 6px; font-weight: 900; font-size: 74px; line-height: 0.95; letter-spacing: -0.03em; }
+    #in-line { width: 320px; height: 6px; margin: 22px auto 0; border-radius: 3px; background: linear-gradient(90deg,#f7d774,#d6a743,#9a6a1e); }
+    #in-sub { margin-top: 18px; font-weight: 700; font-size: 34px; letter-spacing: 0.12em; color: #f7d774; }
+  </style>
+  <div id="root" data-composition-id="intro" data-width="1080" data-height="1920">
+    <div id="in-block" class="clip" data-start="0" data-duration="6.0">
+      <div id="in-day">DAY <span class="gold">3</span></div>
+      <div id="in-title">OPERATIONS TEAM</div>
+      <div id="in-line"></div>
+      <div id="in-sub">2027 PLANNING · <span data-var-text="meetingDate">NOV 19, 2026</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#in-day", { scale: 1.1 }, { scale: 1, duration: 0.8, ease: "power3.out" }, 0);
+    tl.fromTo("#in-line", { scaleX: 0.2 }, { scaleX: 1, duration: 0.7, ease: "power3.out" }, 0.15);
+    tl.fromTo("#in-sub", { opacity: 1, y: 8 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.4);
+    tl.to("#in-block", { opacity: 0, y: -30, duration: 0.3, ease: "power2.in" }, 5.65);
+    window.__timelines["intro"] = tl;
+  </script>
+</template>

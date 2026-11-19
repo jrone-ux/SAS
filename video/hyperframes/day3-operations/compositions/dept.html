@@ -1,0 +1,44 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Inter", sans-serif; }
+    .gold { background: linear-gradient(135deg, #f7d774 0%, #d6a743 55%, #9a6a1e 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .dept-card { position: absolute; left: 80px; right: 80px; top: 300px; padding: 34px 40px 38px; border-radius: 36px; background: rgba(12, 12, 14, 0.78); backdrop-filter: blur(20px); border: 2px solid rgba(214, 167, 67, 0.55); color: #fff; }
+    .dept-kick { font-weight: 700; font-size: 28px; letter-spacing: 0.22em; color: #d6a743; }
+    .dept-text { margin-top: 14px; font-weight: 800; font-size: 54px; line-height: 1.12; letter-spacing: -0.02em; }
+    .dept-small { display: block; margin-top: 10px; font-weight: 600; font-size: 36px; color: #e8e2d4; letter-spacing: 0; }
+  </style>
+  <div id="root" data-composition-id="dept" data-width="1080" data-height="1920">
+    <div id="dept-b0" class="dept-card clip" data-start="0.0" data-duration="7.0">
+      <div class="dept-kick">01 · THE REPORT</div>
+      <div class="dept-text">Where each department <span class="gold">stands today.</span></div>
+    </div>
+    <div id="dept-b1" class="dept-card clip" data-start="7.0" data-duration="15.0">
+      <div class="dept-kick">02 · THE PLAN</div>
+      <div class="dept-text">How each team gets there <span class="gold">in 2027.</span></div>
+    </div>
+    <div id="dept-b2" class="dept-card clip" data-start="22.0" data-duration="12.4">
+      <div class="dept-kick">03 · THE GOALS</div>
+      <div class="dept-text">What we need <span class="gold">to achieve.</span></div>
+    </div>
+    <div id="dept-b3" class="dept-card clip" data-start="34.4" data-duration="9.5">
+      <div class="dept-kick">EVERY DEPARTMENT</div>
+      <div class="dept-text">One <span class="gold">direction.</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#dept-b0", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.05);
+    tl.fromTo("#dept-b0 .dept-text", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.2);
+    tl.to("#dept-b0", { opacity: 0, duration: 0.3, ease: "power2.in" }, 6.65);
+    tl.fromTo("#dept-b1", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 7.05);
+    tl.fromTo("#dept-b1 .dept-text", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 7.2);
+    tl.to("#dept-b1", { opacity: 0, duration: 0.3, ease: "power2.in" }, 21.65);
+    tl.fromTo("#dept-b2", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 22.05);
+    tl.fromTo("#dept-b2 .dept-text", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 22.2);
+    tl.to("#dept-b2", { opacity: 0, duration: 0.3, ease: "power2.in" }, 34.05);
+    tl.fromTo("#dept-b3", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 34.45);
+    tl.fromTo("#dept-b3 .dept-text", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 34.6);
+    tl.to("#dept-b3", { opacity: 0, duration: 0.3, ease: "power2.in" }, 43.55);
+    window.__timelines["dept"] = tl;
+  </script>
+</template>

@@ -1,0 +1,37 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Inter", sans-serif; }
+    .gold { background: linear-gradient(135deg, #f7d774 0%, #d6a743 55%, #9a6a1e 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .goals-card { position: absolute; left: 80px; right: 80px; top: 300px; padding: 34px 40px 38px; border-radius: 36px; background: rgba(12, 12, 14, 0.78); backdrop-filter: blur(20px); border: 2px solid rgba(214, 167, 67, 0.55); color: #fff; }
+    .goals-kick { font-weight: 700; font-size: 28px; letter-spacing: 0.22em; color: #d6a743; }
+    .goals-text { margin-top: 14px; font-weight: 800; font-size: 54px; line-height: 1.12; letter-spacing: -0.02em; }
+    .goals-small { display: block; margin-top: 10px; font-weight: 600; font-size: 36px; color: #e8e2d4; letter-spacing: 0; }
+  </style>
+  <div id="root" data-composition-id="goals" data-width="1080" data-height="1920">
+    <div id="goals-b0" class="goals-card clip" data-start="10.0" data-duration="5.5">
+      <div class="goals-kick">THE 2027 GOAL</div>
+      <div class="goals-text">To <span class="gold">serve more.</span></div>
+    </div>
+    <div id="goals-b1" class="goals-card clip" data-start="15.5" data-duration="3.3">
+      <div class="goals-kick">HOW</div>
+      <div class="goals-text">Better support for<br />every client we serve.</div>
+    </div>
+    <div id="goals-b2" class="goals-card clip" data-start="18.8" data-duration="4.0">
+      <div class="goals-kick">DAY 3 · DONE</div>
+      <div class="goals-text">Building 2027.<br /><span class="gold">Together.</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#goals-b0", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 10.05);
+    tl.fromTo("#goals-b0 .goals-text", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 10.2);
+    tl.to("#goals-b0", { opacity: 0, duration: 0.3, ease: "power2.in" }, 15.15);
+    tl.fromTo("#goals-b1", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 15.55);
+    tl.fromTo("#goals-b1 .goals-text", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 15.7);
+    tl.to("#goals-b1", { opacity: 0, duration: 0.3, ease: "power2.in" }, 18.45);
+    tl.fromTo("#goals-b2", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 18.85);
+    tl.fromTo("#goals-b2 .goals-text", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 19.0);
+    tl.to("#goals-b2", { opacity: 0, duration: 0.3, ease: "power2.in" }, 22.45);
+    window.__timelines["goals"] = tl;
+  </script>
+</template>

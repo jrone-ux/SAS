@@ -1,0 +1,35 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Inter", sans-serif; }
+    .gold { background: linear-gradient(135deg, #f7d774 0%, #d6a743 55%, #9a6a1e 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    #cd-bg { position: absolute; inset: 0; background: radial-gradient(circle at 540px 860px, #2a2010 0%, #050505 62%); }
+    #cd-num { position: absolute; left: 0; width: 1080px; top: 420px; text-align: center; font-weight: 900; font-size: 520px; line-height: 1; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: 3px rgba(214,167,67,0.28); }
+    #cd-block { position: absolute; left: 110px; width: 860px; top: 640px; text-align: center; color: #fff; }
+    #cd-kicker { font-weight: 700; font-size: 32px; letter-spacing: 0.3em; color: #d6a743; }
+    #cd-title { margin-top: 18px; font-weight: 900; font-size: 116px; line-height: 0.98; letter-spacing: -0.035em; }
+    #cd-line { width: 260px; height: 6px; margin: 30px auto 0; border-radius: 3px; background: linear-gradient(90deg,#f7d774,#d6a743,#9a6a1e); }
+    #cd-sub { margin-top: 26px; font-weight: 600; font-size: 40px; line-height: 1.25; color: #e8e2d4; }
+  </style>
+  <div id="root" data-composition-id="card" data-width="1080" data-height="1920">
+    <div id="cd-bg" class="clip" data-start="0" data-duration="2.903"></div>
+    <div id="cd-num" class="clip" data-start="0" data-duration="2.903" data-var-text="num" data-layout-ignore>01</div>
+    <div id="cd-block" class="clip" data-start="0" data-duration="2.903">
+      <div id="cd-kicker">CHAPTER <span data-var-text="num">01</span></div>
+      <div id="cd-title" data-var-text="title">THE TEAM</div>
+      <div id="cd-line"></div>
+      <div id="cd-sub" data-var-text="sub">Most of the operations team. One room.</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#cd-bg", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 0);
+    tl.fromTo("#cd-num", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.9, ease: "power3.out" }, 0.05);
+    tl.fromTo("#cd-kicker", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 0.25);
+    tl.fromTo("#cd-title", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.35);
+    tl.fromTo("#cd-line", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 0.6);
+    tl.fromTo("#cd-sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 0.5);
+    tl.to("#cd-block", { opacity: 0, duration: 0.18, ease: "power2.in" }, 2.72);
+    tl.to("#cd-num", { opacity: 0, duration: 0.2, ease: "power2.in" }, 2.68);
+    window.__timelines["card"] = tl;
+  </script>
+</template>
